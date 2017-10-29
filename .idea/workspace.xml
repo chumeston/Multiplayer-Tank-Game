@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ef0ee30-2a47-47e7-9792-492e8b8127f0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tankgame/src/tank-0.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tankgame/src/tank-15.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tankgame/src/tank-30.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tankgame/src/tank-45.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tankgame/src/tankgame/Action.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tankgame/src/tankgame/Colors.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tankgame/src/tankgame/KeyListen.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tankgame/src/tankgame/Tank.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tankgame/src/tankgame/TankGameDraw.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tankgame/src/tankgame/TankGameMain.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tankgame/src/tankgame/TankGameSprites.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tankgame/src/tankgame/TankGameVariables.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tankgame/tankgame.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,12 +34,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="KeyListen.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="KeyListen.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tankgame/src/tankgame/KeyListen.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="300">
               <caret line="20" column="41" lean-forward="true" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="105">
+                <caret line="7" column="27" lean-forward="false" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -91,6 +92,7 @@
       <list>
         <option value="$PROJECT_DIR$/tankgame/src/tankgame/Tank.java" />
         <option value="$PROJECT_DIR$/tankgame/src/tankgame/KeyListen.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -300,12 +302,12 @@
       <option name="presentableId" value="Default" />
       <updated>1509313528865</updated>
       <workItem from="1509313530384" duration="56000" />
-      <workItem from="1509313607038" duration="308000" />
+      <workItem from="1509313607038" duration="490000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="364000" />
+    <option name="totallyTimeSpent" value="546000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -388,6 +390,17 @@
         <state relative-caret-position="300">
           <caret line="20" column="41" lean-forward="true" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="105">
+            <caret line="7" column="27" lean-forward="false" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
