@@ -2,7 +2,7 @@
 
 #### Corey Humeston, 913257363, humeston@mail.sfsu.edu
 
-#### "Mark, add your stuff here."
+#### Mark Soriano, 915457717, msorian2@mail.sfsu.edu
 
 - TODO
 - Change the name of the repo to csc413-tankgame-teamNN where NN is your team number.
