@@ -1,5 +1,6 @@
+package tankgamenew;
+
 import java.awt.image.BufferedImage;
-import java.io.BufferedInputStream;
 
 public class SpriteSheetButton {
 

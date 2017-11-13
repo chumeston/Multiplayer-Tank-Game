@@ -1,3 +1,5 @@
+package tankgamenew;
+
 import java.awt.*;
 
 public class Bullet extends TickingObject {
@@ -33,13 +35,12 @@ public class Bullet extends TickingObject {
             y += 10;
         }
 
-
     }
 
 
     public void render(Graphics g) {
 
-        g.drawImage(game.bullet,(int)x,(int)y, null);
+        g.drawImage(game.bullet, (int) x, (int) y, null);
 
     }
 

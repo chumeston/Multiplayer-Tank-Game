@@ -1,3 +1,5 @@
+package tankgamenew;
+
 import java.awt.image.BufferedImage;
 
 public class SpriteSheet {

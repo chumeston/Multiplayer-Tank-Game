@@ -1,4 +1,4 @@
-import java.awt.*;
+package tankgamenew;
 
 public abstract class TickingObject implements Entity {
 
@@ -10,7 +10,7 @@ public abstract class TickingObject implements Entity {
     public abstract void tick();
 
     public TickingObject(double x, double y, GlobalTexture tex) {
-        this.x = y;
+        this.x = x;
         this.y = y;
         this.tex = tex;
     }

@@ -1,3 +1,5 @@
+package tankgamenew;
+
 public class GameObject {
 
     protected double x,y ;

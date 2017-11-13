@@ -1,3 +1,5 @@
+package tankgamenew;
+
 import java.awt.Graphics;
 
 public interface Entity {

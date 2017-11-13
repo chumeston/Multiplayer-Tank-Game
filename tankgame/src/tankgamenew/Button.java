@@ -1,3 +1,5 @@
+package tankgamenew;
+
 import java.awt.*;
 
 public class Button extends GameObject {

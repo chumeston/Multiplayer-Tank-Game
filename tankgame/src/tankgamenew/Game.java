@@ -1,4 +1,5 @@
-import javax.naming.ldap.Control;
+package tankgamenew;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;

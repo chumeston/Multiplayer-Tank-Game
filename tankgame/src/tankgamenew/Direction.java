@@ -1,3 +1,5 @@
+package tankgamenew;
+
 public enum Direction {
 
     RIGHT,
