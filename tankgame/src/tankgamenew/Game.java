@@ -12,6 +12,7 @@ public class Game extends Canvas implements Runnable {
 
 
     //fullscreen
+    static GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
     static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     public static int gameWidth = (int) screenSize.getWidth();
     public static int gameHeight = (int) screenSize.getHeight();
@@ -43,8 +44,6 @@ public class Game extends Canvas implements Runnable {
     private int gamestate;
 
     private void init() {
-
-
 
         addMouseListener(new MouseInput(this));
         addKeyListener(new KeyInput(this));
@@ -165,11 +164,17 @@ public class Game extends Canvas implements Runnable {
     public static void main(String args[]) {
         JFrame frame = new JFrame("TankGame");
         Game game = new Game();
-
         frame.add(game);
-        frame.setSize(gameWidth,gameHeight);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setFocusable(true);
+        frame.setUndecorated(true);
+
+        try {
+            graphicsDevice.setFullScreenWindow(frame);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
