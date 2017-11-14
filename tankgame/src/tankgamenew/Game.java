@@ -10,7 +10,6 @@ import java.io.IOException;
 
 public class Game extends Canvas implements Runnable {
 
-
     //fullscreen
     static GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
     static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -24,7 +23,7 @@ public class Game extends Canvas implements Runnable {
 
     private Thread thread;
 
-    private BufferedImage gameBackground, button, spritesheet;      // game menu , button
+    private BufferedImage gameBackground, walls, button, spritesheet;      // game menu , button
 
     private BufferImageLoader loader;   // loader
 
@@ -53,6 +52,7 @@ public class Game extends Canvas implements Runnable {
 
             gameBackground = loader.loadImage("res/menu.png");
             button = loader.loadImage("res/spritesheetbutton.png");
+            walls = loader.loadImage("res/wallspritesheet.png");
             spritesheet = loader.loadImage("res/tankspritesheet.png");
             bullet = loader.loadImage("res/bluebullet.png");
         } catch ( IOException e) {
@@ -198,21 +198,29 @@ public class Game extends Canvas implements Runnable {
 
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
-        if(key == KeyEvent.VK_W){
-            p.setVelY(-4);
-            p.setDirection(1);
+        if (key == KeyEvent.VK_W) {
+            if (p.isCanMoveUp()) {
+                p.setVelY(-4);
+                p.setDirection(Direction.UP);
+            }
         }
         if(key == KeyEvent.VK_A){
-            p.setVelX(-4);
-            p.setDirection(3);
+            if (p.isCanMoveLeft()) {
+                p.setVelX(-4);
+                p.setDirection(Direction.LEFT);
+            }
         }
-        if(key == KeyEvent.VK_S){
-            p.setVelY(4);
-            p.setDirection(4);
+        if(key == KeyEvent.VK_S) {
+            if (p.isCanMoveDown()) {
+                p.setVelY(4);
+                p.setDirection(Direction.DOWN);
+            }
         }
-        if(key == KeyEvent.VK_D){
-            p.setVelX(4);
-            p.setDirection(2);
+        if(key == KeyEvent.VK_D) {
+            if (p.isCanMoveRight()) {
+                p.setVelX(4);
+                p.setDirection(Direction.RIGHT);
+            }
         }
         if(key == KeyEvent.VK_ESCAPE) // escape only in play game
         {
@@ -236,11 +244,11 @@ public class Game extends Canvas implements Runnable {
             p.setVelX(0);
         }
         else if (key == KeyEvent.VK_SPACE) {
-            if(p.getDirection() == 4 || p.getDirection() == 1) {
+            if(p.getDirection() == Direction.DOWN || p.getDirection() == Direction.UP) {
                 controls.addBullet(new Bullet(p.getX() + 25, p.getY() + 10, tex, this));
-            } else if (p.getDirection() == 2) {
+            } else if (p.getDirection() == Direction.RIGHT) {
                 controls.addBullet(new Bullet(p.getX() + 20, p.getY() + 20, tex, this));
-            } else if (p.getDirection() == 3) {
+            } else if (p.getDirection() == Direction.LEFT) {
                 controls.addBullet(new Bullet(p.getX(), p.getY() + 20, tex, this));
             }
         }
@@ -266,5 +274,13 @@ public class Game extends Canvas implements Runnable {
 
     public void setGamestate(int gamestate) {
         this.gamestate = gamestate;
+    }
+
+    public BufferedImage getWalls() {
+        return walls;
+    }
+
+    public void setWalls(BufferedImage walls) {
+        this.walls = walls;
     }
 }

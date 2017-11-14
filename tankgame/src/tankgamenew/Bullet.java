@@ -11,13 +11,13 @@ public class Bullet extends TickingObject {
         super(x, y, tex);
         this.game = game;
 
-        if(game.p.getDirection() == 1 ){
+        if(game.p.getDirection() == Direction.UP){
             facing = 1;
-        } else if (game.p.getDirection() == 2 ){
+        } else if (game.p.getDirection() == Direction.RIGHT){
             facing = 2;
-        } else if (game.p.getDirection() == 3 ){
+        } else if (game.p.getDirection() == Direction.LEFT){
             facing = 3;
-        } else if (game.p.getDirection() == 4 ){
+        } else if (game.p.getDirection() == Direction.DOWN){
             facing = 4;
         }
 

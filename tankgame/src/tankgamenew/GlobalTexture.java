@@ -9,15 +9,17 @@ public class GlobalTexture {
     public BufferedImage[] playerRight = new BufferedImage[4]; //right
     public BufferedImage[] playerDown = new BufferedImage[4]; //down
 
-    public BufferedImage playbutton1 , playbutton2;
+    public BufferedImage playbutton1 , playbutton2, brickWall;
 
     private SpriteSheetButton button;
     private SpriteSheet spriteSheet1;
+    private SpriteSheet wallSpriteSheet;
 
 
     public GlobalTexture(Game game) {
         button = new SpriteSheetButton(game.getButtons());
         spriteSheet1 = new SpriteSheet(game.getSpritesheet());
+        wallSpriteSheet = new SpriteSheet(game.getWalls());
         getSprites();
     }
     public void getSprites() {
@@ -49,6 +51,6 @@ public class GlobalTexture {
         playerDown[2] = spriteSheet1.getSprite(3,3,64,64);
         playerDown[3] = spriteSheet1.getSprite(4,3,64,64);
 
-
+        brickWall = wallSpriteSheet.getSprite(1, 1, 32, 32);
     }
 }
