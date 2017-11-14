@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ef0ee30-2a47-47e7-9792-492e8b8127f0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tankgame/src/tankgamenew/Wall.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tankgame/src/tankgamenew/Bullet.java" afterPath="$PROJECT_DIR$/tankgame/src/tankgamenew/Bullet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tankgame/src/tankgamenew/Controller.java" afterPath="$PROJECT_DIR$/tankgame/src/tankgamenew/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tankgame/src/tankgamenew/Direction.java" afterPath="$PROJECT_DIR$/tankgame/src/tankgamenew/Direction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tankgame/src/tankgamenew/Game.java" afterPath="$PROJECT_DIR$/tankgame/src/tankgamenew/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tankgame/src/tankgamenew/GlobalTexture.java" afterPath="$PROJECT_DIR$/tankgame/src/tankgamenew/GlobalTexture.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tankgame/src/tankgamenew/Player.java" afterPath="$PROJECT_DIR$/tankgame/src/tankgamenew/Player.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -368,7 +361,7 @@
       <workItem from="1509313607038" duration="685000" />
       <workItem from="1509314543279" duration="47000" />
       <workItem from="1510604164190" duration="163000" />
-      <workItem from="1510604345944" duration="7622000" />
+      <workItem from="1510604345944" duration="7653000" />
     </task>
     <task id="LOCAL-00001" summary="Fixed packages. New push to new branch.">
       <created>1510605601416</created>
@@ -384,11 +377,18 @@
       <option name="project" value="LOCAL" />
       <updated>1510624067804</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added wall. Collision needs to be fixed in Player.java.&#10;Look at getBounds()">
+      <created>1510627526366</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1510627526366</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8654000" />
+    <option name="totallyTimeSpent" value="8685000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -461,7 +461,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fixed packages. New push to new branch." />
     <MESSAGE value="Full screen fixed. Minor code cleanup." />
-    <option name="LAST_COMMIT_MESSAGE" value="Full screen fixed. Minor code cleanup." />
+    <MESSAGE value="Added wall. Collision needs to be fixed in Player.java.&#10;Look at getBounds()" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added wall. Collision needs to be fixed in Player.java.&#10;Look at getBounds()" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
