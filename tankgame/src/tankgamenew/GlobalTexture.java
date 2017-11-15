@@ -9,7 +9,7 @@ public class GlobalTexture {
     public BufferedImage[] playerRight = new BufferedImage[4]; //right
     public BufferedImage[] playerDown = new BufferedImage[4]; //down
 
-    public BufferedImage playbutton1 , playbutton2, brickWall;
+    public BufferedImage playbutton1 , playbutton2, brickWall, metalWall;
 
     private SpriteSheetButton button;
     private SpriteSheet spriteSheet1;
@@ -51,6 +51,6 @@ public class GlobalTexture {
         playerDown[2] = spriteSheet1.getSprite(3,3,64,64);
         playerDown[3] = spriteSheet1.getSprite(4,3,64,64);
 
-        brickWall = wallSpriteSheet.getSprite(1, 1, 32, 32);
+        brickWall = wallSpriteSheet.getSprite(1, 1, 32, 32);  // metal wall
     }
 }

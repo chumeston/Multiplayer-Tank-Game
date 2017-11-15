@@ -11,6 +11,8 @@ public class Bullet extends TickingObject {
         super(x, y, tex);
         this.game = game;
 
+        // shooting and direction of bullet
+
         if(game.p.getDirection() == Direction.UP){
             facing = 1;
         } else if (game.p.getDirection() == Direction.RIGHT){
@@ -44,6 +46,9 @@ public class Bullet extends TickingObject {
 
     }
 
+    public Rectangle getBounds() {
+        return new Rectangle((int) x, (int) y, 25, 25);
+    }
 
 
 }
