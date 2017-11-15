@@ -11,9 +11,9 @@ public class Bullet extends TickingObject {
         super(x, y, tex);
         this.game = game;
 
-        // shooting and direction of bullet
+        // shooting and direction of bullet player 1
 
-        if(game.p.getDirection() == Direction.UP){
+        if(game.p.getDirection() == Direction.UP ){
             facing = 1;
         } else if (game.p.getDirection() == Direction.RIGHT){
             facing = 2;
@@ -23,11 +23,23 @@ public class Bullet extends TickingObject {
             facing = 4;
         }
 
+        // shooter and direction of bullet  player 2
+
+        else if (game.p2.getDirection() == Direction.UP){
+            facing = 1;
+        } else if (game.p2.getDirection() == Direction.RIGHT){
+            facing = 2;
+        } else if (game.p2.getDirection() == Direction.LEFT){
+            facing = 3;
+        } else if (game.p2.getDirection() == Direction.DOWN){
+            facing = 4;
+        }
+
     }
 
 
     public void tick() {
-        if(facing == 1) {  // 1 is up
+        if(facing == 1) {  // 1 is up , x & y and speed
             y -= 10;
         } else if (facing == 2) { //2 is right
             x += 10;
@@ -36,6 +48,8 @@ public class Bullet extends TickingObject {
         } else if (facing == 4) {  // 4 is down
             y += 10;
         }
+
+
 
     }
 

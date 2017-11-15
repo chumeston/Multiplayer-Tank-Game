@@ -13,6 +13,8 @@ public class Controller {
 
     Bullet tempBullet;
     Wall tempWall;
+    Player tempPlayer;
+
 
     private Direction direction;
 
@@ -60,28 +62,29 @@ public class Controller {
         }
     }
 
-    // this only works in one wall object , removes bullet
-    public void doCollisionBullet(ArrayList<Bullet> bull) {
-        for (int i = 0; i < bull.size(); i++) {
-            if (tempWall.getBounds().intersects(bull.get(i).getBounds())) {
-                removeBullet(tempBullet);
-                //removeWall(tempWall);    --  removes wall
-            }
-        }
-    }
-
+    // BULLET -> WALL COLLISION
 
     public void render(Graphics g){
+
         for(int i = 0; i < bulletList.size(); i++) {
             tempBullet = bulletList.get(i);
+
+            if (tempWall.getBounds().intersects(bulletList.get(i).getBounds()) ) {
+                removeBullet(tempBullet);
+
+            }
+
             tempBullet.render(g);
         }
         for(int i = 0; i < wallList.size(); i++) {
             tempWall = wallList.get(i);
-            tempWall.render(g);                 //renders wall
-            doCollisionBullet(bulletList);      //bullet collision with metal wall removes bullet
-            ;
+            tempWall.render(g);
+
         }
+
+
+
+
     }
 
     public void addBullet(Bullet instance) {
