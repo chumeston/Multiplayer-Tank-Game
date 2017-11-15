@@ -12,7 +12,5 @@ public class Wall extends GameObject {
         graphics.drawImage(tex.brickWall, (int) x, (int) y, null);
     }
 
-    public Rectangle getBounds() {
-        return new Rectangle((int) x, (int) y, 32, 32);
-    }
+    public Rectangle getBounds() { return new Rectangle((int) x, (int) y, 32, 32); }
 }

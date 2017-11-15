@@ -16,6 +16,11 @@ public class Animation {
     private BufferedImage img4;
 
     private BufferedImage currentImage;
+    public Animation(int speed, BufferedImage img1) {
+        this.speed = speed;
+        this.img1 = img1;
+        frames =1;
+    }
     //4 frames
     public Animation(int speed, BufferedImage img1, BufferedImage img2, BufferedImage img3, BufferedImage img4) {
         this.speed = speed;
@@ -43,8 +48,18 @@ public class Animation {
     }
 
     public void nextFrame() {
-        //case frame 3
+        //case 1 frame
         switch(frames) {
+            case 1:
+                if(count == 0) {
+                    currentImage = img1;
+                }
+                count++;
+                if(count > frames) {
+                    count = 0;
+                }
+                break;
+
             case 3:
                 if(count ==0 ){
                     currentImage = img1;

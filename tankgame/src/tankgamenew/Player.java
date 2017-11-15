@@ -15,12 +15,13 @@ public class Player extends TickingObject {
     Animation animatesD;
 
     private Direction direction;
+    private Controller control;
 
     public Player(double x, double y, GlobalTexture tex) {
         super(x, y, tex);
         //velX = 3;
         //velY= 2;
-        direction = Direction.UP;
+        direction = Direction.RIGHT;  // starting angle position
         //speed 4 frame
         animates = new Animation(2, tex.player[0], tex.player[1], tex.player[2] ,tex.player[3]);
         animatesR = new Animation(2, tex.playerRight[0], tex.playerRight[1], tex.playerRight[2], tex.playerRight[3]);
@@ -30,9 +31,11 @@ public class Player extends TickingObject {
 
     @Override
     public void tick() {
+
         x+=velX;
         y+=velY;
 
+        // TANK COLLISION SCREEN DETECTION
         if(x<0) {
             x=0;
         }
@@ -46,21 +49,27 @@ public class Player extends TickingObject {
             y = 0;
         }
 
-        doCollision(wallArrayList);
+        //----
+        doCollision(wallArrayList); // if this method is in here not wall metal object collide with player fully
 
         if (direction == Direction.UP){
-            animates.animate(); // up
-        } else if (direction == Direction.RIGHT) { //right
+            animates.animate();
+        } else if (direction == Direction.RIGHT) {
             animatesR.animate();
-        } else if (direction == Direction.LEFT) { //left
+        } else if (direction == Direction.LEFT) {
             animatesL.animate();
-        } else if (direction == Direction.DOWN) { //down
+        } else if (direction == Direction.DOWN) {
             animatesD.animate();
         }
     }
 
     @Override
     public void render(Graphics g) {
+
+        //----
+        // collides with all wall if method inside render but gets stuck
+        // maybe because of pixel clipping or keeps hitting rectangle settting velx and vely to 0
+        // doCollision(wallArrayList);
 
         if(direction == Direction.UP) {
             animates.drawAnimation(g,x,y,0);
@@ -72,33 +81,23 @@ public class Player extends TickingObject {
             animatesD.drawAnimation(g,x,y,0);
         }
 
-
     }
 
     public void setDirection(Direction direction) {
         this.direction = direction;
     }
 
-    public Direction getDirection() {
-        return direction;
-    }
+    public Direction getDirection() { return direction; }
 
-    public Rectangle getLeftBound() {
-        return new Rectangle((int) x, (int) y, 32, 32);
-    }
-
-    public Rectangle getRightBound() {
-        return new Rectangle((int) x, (int) y, 32, 32);
-    }
-
-    public Rectangle getUpBound() {
-        return new Rectangle((int) x, (int) y, 32, 32);
-    }
-
+    // was set to 32 width and height which caused clipping inside wall and bugged collision , changed to 64
+    public Rectangle getLeftBound() { return new Rectangle((int) x, (int) y, 64, 64); }
+    public Rectangle getRightBound() { return new Rectangle((int) x, (int) y, 64, 64); }
+    public Rectangle getUpBound() {return new Rectangle((int) x, (int) y, 64, 64); }
     public Rectangle getDownBound() {
-        return new Rectangle((int) x, (int) y, 32, 32);
+        return new Rectangle((int) x, (int) y, 64, 64);
     }
 
+    //COLLISION WALL
     public void doCollision(ArrayList<Wall> walls) {
         for (int i = 0; i < walls.size(); i++) {
             if (getRightBound().intersects(walls.get(i).getBounds()) && direction == Direction.RIGHT) {
@@ -127,6 +126,7 @@ public class Player extends TickingObject {
             }
         }
     }
+
 
     public double getX() {
         return x;

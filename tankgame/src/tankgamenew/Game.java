@@ -23,9 +23,11 @@ public class Game extends Canvas implements Runnable {
 
     private Thread thread;
 
-    private BufferedImage gameBackground, walls, button, spritesheet;      // game menu , button
+    private BufferedImage gameBackground, walls, button, spritesheet, playBackground;      // game menu , button
 
     private BufferImageLoader loader;   // loader
+
+    private BufferedImage metalwall;
 
     public BufferedImage bullet;
 
@@ -35,7 +37,7 @@ public class Game extends Canvas implements Runnable {
     GlobalTexture tex;
     Menu menu;
     Player p;
-
+    Player p2;
 
 
 
@@ -55,6 +57,8 @@ public class Game extends Canvas implements Runnable {
             walls = loader.loadImage("res/wallspritesheet.png");
             spritesheet = loader.loadImage("res/tankspritesheet.png");
             bullet = loader.loadImage("res/bluebullet.png");
+            metalwall = loader.loadImage("res/wall.png");
+            playBackground = loader.loadImage("res/background.png");
         } catch ( IOException e) {
             e.printStackTrace();
         }
@@ -64,12 +68,13 @@ public class Game extends Canvas implements Runnable {
         menu = new Menu();
         playButton = new Button(300, 350, tex).setTyped(1);
 
-        p = new Player(gameWidth/2,gameHeight/2, tex);  // position of player
+        p = new Player(width/2,height/2, tex);  // position of player
+        //p2 = new Player(gameWidth/2 - 40,gameHeight/2 - 40, tex);  // position of player 2 not displayed
     }
 
     private synchronized void start(){
         if(running) {
-            return;     //we true get out of method
+            return;     //true, get out of method
         }
         running = true;
         thread = new Thread(this);  // creating instance of game "this
@@ -91,6 +96,7 @@ public class Game extends Canvas implements Runnable {
 
     public void tick() { // update collision and movement
         p.tick();
+        //p2.tick();    // player 2 not displayed
         controls.tick();
 
     }
@@ -99,7 +105,7 @@ public class Game extends Canvas implements Runnable {
 
         BufferStrategy bs = this.getBufferStrategy();
         if(bs == null){
-            this.createBufferStrategy(3);
+            this.createBufferStrategy(4);
             return;
         }
 
@@ -109,15 +115,17 @@ public class Game extends Canvas implements Runnable {
         if(gamestate == 0) {
             menu.createMenu(g, gameBackground, playButton, null, null); // play button
         } else if (gamestate == 1) {
-            g.setColor(Color.BLACK);
-            g.fillRect(0,0,gameWidth,gameHeight);
+
+            g.drawImage(playBackground, 0 , 0, null);
+
+
+            //render
             p.render(g);
             controls.render(g);
         } else if (gamestate == 2 ) {
             g.setColor(Color.BLUE);
             g.fillRect(0,0,gameWidth,gameHeight);
         }
-        //
 
         g.dispose();
         bs.show();
@@ -200,25 +208,25 @@ public class Game extends Canvas implements Runnable {
         int key = e.getKeyCode();
         if (key == KeyEvent.VK_W) {
             if (p.isCanMoveUp()) {
-                p.setVelY(-4);
+                p.setVelY(-5);
                 p.setDirection(Direction.UP);
             }
         }
         if(key == KeyEvent.VK_A){
             if (p.isCanMoveLeft()) {
-                p.setVelX(-4);
+                p.setVelX(-5);
                 p.setDirection(Direction.LEFT);
             }
         }
         if(key == KeyEvent.VK_S) {
             if (p.isCanMoveDown()) {
-                p.setVelY(4);
+                p.setVelY(5);
                 p.setDirection(Direction.DOWN);
             }
         }
         if(key == KeyEvent.VK_D) {
             if (p.isCanMoveRight()) {
-                p.setVelX(4);
+                p.setVelX(5);
                 p.setDirection(Direction.RIGHT);
             }
         }

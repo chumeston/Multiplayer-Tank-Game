@@ -14,10 +14,20 @@ public class Controller {
     Bullet tempBullet;
     Wall tempWall;
 
+    private Direction direction;
+
     public Controller(Game game, GlobalTexture tex) {
         this.game = game;
         this.tex = tex;
-        addWall(new Wall(100, 100, tex));
+
+        // drawing the walls ,   BUG - multiple walls cant detect collision
+        addWall(new Wall(1200, 550, tex));
+        addWall(new Wall(700, 550, tex));
+        addWall(new Wall(1000, 450, tex));
+        addWall(new Wall(1000, 650, tex));
+
+        System.out.println(wallList.size());
+
     }
 
     public void tick() {
@@ -35,9 +45,32 @@ public class Controller {
                 removeBullet(tempBullet);
             }
 
+            if(tempBullet.getY() < 0){
+                removeBullet(tempBullet);
+            } else if(tempBullet.getY() > game.getGH()) {
+                removeBullet(tempBullet);
+            } else if(tempBullet.getX() > game.getGW()) {
+                removeBullet(tempBullet);
+            } else if(tempBullet.getX() < 0) {
+                removeBullet(tempBullet);
+            }
+
             tempBullet.tick();
+
         }
     }
+
+    // this only works in one wall object , removes bullet
+    public void doCollisionBullet(ArrayList<Bullet> bull) {
+        for (int i = 0; i < bull.size(); i++) {
+            if (tempWall.getBounds().intersects(bull.get(i).getBounds())) {
+                removeBullet(tempBullet);
+                //removeWall(tempWall);    --  removes wall
+            }
+        }
+    }
+
+
     public void render(Graphics g){
         for(int i = 0; i < bulletList.size(); i++) {
             tempBullet = bulletList.get(i);
@@ -45,7 +78,9 @@ public class Controller {
         }
         for(int i = 0; i < wallList.size(); i++) {
             tempWall = wallList.get(i);
-            tempWall.render(g);
+            tempWall.render(g);                 //renders wall
+            doCollisionBullet(bulletList);      //bullet collision with metal wall removes bullet
+            ;
         }
     }
 
@@ -69,8 +104,8 @@ public class Controller {
         wallList.remove(instance);
     }
 
-    public static ArrayList<Wall> getWalls() {
-        return wallList;
-    }
+    public static ArrayList<Wall> getWalls() { return wallList; }
+
+    public static ArrayList<Bullet> getBullet() { return bulletList; }
 
 }
