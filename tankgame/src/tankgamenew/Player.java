@@ -49,6 +49,7 @@ public class Player extends TickingObject {
             y = 0;
         }
 
+<<<<<<< HEAD
         //----
         //doCollision(wallArrayList); // if this method is in here not wall metal object collide with player fully
 
@@ -61,17 +62,41 @@ public class Player extends TickingObject {
             } else if (direction == Direction.DOWN) {
                 animatesD.animate();
             }
+=======
+        // doCollision(wallArrayList); // one Wall only collides
+
+        if (direction == Direction.UP){
+            animates.animate();
+        } else if (direction == Direction.RIGHT) {
+            animatesR.animate();
+        } else if (direction == Direction.LEFT) {
+            animatesL.animate();
+        } else if (direction == Direction.DOWN) {
+            animatesD.animate();
+        }
+>>>>>>> 2f69d8a50887958deb5894e47459b8335b5a5ae8
     }
 
     @Override
     public void render(Graphics g) {
 
+<<<<<<< HEAD
         //----
         // collides with all wall if method inside render but gets stuck
         // maybe because of pixel clipping or keeps hitting rectangle settting velx and vely to 0
 
 
         doCollision(wallArrayList);
+=======
+        g.setColor(Color.green);
+        g.fillRect((int)x, (int)y, 2, 60);
+        g.fillRect((int)x+60, (int)y, 2, 60);
+        g.fillRect((int)x, (int)y, 60, 2);
+        g.fillRect((int)x, (int)y+56, 60, 2);
+
+
+        doCollision(wallArrayList);   // Multiple wall only collides
+>>>>>>> 2f69d8a50887958deb5894e47459b8335b5a5ae8
 
         if(direction == Direction.UP) {
             animates.drawAnimation(g,x,y,0);
@@ -83,6 +108,7 @@ public class Player extends TickingObject {
             animatesD.drawAnimation(g,x,y,0);
         }
 
+
     }
 
     public void setDirection(Direction direction) {
@@ -92,36 +118,41 @@ public class Player extends TickingObject {
     public Direction getDirection() { return direction; }
 
     // was set to 32 width and height which caused clipping inside wall and bugged collision , changed to 64
-    public Rectangle getLeftBound() { return new Rectangle((int) x, (int) y, 64, 64); }
-    public Rectangle getRightBound() { return new Rectangle((int) x, (int) y, 64, 64); }
-    public Rectangle getUpBound() {return new Rectangle((int) x, (int) y, 64, 64); }
-    public Rectangle getDownBound() {
-        return new Rectangle((int) x, (int) y, 64, 64);
+    public Rectangle getLeftBound() { return new Rectangle((int) x+4, (int) y, 2, 64); }
+    public Rectangle getRightBound() { return new Rectangle((int) x+56, (int) y, 2, 64); }
+    public Rectangle getUpBound() {return new Rectangle((int) x, (int) y, 56, 2); }
+    public Rectangle getDownBound() { return new Rectangle((int) x, (int) y+56, 64, 2); }
+
+    public Rectangle getBound() { return new Rectangle((int) x, (int) y, 64, 64);
     }
 
     //COLLISION WALL
     public void doCollision(ArrayList<Wall> walls) {
         for (int i = 0; i < walls.size(); i++) {
             if (getRightBound().intersects(walls.get(i).getBounds()) && direction == Direction.RIGHT) {
-                velX = 0;
+                velX -=velX;
+
                 canMoveRight = false;
             } else {
                 canMoveRight = true;
             }
             if (getLeftBound().intersects(walls.get(i).getBounds()) && direction == Direction.LEFT) {
-                velX = 0;
+                velX -=velX;
+
                 canMoveLeft = false;
             } else {
                 canMoveLeft = true;
             }
             if (getUpBound().intersects(walls.get(i).getBounds()) && direction == Direction.UP) {
-                velY = 0;
+               velY -=velY;
+
                 canMoveUp = false;
             } else {
                 canMoveUp = true;
             }
             if (getDownBound().intersects(walls.get(i).getBounds()) && direction == Direction.DOWN) {
-                velY = 0;
+               velY -=velY;
+
                 canMoveDown = false;
             } else {
                 canMoveDown = true;
@@ -149,9 +180,7 @@ public class Player extends TickingObject {
         return velX;
     }
 
-    public double getVelY() {
-        return velY;
-    }
+    public double getVelY() { return velY; }
 
     public void setVelX(double velx) {
         this.velX = velx;

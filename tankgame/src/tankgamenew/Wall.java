@@ -9,7 +9,14 @@ public class Wall extends GameObject {
     }
 
     public void render(Graphics graphics) {
+
         graphics.drawImage(tex.brickWall, (int) x, (int) y, null);
+
+        //graphics.setColor(Color.green);
+        //graphics.fillRect((int)x, (int)y, 32, 32);
+
+
+
     }
 
     public Rectangle getBounds() { return new Rectangle((int) x, (int) y, 32, 32); }

@@ -54,10 +54,10 @@ public class Game extends Canvas implements Runnable {
 
             gameBackground = loader.loadImage("res/menu.png");
             button = loader.loadImage("res/spritesheetbutton.png");
-            walls = loader.loadImage("res/wallspritesheet.png");
+            metalwall = loader.loadImage("res/wallspritesheet.png");
             spritesheet = loader.loadImage("res/tankspritesheet.png");
             bullet = loader.loadImage("res/bluebullet.png");
-            metalwall = loader.loadImage("res/wall.png");
+            walls = loader.loadImage("res/wall.png");
             playBackground = loader.loadImage("res/background.png");
         } catch ( IOException e) {
             e.printStackTrace();
@@ -68,8 +68,13 @@ public class Game extends Canvas implements Runnable {
         menu = new Menu();
         playButton = new Button(300, 350, tex).setTyped(1);
 
+<<<<<<< HEAD
         p = new Player(width/2,height/2, tex);  // position of player
         p2 = new Player(width/2 - 40,height/2 - 40, tex);  // position of player 2 not displayed
+=======
+        p = new Player(width/2,height/2, tex);  // position of player 1
+        p2 = new Player(gameWidth/2-200 ,gameHeight/2 -200, tex);  // position of player 2
+>>>>>>> 2f69d8a50887958deb5894e47459b8335b5a5ae8
     }
 
     private synchronized void start(){
@@ -123,6 +128,13 @@ public class Game extends Canvas implements Runnable {
             p.render(g);
             p2.render(g);
             controls.render(g);
+
+            if (p.getBound().intersects(p2.getBound())) {
+                System.out.println("INTERSECT");
+            }
+
+
+
         } else if (gamestate == 2 ) {
             g.setColor(Color.BLUE);
             g.fillRect(0,0,gameWidth,gameHeight);
@@ -207,6 +219,8 @@ public class Game extends Canvas implements Runnable {
 
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
+
+        //tank 1 movement
         if (key == KeyEvent.VK_W) {
             if (p.isCanMoveUp()) {
                 p.setVelY(-5);
@@ -231,15 +245,42 @@ public class Game extends Canvas implements Runnable {
                 p.setDirection(Direction.RIGHT);
             }
         }
+
+        // tank 2
+        if (key == KeyEvent.VK_UP) {
+            if (p2.isCanMoveUp()) {
+                p2.setVelY(-5);
+                p2.setDirection(Direction.UP);
+            }
+        }
+        if(key == KeyEvent.VK_LEFT){
+            if (p2.isCanMoveLeft()) {
+                p2.setVelX(-5);
+                p2.setDirection(Direction.LEFT);
+            }
+        }
+        if(key == KeyEvent.VK_DOWN) {
+            if (p2.isCanMoveDown()) {
+                p2.setVelY(5);
+                p2.setDirection(Direction.DOWN);
+            }
+        }
+        if(key == KeyEvent.VK_RIGHT) {
+            if (p2.isCanMoveRight()) {
+                p2.setVelX(5);
+                p2.setDirection(Direction.RIGHT);
+            }
+        }
         if(key == KeyEvent.VK_ESCAPE) // escape only in play game
         {
             System.exit(1);
         }
-
     }
 
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
+
+        //tank 1 movement
         if(key == KeyEvent.VK_W){
             p.setVelY(0);
         }
@@ -252,16 +293,46 @@ public class Game extends Canvas implements Runnable {
         else if(key == KeyEvent.VK_D){
             p.setVelX(0);
         }
+
+        //tank 2 movement
+        else if(key == KeyEvent.VK_LEFT){
+            p2.setVelX(0);
+        }
+        else if(key == KeyEvent.VK_DOWN){
+            p2.setVelY(0);
+        }
+        else if(key == KeyEvent.VK_RIGHT){
+            p2.setVelX(0);
+        }
+        else if(key == KeyEvent.VK_UP){
+            p2.setVelY(0);
+        }
+
+        //tank 1 shoot && position of bullet when shooting
         else if (key == KeyEvent.VK_SPACE) {
-            if(p.getDirection() == Direction.DOWN || p.getDirection() == Direction.UP) {
-                controls.addBullet(new Bullet(p.getX() + 25, p.getY() + 10, tex, this));
+
+            if(p.getDirection() == Direction.DOWN) {
+                controls.addBullet(new Bullet(p.getX()+20, p.getY()+20, tex, this));
+            }
+            else if (p.getDirection() == Direction.UP) {
+                controls.addBullet(new Bullet(p.getX()+20, p.getY(), tex, this));
             } else if (p.getDirection() == Direction.RIGHT) {
                 controls.addBullet(new Bullet(p.getX() + 20, p.getY() + 20, tex, this));
             } else if (p.getDirection() == Direction.LEFT) {
                 controls.addBullet(new Bullet(p.getX(), p.getY() + 20, tex, this));
             }
+
         }
 
+        /* if(p2.getDirection() == Direction.DOWN || p2.getDirection() == Direction.UP) {
+                controls.addBullet(new Bullet(p2.getX() + 25, p2.getY() + 100, tex, this));
+            } else if (p2.getDirection() == Direction.RIGHT) {
+                controls.addBullet(new Bullet(p2.getX() + 20, p2.getY() + 20, tex, this));
+            } else if (p2.getDirection() == Direction.LEFT) {
+                controls.addBullet(new Bullet(p2.getX(), p.getY() + 20, tex, this));
+            }
+
+         */
 
     }
 
