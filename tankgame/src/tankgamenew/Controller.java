@@ -80,7 +80,6 @@ public class Controller {
             tempWall = wallList.get(i);
             tempWall.render(g);                 //renders wall
             doCollisionBullet(bulletList);      //bullet collision with metal wall removes bullet
-            ;
         }
     }
 

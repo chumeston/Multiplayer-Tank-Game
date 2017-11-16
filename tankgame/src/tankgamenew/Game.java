@@ -69,7 +69,7 @@ public class Game extends Canvas implements Runnable {
         playButton = new Button(300, 350, tex).setTyped(1);
 
         p = new Player(width/2,height/2, tex);  // position of player
-        //p2 = new Player(gameWidth/2 - 40,gameHeight/2 - 40, tex);  // position of player 2 not displayed
+        p2 = new Player(width/2 - 40,height/2 - 40, tex);  // position of player 2 not displayed
     }
 
     private synchronized void start(){
@@ -96,7 +96,7 @@ public class Game extends Canvas implements Runnable {
 
     public void tick() { // update collision and movement
         p.tick();
-        //p2.tick();    // player 2 not displayed
+        p2.tick();    // player 2 not displayed
         controls.tick();
 
     }
@@ -121,6 +121,7 @@ public class Game extends Canvas implements Runnable {
 
             //render
             p.render(g);
+            p2.render(g);
             controls.render(g);
         } else if (gamestate == 2 ) {
             g.setColor(Color.BLUE);
