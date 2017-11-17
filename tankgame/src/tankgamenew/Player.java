@@ -66,17 +66,12 @@ public class Player extends TickingObject {
     public void render(Graphics g) {
 
         g.setColor(Color.green);
-        g.fillRect((int) x+5, (int) y+15, 4, 30);  // left
-        g.fillRect((int) x+50, (int) y+15, 4, 30); //right
-        g.fillRect((int) x+20, (int) y+50, 30, 4);  //down
-        g.fillRect((int) x+18, (int) y+10, 30, 4); //up
 
         doCollision(wallArrayList);   // Multiple wall only collides
-
         if(direction == Direction.UP) {
             animates.drawAnimation(g,x,y,0);
         } else if (direction == Direction.RIGHT) { //right
-            animatesR.drawAnimation(g,x,y,0);;
+            animatesR.drawAnimation(g,x,y,0);
         } else if (direction == Direction.LEFT) { //left
             animatesL.drawAnimation(g,x,y,0);
         } else if (direction == Direction.DOWN) { //down
@@ -135,7 +130,6 @@ public class Player extends TickingObject {
         }
     }
 
-
     public double getX() {
         return x;
     }
@@ -158,9 +152,7 @@ public class Player extends TickingObject {
 
     public double getVelY() { return velY; }
 
-    public void setVelX(double velx) {
-        this.velX = velx * Math.cos(Math.toRadians(6 * -1));
-    }
+    public void setVelX(double velx) { this.velX = velx; }
 
     public void setVelY(double vely) {
         this.velY = vely;

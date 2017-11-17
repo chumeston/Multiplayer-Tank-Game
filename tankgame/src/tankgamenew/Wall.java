@@ -12,8 +12,6 @@ public class Wall extends GameObject {
 
         graphics.drawImage(tex.brickWall, (int) x, (int) y, null);
 
-        //graphics.setColor(Color.green);
-        //graphics.fillRect((int)x, (int)y, 32, 32);
 
 
 

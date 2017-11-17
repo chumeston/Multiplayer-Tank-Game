@@ -24,7 +24,7 @@ public class Controller {
         this.game = game;
         this.tex = tex;
 
-        // drawing the walls
+        //drawing walls
 
         for (int i =0; i < 33 ; i++ ) {
 

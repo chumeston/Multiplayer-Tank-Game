@@ -21,6 +21,10 @@ public class Game extends Canvas implements Runnable {
 
     public static boolean running = false;
 
+    public int ammo1 = 15;
+    public int ammo2 = 15;
+
+
     private Thread thread;
 
     private BufferedImage gameBackground, walls, button, spritesheet, playBackground;      // game menu , button
@@ -40,6 +44,8 @@ public class Game extends Canvas implements Runnable {
     Player p2;
     Direction direction;
 
+    public int hp1 = 100;
+    public int hp2= 100;
 
     //game state
     private int gamestate;
@@ -68,8 +74,8 @@ public class Game extends Canvas implements Runnable {
         menu = new Menu();
         playButton = new Button(300, 350, tex).setTyped(1);
 
-        p = new Player(width / 2, height / 2, tex);  // position of player 1
-        p2 = new Player(gameWidth / 2 - 200, gameHeight / 2 - 200, tex);  // position of player 2
+        p = new Player(width / 2 + 100, height / 2-300, tex);  // position of player 1
+        p2 = new Player(gameWidth / 2 - 800, gameHeight / 2 - 100, tex);  // position of player 2
     }
 
     private synchronized void start() {
@@ -125,10 +131,39 @@ public class Game extends Canvas implements Runnable {
 
             controls.render(g);
 
-            if (p.getBound().intersects(p2.getBound())) {
+            g.setColor(Color.blue);
+            g.setFont(new Font("Calibri", Font.BOLD, 16));
+            g.drawString("Ammo: " + ammo1, gameWidth/2 -820  , 50 );
+            g.setColor(Color.red);
+            g.drawString("Ammo: " + ammo2,gameWidth/2 -820 , gameHeight/2-430);
 
+            if (p.getBound().intersects(p2.getBound())) {
+                hp1--;
+                hp2--;
                 System.out.println(" TANK INTERSECT");
             }
+
+
+            if(hp1 != 0) {
+                g.setColor(Color.gray);
+                g.fillRect(5, 5, 200, 32);
+                g.setColor(Color.blue);
+                g.fillRect(5, 5, hp1*2, 32);
+                g.setColor(Color.black);
+                g.drawRect(5, 5, 200, 32);
+            } else {
+                hp1 = 0;
+            }
+            g.setColor(Color.gray);
+            g.fillRect(5, 60, 200, 32);
+            g.setColor(Color.red);
+            g.fillRect(5, 60, hp2*2, 32);
+            g.setColor(Color.black);
+            g.drawRect(5, 60, 200, 32);
+
+
+
+
 
         } else if (gamestate == 2) {
             g.setColor(Color.BLUE);
@@ -301,30 +336,43 @@ public class Game extends Canvas implements Runnable {
         }
 
             //tank 1 shoot && position of bullet when shooting
-        else if (key == KeyEvent.VK_SPACE) {
+        if(ammo1>= 1 ) {
+        if (key == KeyEvent.VK_SPACE) {
 
-            if (p.getDirection() == Direction.DOWN) {
-                controls.addBullet(new Bullet(p.getX() + 20, p.getY() + 20, tex, this));
-            } else if (p.getDirection() == Direction.UP) {
-                controls.addBullet(new Bullet(p.getX() + 20, p.getY(), tex, this));
-            } else if (p.getDirection() == Direction.RIGHT) {
-                controls.addBullet(new Bullet(p.getX() + 20, p.getY() + 20, tex, this));
-            } else if (p.getDirection() == Direction.LEFT) {
-                controls.addBullet(new Bullet(p.getX(), p.getY() + 20, tex, this));
+                if (p.getDirection() == Direction.DOWN) {
+                    controls.addBullet(new Bullet(p.getX() + 20, p.getY() + 20, tex, this));
+                    ammo1--;
+                } else if (p.getDirection() == Direction.UP) {
+                    controls.addBullet(new Bullet(p.getX() + 20, p.getY(), tex, this));
+                    ammo1--;
+                } else if (p.getDirection() == Direction.RIGHT) {
+                    controls.addBullet(new Bullet(p.getX() + 20, p.getY() + 20, tex, this));
+                    ammo1--;
+                } else if (p.getDirection() == Direction.LEFT) {
+                    controls.addBullet(new Bullet(p.getX(), p.getY() + 20, tex, this));
+                    ammo1--;
+                }
+
+
+                //tank 2 shoot && position of bullet when shooting
             }
-            
-            //tank 2 shoot && position of bullet when shooting
-        } else if (key == KeyEvent.VK_L) {
+        }if(ammo2>= 1 ) {
+            if (key == KeyEvent.VK_L) {
 
             if (p2.getDirection() == Direction.DOWN) {
                 controls.addBullet(new Bullet(p2.getX() + 20, p2.getY() + 20, tex, this));
+                ammo2--;
             } else if (p2.getDirection() == Direction.UP) {
                 controls.addBullet(new Bullet(p2.getX() + 20, p2.getY(), tex, this));
+                ammo2--;
             } else if (p2.getDirection() == Direction.RIGHT) {
                 controls.addBullet(new Bullet(p2.getX() + 20, p2.getY() + 20, tex, this));
+                ammo2--;
             } else if (p2.getDirection() == Direction.LEFT) {
                 controls.addBullet(new Bullet(p2.getX(), p2.getY() + 20, tex, this));
+                ammo2--;
             }
+        }
         }
 
     }
