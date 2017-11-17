@@ -38,7 +38,7 @@ public class Game extends Canvas implements Runnable {
     Menu menu;
     Player p;
     Player p2;
-
+    Direction direction;
 
 
     //game state
@@ -119,16 +119,15 @@ public class Game extends Canvas implements Runnable {
             g.drawImage(playBackground, 0 , 0, null);
 
 
-            //render
             p.render(g);
             p2.render(g);
+
             controls.render(g);
 
             if (p.getBound().intersects(p2.getBound())) {
-                System.out.println("INTERSECT");
+
+                System.out.println(" TANK INTERSECT");
             }
-
-
 
         } else if (gamestate == 2 ) {
             g.setColor(Color.BLUE);
@@ -139,7 +138,6 @@ public class Game extends Canvas implements Runnable {
         bs.show();
 
     }
-
 
 
     @Override

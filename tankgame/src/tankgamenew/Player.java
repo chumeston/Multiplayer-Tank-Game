@@ -66,11 +66,10 @@ public class Player extends TickingObject {
     public void render(Graphics g) {
 
         g.setColor(Color.green);
-        g.fillRect((int)x, (int)y, 2, 60);
-        g.fillRect((int)x+60, (int)y, 2, 60);
-        g.fillRect((int)x, (int)y, 60, 2);
-        g.fillRect((int)x, (int)y+56, 60, 2);
-
+        g.fillRect((int) x+5, (int) y+15, 4, 30);  // left
+        g.fillRect((int) x+50, (int) y+15, 4, 30); //right
+        g.fillRect((int) x+20, (int) y+50, 30, 4);  //down
+        g.fillRect((int) x+18, (int) y+10, 30, 4); //up
 
         doCollision(wallArrayList);   // Multiple wall only collides
 
@@ -93,11 +92,12 @@ public class Player extends TickingObject {
 
     public Direction getDirection() { return direction; }
 
-    // was set to 32 width and height which caused clipping inside wall and bugged collision , changed to 64
-    public Rectangle getLeftBound() { return new Rectangle((int) x+4, (int) y, 2, 64); }
-    public Rectangle getRightBound() { return new Rectangle((int) x+56, (int) y, 2, 64); }
-    public Rectangle getUpBound() {return new Rectangle((int) x, (int) y, 56, 2); }
-    public Rectangle getDownBound() { return new Rectangle((int) x, (int) y+56, 64, 2); }
+    public Rectangle getLeftBound() { return new Rectangle((int) x+5, (int) y+15, 4, 30);        }
+    public Rectangle getRightBound() { return new Rectangle((int) x+53, (int) y+15, 4, 30); }
+    public Rectangle getDownBound() { return new Rectangle((int) x+20, (int) y+50, 30, 4);       }
+    public Rectangle getUpBound() {return new Rectangle((int) x+18, (int) y+10, 30, 4);         }
+
+
 
     public Rectangle getBound() { return new Rectangle((int) x, (int) y, 64, 64);
     }
@@ -107,7 +107,6 @@ public class Player extends TickingObject {
         for (int i = 0; i < walls.size(); i++) {
             if (getRightBound().intersects(walls.get(i).getBounds()) && direction == Direction.RIGHT) {
                 velX -=velX;
-
                 canMoveRight = false;
             } else {
                 canMoveRight = true;
@@ -160,7 +159,7 @@ public class Player extends TickingObject {
     public double getVelY() { return velY; }
 
     public void setVelX(double velx) {
-        this.velX = velx;
+        this.velX = velx * Math.cos(Math.toRadians(6 * -1));
     }
 
     public void setVelY(double vely) {
@@ -182,4 +181,14 @@ public class Player extends TickingObject {
     public boolean isCanMoveUp() {
         return canMoveUp;
     }
+
+    public void setCanMoveRight(boolean right) { this.canMoveRight = right; }
+
+    public void setCanMoveLeft(boolean left) { this.canMoveLeft = left; }
+
+    public void setCanMoveUp(boolean up) { this.canMoveUp = up; }
+
+    public void setCanMoveDown(boolean down) { this.canMoveDown = down; }
+
+
 }

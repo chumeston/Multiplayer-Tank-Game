@@ -8,6 +8,8 @@ public class Controller {
     Game game;
     GlobalTexture tex;
 
+
+
     private static ArrayList<Bullet> bulletList = new ArrayList<>();
     private static ArrayList<Wall> wallList = new ArrayList<>();
 
@@ -22,12 +24,28 @@ public class Controller {
         this.game = game;
         this.tex = tex;
 
-        // drawing the walls ,   BUG - multiple walls cant detect collision
-        addWall(new Wall(1200, 550, tex));
-        addWall(new Wall(700, 550, tex));
-        addWall(new Wall(1000, 450, tex));
-        addWall(new Wall(1000, 650, tex));
+        // drawing the walls
 
+        for (int i =0; i < 33 ; i++ ) {
+
+            addWall(new Wall(1+40*i, 1 , tex));  // horizontal     1 start point , 50 spacing
+            addWall(new Wall(1+40*i, 1000 , tex));
+
+        }
+
+        for (int i =0; i < 10 ; i++ ) {
+            addWall(new Wall(40+40*i, 700 , tex));
+            addWall(new Wall(40+40*i, 300 , tex));
+            addWall(new Wall(700,100+35*i,tex));
+            addWall(new Wall(900,100+35*i,tex));
+            addWall(new Wall(900,600+35*i,tex));
+            addWall(new Wall(700,600+35*i,tex));
+        }
+
+        for (int i =0; i < 27 ; i++ ) {
+            addWall(new Wall(1300,50+35*i,tex));
+            addWall(new Wall(1,50+35*i,tex));
+        }
         System.out.println(wallList.size());
 
     }
@@ -46,6 +64,7 @@ public class Controller {
             } else if(tempBullet.getX() < 0) {
                 removeBullet(tempBullet);
             }
+
 
             if(tempBullet.getY() < 0){
                 removeBullet(tempBullet);
@@ -82,9 +101,6 @@ public class Controller {
 
         }
 
-
-
-
     }
 
     public void addBullet(Bullet instance) {
@@ -110,5 +126,4 @@ public class Controller {
     public static ArrayList<Wall> getWalls() { return wallList; }
 
     public static ArrayList<Bullet> getBullet() { return bulletList; }
-
 }
