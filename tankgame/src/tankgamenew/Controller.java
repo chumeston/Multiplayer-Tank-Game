@@ -65,11 +65,7 @@ public class Controller {
                 removeBullet(tempBullet);
             }
 
-<<<<<<< HEAD
-            /*
-=======
 
->>>>>>> d5dfd627b02e7e57fa12d3ac594ec92e99bacde2
             if(tempBullet.getY() < 0){
                 removeBullet(tempBullet);
             } else if(tempBullet.getY() > game.getGH()) {
@@ -79,8 +75,6 @@ public class Controller {
             } else if(tempBullet.getX() < 0) {
                 removeBullet(tempBullet);
             }
-
-            */
 
             tempBullet.tick();
 
@@ -103,8 +97,6 @@ public class Controller {
         }
         for(int i = 0; i < wallList.size(); i++) {
             tempWall = wallList.get(i);
-            tempWall.render(g);                 //renders wall
-            //doCollisionBullet(bulletList);      //bullet collision with metal wall removes bullet
             tempWall.render(g);
 
         }

@@ -68,8 +68,6 @@ public class Game extends Canvas implements Runnable {
         menu = new Menu();
         playButton = new Button(300, 350, tex).setTyped(1);
 
-        p = new Player(width/2,height/2, tex);  // position of player
-        p2 = new Player(width/2 - 40,height/2 - 40, tex);  // position of player 2 not displayed
         p = new Player(width/2,height/2, tex);  // position of player 1
         p2 = new Player(gameWidth/2-200 ,gameHeight/2 -200, tex);  // position of player 2
     }
@@ -304,26 +302,17 @@ public class Game extends Canvas implements Runnable {
         }
 
         //tank 1 shoot && position of bullet when shooting
-        if (key == KeyEvent.VK_SPACE) {
+        else if (key == KeyEvent.VK_SPACE) {
 
             if(p.getDirection() == Direction.DOWN) {
                 controls.addBullet(new Bullet(p.getX()+20, p.getY()+20, tex, this));
             }
-            if (p.getDirection() == Direction.UP) {
+            else if (p.getDirection() == Direction.UP) {
                 controls.addBullet(new Bullet(p.getX()+20, p.getY(), tex, this));
-            }
-            if (p.getDirection() == Direction.RIGHT) {
+            } else if (p.getDirection() == Direction.RIGHT) {
                 controls.addBullet(new Bullet(p.getX() + 20, p.getY() + 20, tex, this));
-            }
-            if (p.getDirection() == Direction.LEFT) {
+            } else if (p.getDirection() == Direction.LEFT) {
                 controls.addBullet(new Bullet(p.getX(), p.getY() + 20, tex, this));
-            }
-        }
-
-        if (key == KeyEvent.getExtendedKeyCodeForChar('/')) {
-            if (p2.getDirection() == Direction.DOWN) {
-                controls.addBullet(new Bullet(p2.getX() + 20, p2.getY() + 20, tex, this));
-
             }
 
         }

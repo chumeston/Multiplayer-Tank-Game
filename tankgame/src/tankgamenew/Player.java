@@ -7,7 +7,7 @@ public class Player extends TickingObject {
 
     private double velX, velY = 0;
     private ArrayList<Wall> wallArrayList = Controller.getWalls();
-    private boolean canMoveRight, canMoveLeft, canMoveDown, canMoveUp, moving;
+    private boolean canMoveRight, canMoveLeft, canMoveDown, canMoveUp;
 
     Animation animates; // up
     Animation animatesR;
@@ -36,8 +36,8 @@ public class Player extends TickingObject {
         y+=velY;
 
         // TANK COLLISION SCREEN DETECTION
-        if(x < 0) {
-            x = 0;
+        if(x<0) {
+            x=0;
         }
         if(x>Game.gameWidth-64) {
             x = Game.gameWidth - 64;
@@ -49,18 +49,6 @@ public class Player extends TickingObject {
             y = 0;
         }
 
-        //----
-        //doCollision(wallArrayList); // if this method is in here not wall metal object collide with player fully
-
-            if (direction == Direction.UP) {
-                animates.animate();
-            } else if (direction == Direction.RIGHT) {
-                animatesR.animate();
-            } else if (direction == Direction.LEFT) {
-                animatesL.animate();
-            } else if (direction == Direction.DOWN) {
-                animatesD.animate();
-            }
         // doCollision(wallArrayList); // one Wall only collides
 
         if (direction == Direction.UP){
@@ -77,12 +65,6 @@ public class Player extends TickingObject {
     @Override
     public void render(Graphics g) {
 
-        //----
-        // collides with all wall if method inside render but gets stuck
-        // maybe because of pixel clipping or keeps hitting rectangle settting velx and vely to 0
-
-
-        doCollision(wallArrayList);
         g.setColor(Color.green);
         g.fillRect((int) x+5, (int) y+15, 4, 30);  // left
         g.fillRect((int) x+50, (int) y+15, 4, 30); //right
@@ -124,35 +106,35 @@ public class Player extends TickingObject {
     public void doCollision(ArrayList<Wall> walls) {
         for (int i = 0; i < walls.size(); i++) {
             if (getRightBound().intersects(walls.get(i).getBounds()) && direction == Direction.RIGHT) {
-<<<<<<< HEAD
-                velX -= velX;
-=======
                 velX -=velX;
->>>>>>> d5dfd627b02e7e57fa12d3ac594ec92e99bacde2
                 canMoveRight = false;
             } else {
                 canMoveRight = true;
             }
             if (getLeftBound().intersects(walls.get(i).getBounds()) && direction == Direction.LEFT) {
-                velX -= velX;
+                velX -=velX;
+
                 canMoveLeft = false;
             } else {
                 canMoveLeft = true;
             }
             if (getUpBound().intersects(walls.get(i).getBounds()) && direction == Direction.UP) {
-                velY -= velY;
+                velY -=velY;
+
                 canMoveUp = false;
             } else {
                 canMoveUp = true;
             }
             if (getDownBound().intersects(walls.get(i).getBounds()) && direction == Direction.DOWN) {
-                velY -= velY;
+                velY -=velY;
+
                 canMoveDown = false;
             } else {
                 canMoveDown = true;
             }
         }
     }
+
 
     public double getX() {
         return x;
