@@ -49,7 +49,6 @@ public class Player extends TickingObject {
             y = 0;
         }
 
-<<<<<<< HEAD
         //----
         //doCollision(wallArrayList); // if this method is in here not wall metal object collide with player fully
 
@@ -62,7 +61,6 @@ public class Player extends TickingObject {
             } else if (direction == Direction.DOWN) {
                 animatesD.animate();
             }
-=======
         // doCollision(wallArrayList); // one Wall only collides
 
         if (direction == Direction.UP){
@@ -74,20 +72,17 @@ public class Player extends TickingObject {
         } else if (direction == Direction.DOWN) {
             animatesD.animate();
         }
->>>>>>> 2f69d8a50887958deb5894e47459b8335b5a5ae8
     }
 
     @Override
     public void render(Graphics g) {
 
-<<<<<<< HEAD
         //----
         // collides with all wall if method inside render but gets stuck
         // maybe because of pixel clipping or keeps hitting rectangle settting velx and vely to 0
 
 
         doCollision(wallArrayList);
-=======
         g.setColor(Color.green);
         g.fillRect((int)x, (int)y, 2, 60);
         g.fillRect((int)x+60, (int)y, 2, 60);
@@ -96,7 +91,6 @@ public class Player extends TickingObject {
 
 
         doCollision(wallArrayList);   // Multiple wall only collides
->>>>>>> 2f69d8a50887958deb5894e47459b8335b5a5ae8
 
         if(direction == Direction.UP) {
             animates.drawAnimation(g,x,y,0);
@@ -130,29 +124,25 @@ public class Player extends TickingObject {
     public void doCollision(ArrayList<Wall> walls) {
         for (int i = 0; i < walls.size(); i++) {
             if (getRightBound().intersects(walls.get(i).getBounds()) && direction == Direction.RIGHT) {
-                velX -=velX;
-
+                velX -= velX;
                 canMoveRight = false;
             } else {
                 canMoveRight = true;
             }
             if (getLeftBound().intersects(walls.get(i).getBounds()) && direction == Direction.LEFT) {
-                velX -=velX;
-
+                velX -= velX;
                 canMoveLeft = false;
             } else {
                 canMoveLeft = true;
             }
             if (getUpBound().intersects(walls.get(i).getBounds()) && direction == Direction.UP) {
-               velY -=velY;
-
+                velY -= velY;
                 canMoveUp = false;
             } else {
                 canMoveUp = true;
             }
             if (getDownBound().intersects(walls.get(i).getBounds()) && direction == Direction.DOWN) {
-               velY -=velY;
-
+                velY -= velY;
                 canMoveDown = false;
             } else {
                 canMoveDown = true;
