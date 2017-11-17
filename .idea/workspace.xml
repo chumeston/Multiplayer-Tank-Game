@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ef0ee30-2a47-47e7-9792-492e8b8127f0" name="Default" comment="">
+<<<<<<< HEAD
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tankgame/src/tankgamenew/Controller.java" afterPath="$PROJECT_DIR$/tankgame/src/tankgamenew/Controller.java" />
+=======
+>>>>>>> b9594804ed5160c44756d46f50bd44c5e551776d
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tankgame/src/tankgamenew/Game.java" afterPath="$PROJECT_DIR$/tankgame/src/tankgamenew/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tankgame/src/tankgamenew/Player.java" afterPath="$PROJECT_DIR$/tankgame/src/tankgamenew/Player.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,8 +58,27 @@
       <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tankgame/src/tankgamenew/Game.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="237">
               <caret line="304" column="18" lean-forward="true" selection-start-line="304" selection-start-column="18" selection-end-line="304" selection-end-column="18" />
+=======
+            <state relative-caret-position="63">
+              <caret line="314" column="12" lean-forward="false" selection-start-line="314" selection-start-column="12" selection-end-line="314" selection-end-column="12" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#5529#5530#0" expanded="true" />
+                <element signature="e#5558#5559#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tankgame/src/tankgamenew/Player.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="95" column="70" lean-forward="false" selection-start-line="95" selection-start-column="70" selection-end-line="95" selection-end-column="70" />
+>>>>>>> b9594804ed5160c44756d46f50bd44c5e551776d
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#5563#5564#0" expanded="true" />
@@ -81,6 +102,19 @@
       </file>
       <file leaf-file-name="Bullet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tankgame/src/tankgamenew/Bullet.java">
+<<<<<<< HEAD
+=======
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-197">
+              <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Animation.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tankgame/src/tankgamenew/Animation.java">
+>>>>>>> b9594804ed5160c44756d46f50bd44c5e551776d
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
               <caret line="11" column="25" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
@@ -99,6 +133,7 @@
               <caret line="112" column="0" lean-forward="true" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
+<<<<<<< HEAD
                 <element signature="e#2736#2737#0" expanded="true" />
                 <element signature="e#2776#2777#0" expanded="true" />
                 <element signature="e#2825#2826#0" expanded="true" />
@@ -109,11 +144,36 @@
                 <element signature="e#3032#3033#0" expanded="true" />
                 <element signature="e#3077#3078#0" expanded="true" />
                 <element signature="e#3118#3119#0" expanded="true" />
+=======
+>>>>>>> b9594804ed5160c44756d46f50bd44c5e551776d
               </folding>
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+=======
+      <file leaf-file-name="Features.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tankgame/src/tankgamenew/Features.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BufferImageLoader.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tankgame/src/tankgamenew/BufferImageLoader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+>>>>>>> b9594804ed5160c44756d46f50bd44c5e551776d
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -166,11 +226,17 @@
         <option value="$PROJECT_DIR$/tankgame/src/tankgamenew/Direction.java" />
         <option value="$PROJECT_DIR$/tankgame/src/tankgamenew/GlobalTexture.java" />
         <option value="$PROJECT_DIR$/tankgame/src/tankgamenew/Wall.java" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/tankgame/src/tankgamenew/Bullet.java" />
         <option value="$PROJECT_DIR$/tankgame/src/tankgamenew/TickingObject.java" />
         <option value="$PROJECT_DIR$/tankgame/src/tankgamenew/Controller.java" />
         <option value="$PROJECT_DIR$/tankgame/src/tankgamenew/Game.java" />
         <option value="$PROJECT_DIR$/tankgame/src/tankgamenew/Player.java" />
+=======
+        <option value="$PROJECT_DIR$/tankgame/src/tankgamenew/Player.java" />
+        <option value="$PROJECT_DIR$/tankgame/src/tankgamenew/Controller.java" />
+        <option value="$PROJECT_DIR$/tankgame/src/tankgamenew/Game.java" />
+>>>>>>> b9594804ed5160c44756d46f50bd44c5e551776d
       </list>
     </option>
   </component>
@@ -634,6 +700,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tankgame/src/Wall.java" />
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/tankgame/src/tankgamenew/Animation.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -654,6 +721,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> b9594804ed5160c44756d46f50bd44c5e551776d
     <entry file="file://$PROJECT_DIR$/tankgame/src/tankgamenew/Button.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -825,10 +894,17 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/tankgame/src/tankgamenew/Bullet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="25" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+=======
+    <entry file="file://$PROJECT_DIR$/tankgame/src/tankgamenew/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1098">
+          <caret line="26" column="28" lean-forward="false" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
+>>>>>>> b9594804ed5160c44756d46f50bd44c5e551776d
           <folding>
             <element signature="e#1433#1434#0" expanded="true" />
             <element signature="e#1497#1498#0" expanded="true" />
@@ -836,10 +912,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tankgame/src/tankgamenew/Controller.java">
+    <entry file="file://$PROJECT_DIR$/tankgame/src/tankgamenew/Player.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="1680">
           <caret line="112" column="0" lean-forward="true" selection-start-line="112" selection-start-column="0" selection-end-line="112" selection-end-column="0" />
+=======
+        <state relative-caret-position="357">
+          <caret line="95" column="70" lean-forward="false" selection-start-line="95" selection-start-column="70" selection-end-line="95" selection-end-column="70" />
+>>>>>>> b9594804ed5160c44756d46f50bd44c5e551776d
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2736#2737#0" expanded="true" />
@@ -856,8 +937,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tankgame/src/tankgamenew/Player.java">
+    <entry file="file://$PROJECT_DIR$/tankgame/src/tankgamenew/Bullet.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="223">
           <caret line="175" column="0" lean-forward="true" selection-start-line="175" selection-start-column="0" selection-end-line="175" selection-end-column="0" />
           <folding>
@@ -910,6 +992,22 @@
             <element signature="e#9892#9893#0" expanded="true" />
             <element signature="e#9941#9942#0" expanded="true" />
             <element signature="e#9975#9976#0" expanded="true" />
+=======
+        <state relative-caret-position="-197">
+          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tankgame/src/tankgamenew/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="314" column="12" lean-forward="false" selection-start-line="314" selection-start-column="12" selection-end-line="314" selection-end-column="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5529#5530#0" expanded="true" />
+            <element signature="e#5558#5559#0" expanded="true" />
+>>>>>>> b9594804ed5160c44756d46f50bd44c5e551776d
           </folding>
         </state>
       </provider>

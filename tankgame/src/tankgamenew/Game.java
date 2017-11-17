@@ -59,29 +59,30 @@ public class Game extends Canvas implements Runnable {
             bullet = loader.loadImage("res/bluebullet.png");
             walls = loader.loadImage("res/wall.png");
             playBackground = loader.loadImage("res/background.png");
-        } catch ( IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
         tex = new GlobalTexture(this);
-        controls = new Controller(this,tex); // bullet
+        controls = new Controller(this, tex); // bullet
         menu = new Menu();
         playButton = new Button(300, 350, tex).setTyped(1);
 
-        p = new Player(width/2,height/2, tex);  // position of player 1
-        p2 = new Player(gameWidth/2-200 ,gameHeight/2 -200, tex);  // position of player 2
+        p = new Player(width / 2, height / 2, tex);  // position of player 1
+        p2 = new Player(gameWidth / 2 - 200, gameHeight / 2 - 200, tex);  // position of player 2
     }
 
-    private synchronized void start(){
-        if(running) {
+    private synchronized void start() {
+        if (running) {
             return;     //true, get out of method
         }
         running = true;
         thread = new Thread(this);  // creating instance of game "this
         thread.start();
     }
-    private synchronized void stop(){
-        if(!running) {
+
+    private synchronized void stop() {
+        if (!running) {
             return;
         }
         running = false;
@@ -104,7 +105,7 @@ public class Game extends Canvas implements Runnable {
     public void render() { // BUFFER STRATEGY , load 2 images at time , load images faster, flickering of image blackwhite // does all graphics
 
         BufferStrategy bs = this.getBufferStrategy();
-        if(bs == null){
+        if (bs == null) {
             this.createBufferStrategy(4);
             return;
         }
@@ -112,11 +113,11 @@ public class Game extends Canvas implements Runnable {
         Graphics g = bs.getDrawGraphics();
 
         //play menu
-        if(gamestate == 0) {
+        if (gamestate == 0) {
             menu.createMenu(g, gameBackground, playButton, null, null); // play button
         } else if (gamestate == 1) {
 
-            g.drawImage(playBackground, 0 , 0, null);
+            g.drawImage(playBackground, 0, 0, null);
 
 
             p.render(g);
@@ -129,9 +130,9 @@ public class Game extends Canvas implements Runnable {
                 System.out.println(" TANK INTERSECT");
             }
 
-        } else if (gamestate == 2 ) {
+        } else if (gamestate == 2) {
             g.setColor(Color.BLUE);
-            g.fillRect(0,0,gameWidth,gameHeight);
+            g.fillRect(0, 0, gameWidth, gameHeight);
         }
 
         g.dispose();
@@ -151,11 +152,11 @@ public class Game extends Canvas implements Runnable {
         int updates = 0;
         int frames = 0;
         long timer = System.currentTimeMillis();
-        while(running){
+        while (running) {
             long now = System.nanoTime();
             delta += (now - lastTime) / ns;
             lastTime = now;
-            while(delta >= 1){
+            while (delta >= 1) {
                 tick();
                 updates++;
                 delta--;
@@ -163,7 +164,7 @@ public class Game extends Canvas implements Runnable {
             render();
             frames++;
 
-            if(System.currentTimeMillis() - timer > 1000){
+            if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
                 //frames = 0;
                 System.out.println(updates + " tick : fps " + frames);
@@ -197,7 +198,10 @@ public class Game extends Canvas implements Runnable {
         game.start();
     }
 
-    public BufferedImage getButtons() { return button; }
+    public BufferedImage getButtons() {
+        return button;
+    }
+
     public BufferedImage getSpritesheet() {
         return spritesheet;
     }
@@ -205,6 +209,7 @@ public class Game extends Canvas implements Runnable {
     public int getGW() {
         return gameWidth;
     }
+
     public int getGH() {
         return gameHeight;
     }
@@ -220,19 +225,19 @@ public class Game extends Canvas implements Runnable {
                 p.setDirection(Direction.UP);
             }
         }
-        if(key == KeyEvent.VK_A){
+        if (key == KeyEvent.VK_A) {
             if (p.isCanMoveLeft()) {
                 p.setVelX(-5);
                 p.setDirection(Direction.LEFT);
             }
         }
-        if(key == KeyEvent.VK_S) {
+        if (key == KeyEvent.VK_S) {
             if (p.isCanMoveDown()) {
                 p.setVelY(5);
                 p.setDirection(Direction.DOWN);
             }
         }
-        if(key == KeyEvent.VK_D) {
+        if (key == KeyEvent.VK_D) {
             if (p.isCanMoveRight()) {
                 p.setVelX(5);
                 p.setDirection(Direction.RIGHT);
@@ -246,25 +251,25 @@ public class Game extends Canvas implements Runnable {
                 p2.setDirection(Direction.UP);
             }
         }
-        if(key == KeyEvent.VK_LEFT){
+        if (key == KeyEvent.VK_LEFT) {
             if (p2.isCanMoveLeft()) {
                 p2.setVelX(-5);
                 p2.setDirection(Direction.LEFT);
             }
         }
-        if(key == KeyEvent.VK_DOWN) {
+        if (key == KeyEvent.VK_DOWN) {
             if (p2.isCanMoveDown()) {
                 p2.setVelY(5);
                 p2.setDirection(Direction.DOWN);
             }
         }
-        if(key == KeyEvent.VK_RIGHT) {
+        if (key == KeyEvent.VK_RIGHT) {
             if (p2.isCanMoveRight()) {
                 p2.setVelX(5);
                 p2.setDirection(Direction.RIGHT);
             }
         }
-        if(key == KeyEvent.VK_ESCAPE) // escape only in play game
+        if (key == KeyEvent.VK_ESCAPE) // escape only in play game
         {
             System.exit(1);
         }
@@ -274,58 +279,53 @@ public class Game extends Canvas implements Runnable {
         int key = e.getKeyCode();
 
         //tank 1 movement
-        if(key == KeyEvent.VK_W){
+        if (key == KeyEvent.VK_W) {
             p.setVelY(0);
-        }
-        else if(key == KeyEvent.VK_A){
+        } else if (key == KeyEvent.VK_A) {
             p.setVelX(0);
-        }
-        else if(key == KeyEvent.VK_S){
+        } else if (key == KeyEvent.VK_S) {
             p.setVelY(0);
-        }
-        else if(key == KeyEvent.VK_D){
+        } else if (key == KeyEvent.VK_D) {
             p.setVelX(0);
         }
 
         //tank 2 movement
-        else if(key == KeyEvent.VK_LEFT){
+        else if (key == KeyEvent.VK_LEFT) {
             p2.setVelX(0);
-        }
-        else if(key == KeyEvent.VK_DOWN){
+        } else if (key == KeyEvent.VK_DOWN) {
             p2.setVelY(0);
-        }
-        else if(key == KeyEvent.VK_RIGHT){
+        } else if (key == KeyEvent.VK_RIGHT) {
             p2.setVelX(0);
-        }
-        else if(key == KeyEvent.VK_UP){
+        } else if (key == KeyEvent.VK_UP) {
             p2.setVelY(0);
         }
 
-        //tank 1 shoot && position of bullet when shooting
+            //tank 1 shoot && position of bullet when shooting
         else if (key == KeyEvent.VK_SPACE) {
 
-            if(p.getDirection() == Direction.DOWN) {
-                controls.addBullet(new Bullet(p.getX()+20, p.getY()+20, tex, this));
-            }
-            else if (p.getDirection() == Direction.UP) {
-                controls.addBullet(new Bullet(p.getX()+20, p.getY(), tex, this));
+            if (p.getDirection() == Direction.DOWN) {
+                controls.addBullet(new Bullet(p.getX() + 20, p.getY() + 20, tex, this));
+            } else if (p.getDirection() == Direction.UP) {
+                controls.addBullet(new Bullet(p.getX() + 20, p.getY(), tex, this));
             } else if (p.getDirection() == Direction.RIGHT) {
                 controls.addBullet(new Bullet(p.getX() + 20, p.getY() + 20, tex, this));
             } else if (p.getDirection() == Direction.LEFT) {
                 controls.addBullet(new Bullet(p.getX(), p.getY() + 20, tex, this));
             }
+            
+            //tank 2 shoot && position of bullet when shooting
+        } else if (key == KeyEvent.VK_L) {
 
-        }
-
-        /* if(p2.getDirection() == Direction.DOWN || p2.getDirection() == Direction.UP) {
-                controls.addBullet(new Bullet(p2.getX() + 25, p2.getY() + 100, tex, this));
+            if (p2.getDirection() == Direction.DOWN) {
+                controls.addBullet(new Bullet(p2.getX() + 20, p2.getY() + 20, tex, this));
+            } else if (p2.getDirection() == Direction.UP) {
+                controls.addBullet(new Bullet(p2.getX() + 20, p2.getY(), tex, this));
             } else if (p2.getDirection() == Direction.RIGHT) {
                 controls.addBullet(new Bullet(p2.getX() + 20, p2.getY() + 20, tex, this));
             } else if (p2.getDirection() == Direction.LEFT) {
-                controls.addBullet(new Bullet(p2.getX(), p.getY() + 20, tex, this));
+                controls.addBullet(new Bullet(p2.getX(), p2.getY() + 20, tex, this));
             }
-
-         */
+        }
 
     }
 
@@ -333,9 +333,9 @@ public class Game extends Canvas implements Runnable {
     public void mouseClicked(MouseEvent e) {
         int mouse = e.getButton();
 
-        Rectangle r = new Rectangle(e.getX(),e.getY(),1,1);
-        if( mouse == MouseEvent.BUTTON1) {
-            if(r.intersects(playButton.getButtonBounds())) {
+        Rectangle r = new Rectangle(e.getX(), e.getY(), 1, 1);
+        if (mouse == MouseEvent.BUTTON1) {
+            if (r.intersects(playButton.getButtonBounds())) {
                 playButton.clickButton(this);
             }
         }
