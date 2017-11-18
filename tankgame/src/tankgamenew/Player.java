@@ -105,9 +105,9 @@ public class Player extends TickingObject {
             animatesDL.drawAnimation(g, x, y, 0);
         }
 
-        //debug rectangle
+        //debug rectangle hit box
         //g.setColor(Color.blue);
-        g.fillRect((int) x+10, (int) y+10, 40, 40);
+        //g.fillRect((int) x+15, (int) y+12, 35, 35);
 
     }
 
@@ -137,7 +137,7 @@ public class Player extends TickingObject {
 
 
     public Rectangle getBound() {
-        return new Rectangle((int) x+10, (int) y+10, 35, 35);
+        return new Rectangle((int) x+15, (int) y+12, 35, 35);
     }
 
     //COLLISION WALL
