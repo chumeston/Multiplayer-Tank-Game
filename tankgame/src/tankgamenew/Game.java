@@ -402,19 +402,7 @@ public class Game extends Canvas implements Runnable {
             keyD = false;
         }
 
-        if ((keyW == false && keyA == true) || (keyS == false && keyA == true)) {
-            p.setDirection(Direction.LEFT);
-        }
-        if ((keyS == false && keyD == true) || (keyW == false && keyD == true)) {
-            p.setDirection(Direction.RIGHT);
-        }
 
-        if ((keyA == false && keyS == true) || (keyD == false && keyS == true)) {
-            p.setDirection(Direction.DOWN);
-        }
-        if ((keyA == false && keyW == true) || (keyD == false && keyW == true)) {
-            p.setDirection(Direction.UP);
-        }
 
         //tank 2 movement
         else if (key == KeyEvent.VK_LEFT) {
@@ -436,7 +424,7 @@ public class Game extends Canvas implements Runnable {
             if (key == KeyEvent.VK_SPACE) {
 
                 if (p.getDirection() == Direction.DOWN) {
-                    controls.addBullet(new Bullet(p.getX() + 20, p.getY() + 60, tex, this));
+                    controls.addBullet(new Bullet(p.getX() + 20, p.getY() + 70, tex, this));
                     ammo1--;
                 } else if (p.getDirection() == Direction.UP) {
                     controls.addBullet(new Bullet(p.getX() + 20, p.getY() - 30, tex, this));
@@ -452,10 +440,10 @@ public class Game extends Canvas implements Runnable {
                     controls.addBullet(new Bullet(p.getX() + 70, p.getY() - 30, tex, this));
                     ammo1--;
                 } else if (p.getDirection() == Direction.UP_LEFT) {
-                    controls.addBullet(new Bullet(p.getX() - 20, p.getY() - 20, tex, this));
+                    controls.addBullet(new Bullet(p.getX() - 25, p.getY() - 25, tex, this));
                     ammo1--;
                 } else if (p.getDirection() == Direction.DOWN_LEFT) {
-                    controls.addBullet(new Bullet(p.getX() - 10, p.getY() + 55, tex, this));
+                    controls.addBullet(new Bullet(p.getX() - 10, p.getY() + 65, tex, this));
                     ammo1--;
                 } else if (p.getDirection() == Direction.DOWN_RIGHT) {
                     controls.addBullet(new Bullet(p.getX() + 60, p.getY() + 65, tex, this));

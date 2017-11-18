@@ -107,7 +107,7 @@ public class Player extends TickingObject {
 
         //debug rectangle
         //g.setColor(Color.blue);
-        //g.fillRect((int) x+12, (int) y+12, 42, 35);
+        //g.fillRect((int) x + 5, (int) y + 15, 4, 31);
 
     }
 
