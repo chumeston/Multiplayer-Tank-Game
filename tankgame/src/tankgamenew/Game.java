@@ -141,35 +141,46 @@ public class Game extends Canvas implements Runnable {
 
             controls.render(g);
 
-            g.setColor(Color.blue);
-            g.setFont(new Font("Calibri", Font.BOLD, 16));
-            g.drawString("Ammo: " + ammo1, gameWidth / 2 - 820, 50);
-            g.setColor(Color.red);
-            g.drawString("Ammo: " + ammo2, gameWidth / 2 - 820, gameHeight / 2 - 430);
 
-            if (p.getBound().intersects(p2.getBound())) {
-                hp1--;
-                hp2--;
-                System.out.println(" TANK INTERSECT");
-            }
 
 
             if (hp1 != 0) {
-                g.setColor(Color.gray);
-                g.fillRect(5, 5, 200, 32);
                 g.setColor(Color.blue);
-                g.fillRect(5, 5, hp1 * 2, 32);
+                g.setFont(new Font("Calibri", Font.BOLD, 16));
+                g.drawString("Ammo: " + ammo1, gameWidth / 2 - 820, 50);
+                g.setColor(Color.gray);
+                g.fillRect(2, 5, 200, 32);
+                g.setColor(Color.blue);
+                g.fillRect(2, 5, hp1 * 2, 32);
                 g.setColor(Color.black);
-                g.drawRect(5, 5, 200, 32);
+                g.drawRect(2, 5, 200, 32);
             } else {
-                hp1 = 0;
+                Font font = new Font("Serif", Font.PLAIN, 36);
+                g.setFont(font);
+                g.setColor(Color.red);
+                g.drawString("TANK RED WINS", 500, 500);
+                p = null;
             }
-            g.setColor(Color.gray);
-            g.fillRect(5, 60, 200, 32);
-            g.setColor(Color.red);
-            g.fillRect(5, 60, hp2 * 2, 32);
-            g.setColor(Color.black);
-            g.drawRect(5, 60, 200, 32);
+            if (hp2 != 0) {
+                g.setColor(Color.red);
+                g.setFont(new Font("Calibri", Font.BOLD, 16));
+                g.drawString("Ammo: " + ammo2, gameWidth / 2 - 820, gameHeight / 2 - 430);
+                g.setColor(Color.gray);
+                g.fillRect(2, 60, 200, 32);
+                g.setColor(Color.red);
+                g.fillRect(2, 60, hp2 * 2, 32);
+                g.setColor(Color.black);
+                g.drawRect(2, 60, 200, 32);
+
+            } else {
+
+                Font font = new Font("Serif", Font.PLAIN, 36);
+                g.setFont(font);
+                g.setColor(Color.blue);
+                g.drawString("TANK BLUE WINS", 500, 500);
+                p2 = null;
+
+            }
 
 
         } else if (gamestate == 2) {
@@ -266,7 +277,6 @@ public class Game extends Canvas implements Runnable {
                 p.setVelY(-2);
                 p.setDirection(Direction.UP);
                 keyW = true;
-                System.out.println(keyW);
             }
         }
         if (key == KeyEvent.VK_A) {
@@ -301,8 +311,6 @@ public class Game extends Canvas implements Runnable {
             if (p.isCanMoveLeft()) {
                 p.setVelX(-2);
                 p.setDirection(Direction.UP_LEFT);
-                System.out.println("DIAGONAL RIGHDDT");
-                System.out.println(keyW);
             }
         }
         if (keyS == true && keyD == true) {
@@ -359,8 +367,6 @@ public class Game extends Canvas implements Runnable {
             if (p2.isCanMoveLeft()) {
                 p2.setVelX(-2);
                 p2.setDirection(Direction.UP_LEFT);
-                System.out.println("DIAGONAL RIGHDDT");
-                System.out.println(keyW);
             }
         }
         if (keyDown == true && keyRight == true) {

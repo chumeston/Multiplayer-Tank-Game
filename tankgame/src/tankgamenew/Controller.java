@@ -63,11 +63,15 @@ public class Controller {
             } else if (tempBullet.getX() < 0) {
                 removeBullet(tempBullet);
             } else if (game.p.getBound().intersects(bulletList.get(i).getBounds())) {
-                System.out.println("INTERSECT HIT BULLET");
                 removeBullet(tempBullet);
+                game.hp1-=20;
 
             } else if (game.p2.getBound().intersects(bulletList.get(i).getBounds())) {
-                System.out.println("INTERSECT HIT BULLET");
+                removeBullet(tempBullet);
+                game.hp2 -=20;
+
+            } else if (game.p2.getBound().intersects(game.p2.getBound())) {
+                System.out.println("TANK INTERSECTS");
             }
 
 

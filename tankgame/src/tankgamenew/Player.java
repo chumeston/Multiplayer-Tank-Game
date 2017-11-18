@@ -107,7 +107,7 @@ public class Player extends TickingObject {
 
         //debug rectangle
         //g.setColor(Color.blue);
-        //g.fillRect((int) x + 5, (int) y + 15, 4, 31);
+        g.fillRect((int) x+10, (int) y+10, 40, 40);
 
     }
 
@@ -137,7 +137,7 @@ public class Player extends TickingObject {
 
 
     public Rectangle getBound() {
-        return new Rectangle((int) x, (int) y, 64, 64);
+        return new Rectangle((int) x+10, (int) y+10, 35, 35);
     }
 
     //COLLISION WALL

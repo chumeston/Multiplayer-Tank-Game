@@ -2,6 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5ef0ee30-2a47-47e7-9792-492e8b8127f0" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/tankgame/tankgamenew/Game.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/tankgame/tankgamenew/Controller.class" afterPath="$PROJECT_DIR$/out/production/tankgame/tankgamenew/Controller.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/tankgame/tankgamenew/Player.class" afterPath="$PROJECT_DIR$/out/production/tankgame/tankgamenew/Player.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tankgame/src/tankgamenew/Controller.java" afterPath="$PROJECT_DIR$/tankgame/src/tankgamenew/Controller.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tankgame/src/tankgamenew/Game.java" afterPath="$PROJECT_DIR$/tankgame/src/tankgamenew/Game.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tankgame/src/tankgamenew/Player.java" afterPath="$PROJECT_DIR$/tankgame/src/tankgamenew/Player.java" />
     </list>
@@ -45,11 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tankgame/src/tankgamenew/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1542">
-              <caret line="445" column="78" lean-forward="false" selection-start-line="445" selection-start-column="78" selection-end-line="445" selection-end-column="78" />
+            <state relative-caret-position="136">
+              <caret line="159" column="36" lean-forward="false" selection-start-line="159" selection-start-column="36" selection-end-line="159" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -57,39 +62,39 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Player.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tankgame/src/tankgamenew/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-78">
-              <caret line="109" column="55" lean-forward="false" selection-start-line="109" selection-start-column="55" selection-end-line="109" selection-end-column="55" />
+            <state relative-caret-position="386">
+              <caret line="284" column="5" lean-forward="false" selection-start-line="284" selection-start-column="5" selection-end-line="284" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3886#3887#0" expanded="true" />
-                <element signature="e#3928#3929#0" expanded="true" />
-                <element signature="e#3967#3968#0" expanded="true" />
-                <element signature="e#3999#4000#0" expanded="true" />
-                <element signature="e#4038#4039#0" expanded="true" />
-                <element signature="e#4108#4109#0" expanded="true" />
-                <element signature="e#4148#4149#0" expanded="true" />
-                <element signature="e#4219#4220#0" expanded="true" />
-                <element signature="e#4258#4259#0" expanded="true" />
-                <element signature="e#4329#4330#0" expanded="true" />
-                <element signature="e#4366#4367#0" expanded="true" />
-                <element signature="e#4437#4438#0" expanded="true" />
-                <element signature="e#4473#4474#0" expanded="true" />
-                <element signature="e#4535#4536#0" expanded="true" />
-                <element signature="e#7868#7869#0" expanded="true" />
-                <element signature="e#7895#7896#0" expanded="true" />
-                <element signature="e#7935#7936#0" expanded="true" />
-                <element signature="e#7967#7968#0" expanded="true" />
-                <element signature="e#8375#8376#0" expanded="true" />
-                <element signature="e#8416#8417#0" expanded="true" />
-                <element signature="e#8464#8465#0" expanded="true" />
-                <element signature="e#8503#8504#0" expanded="true" />
-                <element signature="e#8547#8548#0" expanded="true" />
-                <element signature="e#8582#8583#0" expanded="true" />
-                <element signature="e#8630#8631#0" expanded="true" />
-                <element signature="e#8669#8670#0" expanded="true" />
+                <element signature="e#3882#3883#0" expanded="true" />
+                <element signature="e#3924#3925#0" expanded="true" />
+                <element signature="e#3963#3964#0" expanded="true" />
+                <element signature="e#3995#3996#0" expanded="true" />
+                <element signature="e#4034#4035#0" expanded="true" />
+                <element signature="e#4104#4105#0" expanded="true" />
+                <element signature="e#4144#4145#0" expanded="true" />
+                <element signature="e#4215#4216#0" expanded="true" />
+                <element signature="e#4254#4255#0" expanded="true" />
+                <element signature="e#4325#4326#0" expanded="true" />
+                <element signature="e#4362#4363#0" expanded="true" />
+                <element signature="e#4433#4434#0" expanded="true" />
+                <element signature="e#4469#4470#0" expanded="true" />
+                <element signature="e#4537#4538#0" expanded="true" />
+                <element signature="e#7870#7871#0" expanded="true" />
+                <element signature="e#7897#7898#0" expanded="true" />
+                <element signature="e#7937#7938#0" expanded="true" />
+                <element signature="e#7969#7970#0" expanded="true" />
+                <element signature="e#8377#8378#0" expanded="true" />
+                <element signature="e#8418#8419#0" expanded="true" />
+                <element signature="e#8466#8467#0" expanded="true" />
+                <element signature="e#8505#8506#0" expanded="true" />
+                <element signature="e#8549#8550#0" expanded="true" />
+                <element signature="e#8584#8585#0" expanded="true" />
+                <element signature="e#8632#8633#0" expanded="true" />
+                <element signature="e#8671#8672#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -108,14 +113,14 @@
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tankgame/src/tankgamenew/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="65" column="37" lean-forward="true" selection-start-line="65" selection-start-column="37" selection-end-line="65" selection-end-column="37" />
+            <state relative-caret-position="379">
+              <caret line="73" column="51" lean-forward="false" selection-start-line="73" selection-start-column="51" selection-end-line="73" selection-end-column="51" />
               <folding>
-                <element signature="e#3308#3309#0" expanded="true" />
-                <element signature="e#3555#3556#0" expanded="true" />
-                <element signature="e#3586#3587#0" expanded="true" />
-                <element signature="e#3637#3638#0" expanded="true" />
+                <element signature="e#3423#3424#0" expanded="true" />
                 <element signature="e#3670#3671#0" expanded="true" />
+                <element signature="e#3701#3702#0" expanded="true" />
+                <element signature="e#3752#3753#0" expanded="true" />
+                <element signature="e#3785#3786#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -187,6 +192,10 @@
       <find>remove</find>
       <find>controls</find>
       <find>wallArray</find>
+      <find>hp1</find>
+      <find>System.out</find>
+      <find>System</find>
+      <find>getBound</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -223,12 +232,12 @@
         <option value="$PROJECT_DIR$/tankgame/src/tankgamenew/KeyInput.java" />
         <option value="$PROJECT_DIR$/tankgame/src/tankgamenew/Entity.java" />
         <option value="$PROJECT_DIR$/tankgame/src/tankgamenew/TickingObject.java" />
-        <option value="$PROJECT_DIR$/tankgame/src/tankgamenew/Controller.java" />
         <option value="$PROJECT_DIR$/tankgame/src/tankgamenew/Bullet.java" />
         <option value="$PROJECT_DIR$/tankgame/src/tankgamenew/GlobalTexture.java" />
         <option value="$PROJECT_DIR$/tankgame/src/tankgamenew/Wall.java" />
-        <option value="$PROJECT_DIR$/tankgame/src/tankgamenew/Game.java" />
+        <option value="$PROJECT_DIR$/tankgame/src/tankgamenew/Controller.java" />
         <option value="$PROJECT_DIR$/tankgame/src/tankgamenew/Player.java" />
+        <option value="$PROJECT_DIR$/tankgame/src/tankgamenew/Game.java" />
       </list>
     </option>
   </component>
@@ -528,7 +537,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.50277776" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32873806" sideWeight="0.49722221" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32873806" sideWeight="0.49722221" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -538,7 +547,7 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997879" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3997879" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -748,14 +757,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tankgame/src/tankgamenew/Direction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tankgame/src/tankgamenew/GlobalTexture.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="398">
@@ -791,62 +792,70 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tankgame/src/tankgamenew/Controller.java">
+    <entry file="file://$PROJECT_DIR$/tankgame/src/tankgamenew/Direction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="65" column="37" lean-forward="true" selection-start-line="65" selection-start-column="37" selection-end-line="65" selection-end-column="37" />
-          <folding>
-            <element signature="e#3308#3309#0" expanded="true" />
-            <element signature="e#3555#3556#0" expanded="true" />
-            <element signature="e#3586#3587#0" expanded="true" />
-            <element signature="e#3637#3638#0" expanded="true" />
-            <element signature="e#3670#3671#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="136">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tankgame/src/tankgamenew/Game.java">
+    <entry file="file://$PROJECT_DIR$/tankgame/src/tankgamenew/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1542">
-          <caret line="445" column="78" lean-forward="false" selection-start-line="445" selection-start-column="78" selection-end-line="445" selection-end-column="78" />
+        <state relative-caret-position="379">
+          <caret line="73" column="51" lean-forward="false" selection-start-line="73" selection-start-column="51" selection-end-line="73" selection-end-column="51" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#3423#3424#0" expanded="true" />
+            <element signature="e#3670#3671#0" expanded="true" />
+            <element signature="e#3701#3702#0" expanded="true" />
+            <element signature="e#3752#3753#0" expanded="true" />
+            <element signature="e#3785#3786#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tankgame/src/tankgamenew/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-78">
-          <caret line="109" column="55" lean-forward="false" selection-start-line="109" selection-start-column="55" selection-end-line="109" selection-end-column="55" />
+        <state relative-caret-position="386">
+          <caret line="284" column="5" lean-forward="false" selection-start-line="284" selection-start-column="5" selection-end-line="284" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3886#3887#0" expanded="true" />
-            <element signature="e#3928#3929#0" expanded="true" />
-            <element signature="e#3967#3968#0" expanded="true" />
-            <element signature="e#3999#4000#0" expanded="true" />
-            <element signature="e#4038#4039#0" expanded="true" />
-            <element signature="e#4108#4109#0" expanded="true" />
-            <element signature="e#4148#4149#0" expanded="true" />
-            <element signature="e#4219#4220#0" expanded="true" />
-            <element signature="e#4258#4259#0" expanded="true" />
-            <element signature="e#4329#4330#0" expanded="true" />
-            <element signature="e#4366#4367#0" expanded="true" />
-            <element signature="e#4437#4438#0" expanded="true" />
-            <element signature="e#4473#4474#0" expanded="true" />
-            <element signature="e#4535#4536#0" expanded="true" />
-            <element signature="e#7868#7869#0" expanded="true" />
-            <element signature="e#7895#7896#0" expanded="true" />
-            <element signature="e#7935#7936#0" expanded="true" />
-            <element signature="e#7967#7968#0" expanded="true" />
-            <element signature="e#8375#8376#0" expanded="true" />
-            <element signature="e#8416#8417#0" expanded="true" />
-            <element signature="e#8464#8465#0" expanded="true" />
-            <element signature="e#8503#8504#0" expanded="true" />
-            <element signature="e#8547#8548#0" expanded="true" />
-            <element signature="e#8582#8583#0" expanded="true" />
-            <element signature="e#8630#8631#0" expanded="true" />
-            <element signature="e#8669#8670#0" expanded="true" />
+            <element signature="e#3882#3883#0" expanded="true" />
+            <element signature="e#3924#3925#0" expanded="true" />
+            <element signature="e#3963#3964#0" expanded="true" />
+            <element signature="e#3995#3996#0" expanded="true" />
+            <element signature="e#4034#4035#0" expanded="true" />
+            <element signature="e#4104#4105#0" expanded="true" />
+            <element signature="e#4144#4145#0" expanded="true" />
+            <element signature="e#4215#4216#0" expanded="true" />
+            <element signature="e#4254#4255#0" expanded="true" />
+            <element signature="e#4325#4326#0" expanded="true" />
+            <element signature="e#4362#4363#0" expanded="true" />
+            <element signature="e#4433#4434#0" expanded="true" />
+            <element signature="e#4469#4470#0" expanded="true" />
+            <element signature="e#4537#4538#0" expanded="true" />
+            <element signature="e#7870#7871#0" expanded="true" />
+            <element signature="e#7897#7898#0" expanded="true" />
+            <element signature="e#7937#7938#0" expanded="true" />
+            <element signature="e#7969#7970#0" expanded="true" />
+            <element signature="e#8377#8378#0" expanded="true" />
+            <element signature="e#8418#8419#0" expanded="true" />
+            <element signature="e#8466#8467#0" expanded="true" />
+            <element signature="e#8505#8506#0" expanded="true" />
+            <element signature="e#8549#8550#0" expanded="true" />
+            <element signature="e#8584#8585#0" expanded="true" />
+            <element signature="e#8632#8633#0" expanded="true" />
+            <element signature="e#8671#8672#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tankgame/src/tankgamenew/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="159" column="36" lean-forward="false" selection-start-line="159" selection-start-column="36" selection-end-line="159" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
