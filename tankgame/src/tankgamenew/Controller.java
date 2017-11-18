@@ -9,7 +9,6 @@ public class Controller {
     GlobalTexture tex;
 
 
-
     private static ArrayList<Bullet> bulletList = new ArrayList<>();
     private static ArrayList<Wall> wallList = new ArrayList<>();
 
@@ -26,25 +25,25 @@ public class Controller {
 
         //drawing walls
 
-        for (int i =0; i < 33 ; i++ ) {
+        for (int i = 0; i < 33; i++) {
 
-            addWall(new Wall(1+40*i, 1 , tex));  // horizontal     1 start point , 50 spacing
-            addWall(new Wall(1+40*i, 1000 , tex));
+            addWall(new Wall(1 + 40 * i, 1, tex));  // horizontal     1 start point , 50 spacing
+            addWall(new Wall(1 + 40 * i, 1000, tex));
 
         }
 
-        for (int i =0; i < 10 ; i++ ) {
-            addWall(new Wall(40+40*i, 700 , tex));
-            addWall(new Wall(40+40*i, 300 , tex));
-            addWall(new Wall(700,100+35*i,tex));
-            addWall(new Wall(900,100+35*i,tex));
-            addWall(new Wall(900,600+35*i,tex));
-            addWall(new Wall(700,600+35*i,tex));
+        for (int i = 0; i < 10; i++) {
+            addWall(new Wall(40 + 40 * i, 700, tex));
+            addWall(new Wall(40 + 40 * i, 300, tex));
+            addWall(new Wall(700, 100 + 35 * i, tex));
+            addWall(new Wall(900, 100 + 35 * i, tex));
+            addWall(new Wall(900, 600 + 35 * i, tex));
+            addWall(new Wall(700, 600 + 35 * i, tex));
         }
 
-        for (int i =0; i < 27 ; i++ ) {
-            addWall(new Wall(1300,50+35*i,tex));
-            addWall(new Wall(1,50+35*i,tex));
+        for (int i = 0; i < 27; i++) {
+            addWall(new Wall(1300, 50 + 35 * i, tex));
+            addWall(new Wall(1, 50 + 35 * i, tex));
         }
         System.out.println(wallList.size());
 
@@ -52,27 +51,33 @@ public class Controller {
 
     public void tick() {
 
-        for(int i = 0; i < bulletList.size(); i++) {
+        for (int i = 0; i < bulletList.size(); i++) {
             tempBullet = bulletList.get(i);
 
-            if(tempBullet.getY() < 0){
+            if (tempBullet.getY() < 0) {
                 removeBullet(tempBullet);
-            } else if(tempBullet.getY() > game.getGH()) {
+            } else if (tempBullet.getY() > game.getGH()) {
                 removeBullet(tempBullet);
-            } else if(tempBullet.getX() > game.getGW()) {
+            } else if (tempBullet.getX() > game.getGW()) {
                 removeBullet(tempBullet);
-            } else if(tempBullet.getX() < 0) {
+            } else if (tempBullet.getX() < 0) {
                 removeBullet(tempBullet);
+            } else if (game.p.getBound().intersects(bulletList.get(i).getBounds())) {
+                System.out.println("INTERSECT HIT BULLET");
+                removeBullet(tempBullet);
+
+            } else if (game.p2.getBound().intersects(bulletList.get(i).getBounds())) {
+                System.out.println("INTERSECT HIT BULLET");
             }
 
 
-            if(tempBullet.getY() < 0){
+            if (tempBullet.getY() < 0) {
                 removeBullet(tempBullet);
-            } else if(tempBullet.getY() > game.getGH()) {
+            } else if (tempBullet.getY() > game.getGH()) {
                 removeBullet(tempBullet);
-            } else if(tempBullet.getX() > game.getGW()) {
+            } else if (tempBullet.getX() > game.getGW()) {
                 removeBullet(tempBullet);
-            } else if(tempBullet.getX() < 0) {
+            } else if (tempBullet.getX() < 0) {
                 removeBullet(tempBullet);
             }
 
@@ -83,19 +88,19 @@ public class Controller {
 
     // BULLET -> WALL COLLISION
 
-    public void render(Graphics g){
+    public void render(Graphics g) {
 
-        for(int i = 0; i < bulletList.size(); i++) {
+        for (int i = 0; i < bulletList.size(); i++) {
             tempBullet = bulletList.get(i);
 
-            if (tempWall.getBounds().intersects(bulletList.get(i).getBounds()) ) {
+            if (tempWall.getBounds().intersects(bulletList.get(i).getBounds())) {
                 removeBullet(tempBullet);
 
             }
 
             tempBullet.render(g);
         }
-        for(int i = 0; i < wallList.size(); i++) {
+        for (int i = 0; i < wallList.size(); i++) {
             tempWall = wallList.get(i);
             tempWall.render(g);
 
@@ -111,7 +116,7 @@ public class Controller {
         bulletList.remove(instance);
     }
 
-    public static ArrayList<Bullet> getBullets(){
+    public static ArrayList<Bullet> getBullets() {
         return bulletList;
     }
 
@@ -123,7 +128,11 @@ public class Controller {
         wallList.remove(instance);
     }
 
-    public static ArrayList<Wall> getWalls() { return wallList; }
+    public static ArrayList<Wall> getWalls() {
+        return wallList;
+    }
 
-    public static ArrayList<Bullet> getBullet() { return bulletList; }
+    public static ArrayList<Bullet> getBullet() {
+        return bulletList;
+    }
 }
