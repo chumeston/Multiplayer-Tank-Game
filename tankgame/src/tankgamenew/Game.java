@@ -37,6 +37,7 @@ public class Game extends Canvas implements Runnable {
     GlobalTexture tex;
     Menu menu;
     Player p;
+    int facing;
     Player p2;
     Direction direction;
 
@@ -300,33 +301,31 @@ public class Game extends Canvas implements Runnable {
             p2.setVelY(0);
         }
 
-            //tank 1 shoot && position of bullet when shooting
-        else if (key == KeyEvent.VK_SPACE) {
-
-            if (p.getDirection() == Direction.DOWN) {
-                controls.addBullet(new Bullet(p.getX() + 20, p.getY() + 20, tex, this));
-            } else if (p.getDirection() == Direction.UP) {
-                controls.addBullet(new Bullet(p.getX() + 20, p.getY(), tex, this));
+        //tank 1 shoot && position of bullet when shooting
+        if (key == KeyEvent.VK_SPACE) {
+            if (p.getDirection() == Direction.UP) {
+                controls.addBullet(new Bullet(p.getX() + 20, p.getY() + 20, tex, this, 1));
             } else if (p.getDirection() == Direction.RIGHT) {
-                controls.addBullet(new Bullet(p.getX() + 20, p.getY() + 20, tex, this));
+                controls.addBullet(new Bullet(p.getX() + 20, p.getY() + 20, tex, this, 2));
             } else if (p.getDirection() == Direction.LEFT) {
-                controls.addBullet(new Bullet(p.getX(), p.getY() + 20, tex, this));
-            }
-            
-            //tank 2 shoot && position of bullet when shooting
-        } else if (key == KeyEvent.VK_L) {
-
-            if (p2.getDirection() == Direction.DOWN) {
-                controls.addBullet(new Bullet(p2.getX() + 20, p2.getY() + 20, tex, this));
-            } else if (p2.getDirection() == Direction.UP) {
-                controls.addBullet(new Bullet(p2.getX() + 20, p2.getY(), tex, this));
-            } else if (p2.getDirection() == Direction.RIGHT) {
-                controls.addBullet(new Bullet(p2.getX() + 20, p2.getY() + 20, tex, this));
-            } else if (p2.getDirection() == Direction.LEFT) {
-                controls.addBullet(new Bullet(p2.getX(), p2.getY() + 20, tex, this));
+                controls.addBullet(new Bullet(p.getX() + 20, p.getY() + 20, tex, this, 3));
+            } else if (p.getDirection() == Direction.DOWN) {
+                controls.addBullet(new Bullet(p.getX() + 20, p.getY() + 20, tex, this, 4));
             }
         }
 
+        //tank 2 shoot && position of bullet when shooting
+        if (key == KeyEvent.VK_L) {
+            if (p2.getDirection() == Direction.UP) {
+                controls.addBullet(new Bullet(p2.getX() + 20, p2.getY() + 20, tex, this, 1));
+            } else if (p2.getDirection() == Direction.RIGHT) {
+                controls.addBullet(new Bullet(p2.getX() + 20, p2.getY() + 20, tex, this, 2));
+            } else if (p2.getDirection() == Direction.LEFT) {
+                controls.addBullet(new Bullet(p2.getX() + 20, p2.getY() + 20, tex, this, 3));
+            } else if (p2.getDirection() == Direction.DOWN) {
+                controls.addBullet(new Bullet(p2.getX() + 20, p2.getY() + 20, tex, this, 4));
+            }
+        }
     }
 
 
@@ -345,7 +344,7 @@ public class Game extends Canvas implements Runnable {
         return gamestate;
     }
 
-    public void setGamestate(int gamestate) {
+    public void setGameState(int gamestate) {
         this.gamestate = gamestate;
     }
 

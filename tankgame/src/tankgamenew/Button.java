@@ -36,10 +36,10 @@ public class Button extends GameObject {
     public void clickButton(Game game) {
         clicked = true;
         if(type == 1 ) {
-            game.setGamestate(1);
+            game.setGameState(1);
         }
         if(type == 2) {
-            game.setGamestate(2);
+            game.setGameState(2);
         }
     }
 

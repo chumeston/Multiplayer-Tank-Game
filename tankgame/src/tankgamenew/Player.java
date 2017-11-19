@@ -51,7 +51,7 @@ public class Player extends TickingObject {
 
         // doCollision(wallArrayList); // one Wall only collides
 
-        if (direction == Direction.UP){
+        if (direction == Direction.UP) {
             animates.animate();
         } else if (direction == Direction.RIGHT) {
             animatesR.animate();
@@ -82,7 +82,6 @@ public class Player extends TickingObject {
         } else if (direction == Direction.DOWN) { //down
             animatesD.drawAnimation(g,x,y,0);
         }
-
 
     }
 
