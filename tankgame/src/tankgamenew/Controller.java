@@ -50,12 +50,7 @@ public class Controller {
     }
 
     public void tick() {
-<<<<<<< HEAD
-        for(int i = 0; i < bulletList.size(); i++) {
-=======
-
         for (int i = 0; i < bulletList.size(); i++) {
->>>>>>> 610ae3a251ad75864973e72e98714bcb769fb1b9
             tempBullet = bulletList.get(i);
 
             if (tempBullet.getY() < 0) {
@@ -68,18 +63,15 @@ public class Controller {
                 removeBullet(tempBullet);
             } else if (game.p.getBound().intersects(bulletList.get(i).getBounds())) {
                 removeBullet(tempBullet);
-                game.hp1-=20;
+                game.hp1 -= 20;
 
             } else if (game.p2.getBound().intersects(bulletList.get(i).getBounds())) {
                 removeBullet(tempBullet);
-                game.hp2 -=20;
+                game.hp2 -= 20;
 
             } else if (game.p2.getBound().intersects(game.p2.getBound())) {
                 System.out.println("TANK INTERSECTS");
             }
-<<<<<<< HEAD
-=======
-
 
             if (tempBullet.getY() < 0) {
                 removeBullet(tempBullet);
@@ -91,7 +83,6 @@ public class Controller {
                 removeBullet(tempBullet);
             }
 
->>>>>>> 610ae3a251ad75864973e72e98714bcb769fb1b9
             tempBullet.tick();
         }
     }
@@ -110,12 +101,8 @@ public class Controller {
 
             tempBullet.render(g);
         }
-<<<<<<< HEAD
 
-        for(int i = 0; i < wallList.size(); i++) {
-=======
         for (int i = 0; i < wallList.size(); i++) {
->>>>>>> 610ae3a251ad75864973e72e98714bcb769fb1b9
             tempWall = wallList.get(i);
             tempWall.render(g);
 
@@ -147,12 +134,7 @@ public class Controller {
         return wallList;
     }
 
-<<<<<<< HEAD
-    public static ArrayList<Bullet> getBullet() { return bulletList; }
-}
-=======
     public static ArrayList<Bullet> getBullet() {
         return bulletList;
     }
 }
->>>>>>> 610ae3a251ad75864973e72e98714bcb769fb1b9

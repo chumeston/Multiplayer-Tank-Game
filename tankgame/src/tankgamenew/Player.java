@@ -105,13 +105,9 @@ public class Player extends TickingObject {
             animatesDL.drawAnimation(g, x, y, 0);
         }
 
-<<<<<<< HEAD
-=======
         //debug rectangle hit box
         //g.setColor(Color.blue);
         //g.fillRect((int) x+15, (int) y+12, 35, 35);
-
->>>>>>> 610ae3a251ad75864973e72e98714bcb769fb1b9
     }
 
     protected void setDirection(Direction direction) {
@@ -160,22 +156,16 @@ public class Player extends TickingObject {
                 canMoveLeft = true;
             }
             if (getUpBound().intersects(walls.get(i).getBounds()) && direction == Direction.UP) {
-<<<<<<< HEAD
                 velY -=velY;
-=======
                 velY -= velY;
->>>>>>> 610ae3a251ad75864973e72e98714bcb769fb1b9
 
                 canMoveUp = false;
             } else {
                 canMoveUp = true;
             }
             if (getDownBound().intersects(walls.get(i).getBounds()) && direction == Direction.DOWN) {
-<<<<<<< HEAD
                 velY -=velY;
-=======
                 velY -= velY;
->>>>>>> 610ae3a251ad75864973e72e98714bcb769fb1b9
 
                 canMoveDown = false;
             } else {

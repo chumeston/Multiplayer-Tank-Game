@@ -256,7 +256,7 @@ public class Game extends Canvas implements Runnable {
         return button;
     }
 
-    public BufferedImage getSpritesheet() {
+    public BufferedImage getSpriteSheet() {
         return spritesheet;
     }
 
@@ -409,8 +409,6 @@ public class Game extends Canvas implements Runnable {
             keyD = false;
         }
 
-
-
         //tank 2 movement
         else if (key == KeyEvent.VK_LEFT) {
             p2.setVelX(0);
@@ -427,51 +425,26 @@ public class Game extends Canvas implements Runnable {
         }
 
         //tank 1 shoot && position of bullet when shooting
-<<<<<<< HEAD
-        if (key == KeyEvent.VK_SPACE) {
-            if (p.getDirection() == Direction.UP) {
-                controls.addBullet(new Bullet(p.getX() + 20, p.getY() + 20, tex, this, 1));
-            } else if (p.getDirection() == Direction.RIGHT) {
-                controls.addBullet(new Bullet(p.getX() + 20, p.getY() + 20, tex, this, 2));
-            } else if (p.getDirection() == Direction.LEFT) {
-                controls.addBullet(new Bullet(p.getX() + 20, p.getY() + 20, tex, this, 3));
-            } else if (p.getDirection() == Direction.DOWN) {
-                controls.addBullet(new Bullet(p.getX() + 20, p.getY() + 20, tex, this, 4));
-            }
-        }
-
-        //tank 2 shoot && position of bullet when shooting
-        if (key == KeyEvent.VK_L) {
-            if (p2.getDirection() == Direction.UP) {
-                controls.addBullet(new Bullet(p2.getX() + 20, p2.getY() + 20, tex, this, 1));
-            } else if (p2.getDirection() == Direction.RIGHT) {
-                controls.addBullet(new Bullet(p2.getX() + 20, p2.getY() + 20, tex, this, 2));
-            } else if (p2.getDirection() == Direction.LEFT) {
-                controls.addBullet(new Bullet(p2.getX() + 20, p2.getY() + 20, tex, this, 3));
-            } else if (p2.getDirection() == Direction.DOWN) {
-                controls.addBullet(new Bullet(p2.getX() + 20, p2.getY() + 20, tex, this, 4));
-=======
         if (ammo1 >= 1) {
             if (key == KeyEvent.VK_SPACE) {
-
-                if (p.getDirection() == Direction.DOWN) {
-                    controls.addBullet(new Bullet(p.getX() + 20, p.getY() + 70, tex, this));
-                    ammo1--;
-                } else if (p.getDirection() == Direction.UP) {
-                    controls.addBullet(new Bullet(p.getX() + 20, p.getY() - 30, tex, this));
+                if (p.getDirection() == Direction.UP) {
+                    controls.addBullet(new Bullet(p.getX() + 20, p.getY() + 70, tex, this ));
                     ammo1--;
                 } else if (p.getDirection() == Direction.RIGHT) {
-                    controls.addBullet(new Bullet(p.getX() + 70, p.getY() + 20, tex, this));
+                    controls.addBullet(new Bullet(p.getX() + 20, p.getY() - 30, tex, this ));
                     ammo1--;
                 } else if (p.getDirection() == Direction.LEFT) {
-                    controls.addBullet(new Bullet(p.getX() - 30, p.getY() + 20, tex, this));
+                    controls.addBullet(new Bullet(p.getX() + 70, p.getY() + 20, tex, this ));
+                    ammo1--;
+                } else if (p.getDirection() == Direction.DOWN) {
+                    controls.addBullet(new Bullet(p.getX() - 30, p.getY() + 20, tex, this ));
                     ammo1--;
                     //------------------------------------------------- POSITION OF BULLET TO SPAWN NEAR TANK
                 } else if (p.getDirection() == Direction.UP_RIGHT) {
-                    controls.addBullet(new Bullet(p.getX() + 70, p.getY() - 30, tex, this));
+                    controls.addBullet(new Bullet(p.getX() + 70, p.getY() - 30, tex, this ));
                     ammo1--;
                 } else if (p.getDirection() == Direction.UP_LEFT) {
-                    controls.addBullet(new Bullet(p.getX() - 25, p.getY() - 25, tex, this));
+                    controls.addBullet(new Bullet(p.getX() - 25, p.getY() - 25, tex, this ));
                     ammo1--;
                 } else if (p.getDirection() == Direction.DOWN_LEFT) {
                     controls.addBullet(new Bullet(p.getX() - 10, p.getY() + 65, tex, this));
@@ -488,16 +461,16 @@ public class Game extends Canvas implements Runnable {
         if (ammo2 >= 1) {
             if (key == KeyEvent.VK_L) {
 
-                if (p2.getDirection() == Direction.DOWN) {
+                if (p2.getDirection() == Direction.UP) {
                     controls.addBullet(new Bullet(p2.getX() + 20, p2.getY() + 60, tex, this));
                     ammo2--;
-                } else if (p2.getDirection() == Direction.UP) {
+                } else if (p2.getDirection() == Direction.RIGHT) {
                     controls.addBullet(new Bullet(p2.getX() + 20, p2.getY() - 30, tex, this));
                     ammo2--;
-                } else if (p2.getDirection() == Direction.RIGHT) {
+                } else if (p2.getDirection() == Direction.LEFT) {
                     controls.addBullet(new Bullet(p2.getX() + 70, p2.getY() + 20, tex, this));
                     ammo2--;
-                } else if (p2.getDirection() == Direction.LEFT) {
+                } else if (p2.getDirection() == Direction.DOWN) {
                     controls.addBullet(new Bullet(p2.getX() - 30, p2.getY() + 20, tex, this));
                     ammo2--;
                     //------------------------------------------------- POSITION OF BULLET TO SPAWN NEAR TANK
@@ -514,7 +487,6 @@ public class Game extends Canvas implements Runnable {
                     controls.addBullet(new Bullet(p2.getX() + 60, p2.getY() + 65, tex, this));
                     ammo2--;
                 }
->>>>>>> 610ae3a251ad75864973e72e98714bcb769fb1b9
             }
         }
     }
