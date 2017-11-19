@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/csc413-tankgame-team13-hCorbear-merksmanship.iml" filepath="$PROJECT_DIR$/csc413-tankgame-team13-hCorbear-merksmanship.iml" />
       <module fileurl="file://$PROJECT_DIR$/tankgame/tankgame.iml" filepath="$PROJECT_DIR$/tankgame/tankgame.iml" />
     </modules>
   </component>

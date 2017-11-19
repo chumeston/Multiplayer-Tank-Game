@@ -106,8 +106,12 @@ public class Player extends TickingObject {
 
         //debug rectangle hit box
         //g.setColor(Color.blue);
+
         //g.fillRect((int) x+12, (int) y+12, 50, 40);
         //collision with tank can use right left up down bounds later on
+
+
+        //g.fillRect((int) x+15, (int) y+12, 35, 35);
 
     }
 
@@ -157,6 +161,7 @@ public class Player extends TickingObject {
                 canMoveLeft = true;
             }
             if (getUpBound().intersects(walls.get(i).getBounds()) && direction == Direction.UP) {
+                velY -=velY;
                 velY -= velY;
 
                 canMoveUp = false;
@@ -164,6 +169,7 @@ public class Player extends TickingObject {
                 canMoveUp = true;
             }
             if (getDownBound().intersects(walls.get(i).getBounds()) && direction == Direction.DOWN) {
+                velY -=velY;
                 velY -= velY;
 
                 canMoveDown = false;

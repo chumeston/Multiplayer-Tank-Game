@@ -22,7 +22,7 @@ public class GlobalTexture {
 
     public GlobalTexture(Game game) {
         button = new SpriteSheetButton(game.getButtons());
-        spriteSheet1 = new SpriteSheet(game.getSpritesheet());
+        spriteSheet1 = new SpriteSheet(game.getSpriteSheet());
         wallSpriteSheet = new SpriteSheet(game.getWalls());
         getSprites();
     }

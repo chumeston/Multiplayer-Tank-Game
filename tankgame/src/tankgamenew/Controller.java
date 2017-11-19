@@ -155,4 +155,7 @@ public class Controller {
         return wallList;
     }
 
+    public static ArrayList<Bullet> getBullet() {
+        return bulletList;
+    }
 }
