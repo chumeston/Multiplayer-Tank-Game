@@ -8,16 +8,13 @@ public class Wall extends GameObject {
         super(x, y, globalTexture);
     }
 
-    public void render(Graphics graphics) {
+    public void render(Graphics g) {
 
-        graphics.drawImage(tex.brickWall, (int) x, (int) y, null);
-
-        //graphics.setColor(Color.green);
-        //graphics.fillRect((int)x, (int)y, 32, 32);
-
-
+        g.drawImage(tex.brickWall, (int) x, (int) y, null);
 
     }
 
-    public Rectangle getBounds() { return new Rectangle((int) x, (int) y, 32, 32); }
+    public Rectangle getBounds() {
+        return new Rectangle((int) x, (int) y, 32, 32);
+    }
 }
