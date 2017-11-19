@@ -1,13 +1,14 @@
 package tankgamenew;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.awt.Graphics;
+import javax.swing.JFrame;
+
 
 public class Game extends Canvas implements Runnable {
 
@@ -135,13 +136,10 @@ public class Game extends Canvas implements Runnable {
 
             g.drawImage(playBackground, 0, 0, null);
 
-
             p.render(g);
             p2.render(g);
 
             controls.render(g);
-
-
 
 
             if (hp1 != 0) {
@@ -247,7 +245,6 @@ public class Game extends Canvas implements Runnable {
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         frame.pack();
-
         game.start();
     }
 
@@ -274,54 +271,54 @@ public class Game extends Canvas implements Runnable {
         //tank 1 movement
         if (key == KeyEvent.VK_W) {
             if (p.isCanMoveUp()) {
-                p.setVelY(-2);
+                p.setVelY(-5);
                 p.setDirection(Direction.UP);
                 keyW = true;
             }
         }
         if (key == KeyEvent.VK_A) {
             if (p.isCanMoveLeft()) {
-                p.setVelX(-2);
+                p.setVelX(-5);
                 p.setDirection(Direction.LEFT);
                 keyA = true;
             }
         }
         if (key == KeyEvent.VK_S) {
             if (p.isCanMoveDown()) {
-                p.setVelY(2);
+                p.setVelY(5);
                 p.setDirection(Direction.DOWN);
                 keyS = true;
             }
         }
         if (key == KeyEvent.VK_D) {
             if (p.isCanMoveRight()) {
-                p.setVelX(2);
+                p.setVelX(5);
                 p.setDirection(Direction.RIGHT);
                 keyD = true;
             }
         }
         if (keyW == true && keyD == true) {
             if (p.isCanMoveRight()) {
-                p.setVelX(2);
+                p.setVelX(5);
                 p.setDirection(Direction.UP_RIGHT);
 
             }
         }
         if (keyW == true && keyA == true) {
             if (p.isCanMoveLeft()) {
-                p.setVelX(-2);
+                p.setVelX(-5);
                 p.setDirection(Direction.UP_LEFT);
             }
         }
         if (keyS == true && keyD == true) {
             if (p.isCanMoveRight()) {
-                p.setVelX(2);
+                p.setVelX(5);
                 p.setDirection(Direction.DOWN_RIGHT);
             }
         }
         if (keyS == true && keyA == true) {
             if (p.isCanMoveLeft()) {
-                p.setVelX(-2);
+                p.setVelX(-5);
                 p.setDirection(Direction.DOWN_LEFT);
 
             }
@@ -330,54 +327,54 @@ public class Game extends Canvas implements Runnable {
         // tank 2
         if (key == KeyEvent.VK_UP) {
             if (p2.isCanMoveUp()) {
-                p2.setVelY(-2);
+                p2.setVelY(-5);
                 p2.setDirection(Direction.UP);
                 keyUp = true;
             }
         }
         if (key == KeyEvent.VK_LEFT) {
             if (p2.isCanMoveLeft()) {
-                p2.setVelX(-2);
+                p2.setVelX(-5);
                 p2.setDirection(Direction.LEFT);
                 keyLeft = true;
             }
         }
         if (key == KeyEvent.VK_DOWN) {
             if (p2.isCanMoveDown()) {
-                p2.setVelY(2);
+                p2.setVelY(5);
                 p2.setDirection(Direction.DOWN);
                 keyDown = true;
             }
         }
         if (key == KeyEvent.VK_RIGHT) {
             if (p2.isCanMoveRight()) {
-                p2.setVelX(2);
+                p2.setVelX(5);
                 p2.setDirection(Direction.RIGHT);
                 keyRight = true;
             }
         }
         if (keyUp == true && keyRight == true) {
             if (p2.isCanMoveRight()) {
-                p2.setVelX(2);
+                p2.setVelX(5);
                 p2.setDirection(Direction.UP_RIGHT);
 
             }
         }
         if (keyUp == true && keyLeft == true) {
             if (p2.isCanMoveLeft()) {
-                p2.setVelX(-2);
+                p2.setVelX(-5);
                 p2.setDirection(Direction.UP_LEFT);
             }
         }
         if (keyDown == true && keyRight == true) {
             if (p2.isCanMoveRight()) {
-                p2.setVelX(2);
+                p2.setVelX(5);
                 p2.setDirection(Direction.DOWN_RIGHT);
             }
         }
         if (keyDown == true && keyLeft == true) {
             if (p2.isCanMoveLeft()) {
-                p2.setVelX(-2);
+                p2.setVelX(-5);
                 p2.setDirection(Direction.DOWN_LEFT);
 
             }
@@ -407,7 +404,6 @@ public class Game extends Canvas implements Runnable {
             p.setVelX(0);
             keyD = false;
         }
-
 
 
         //tank 2 movement

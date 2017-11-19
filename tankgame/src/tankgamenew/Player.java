@@ -19,7 +19,6 @@ public class Player extends TickingObject {
     Animation animatesDR;
     Animation animatesDL;
 
-
     private Direction direction;
 
 
@@ -107,7 +106,8 @@ public class Player extends TickingObject {
 
         //debug rectangle hit box
         //g.setColor(Color.blue);
-        //g.fillRect((int) x+15, (int) y+12, 35, 35);
+        //g.fillRect((int) x+12, (int) y+12, 50, 40);
+        //collision with tank can use right left up down bounds later on
 
     }
 
@@ -137,7 +137,7 @@ public class Player extends TickingObject {
 
 
     public Rectangle getBound() {
-        return new Rectangle((int) x+15, (int) y+12, 35, 35);
+        return new Rectangle((int) x+12, (int) y+12, 50, 40);
     }
 
     //COLLISION WALL
