@@ -7,11 +7,12 @@ public class Bullet extends TickingObject {
     Game game;
     int facing;
 
-    public Bullet(double x, double y, GlobalTexture tex, Game game) {
+    public Bullet(double x, double y, GlobalTexture tex, Game game, int facing) {
         super(x, y, tex);
         this.game = game;
-        //this.facing = facing;
+        this.facing = facing;
     }
+
 
     public void tick() {
         //BULLET DIRECTION
@@ -37,7 +38,9 @@ public class Bullet extends TickingObject {
             y += 10;
         }
 
+
     }
+
 
     public void render(Graphics g) {
         g.drawImage(game.bullet, (int) x, (int) y, null);
@@ -46,5 +49,6 @@ public class Bullet extends TickingObject {
     public Rectangle getBounds() {
         return new Rectangle((int) x, (int) y, 25, 25);
     }
+
 
 }

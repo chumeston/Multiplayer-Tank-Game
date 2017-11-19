@@ -50,6 +50,7 @@ public class Controller {
     }
 
     public void tick() {
+
         for (int i = 0; i < bulletList.size(); i++) {
             tempBullet = bulletList.get(i);
 
@@ -63,15 +64,16 @@ public class Controller {
                 removeBullet(tempBullet);
             } else if (game.p.getBound().intersects(bulletList.get(i).getBounds())) {
                 removeBullet(tempBullet);
-                game.hp1 -= 20;
+                game.hp1-=20;
 
             } else if (game.p2.getBound().intersects(bulletList.get(i).getBounds())) {
                 removeBullet(tempBullet);
-                game.hp2 -= 20;
+                game.hp2 -=20;
 
             } else if (game.p2.getBound().intersects(game.p2.getBound())) {
                 System.out.println("TANK INTERSECTS");
             }
+
 
             if (tempBullet.getY() < 0) {
                 removeBullet(tempBullet);
@@ -84,6 +86,7 @@ public class Controller {
             }
 
             tempBullet.tick();
+
         }
     }
 
@@ -101,7 +104,6 @@ public class Controller {
 
             tempBullet.render(g);
         }
-
         for (int i = 0; i < wallList.size(); i++) {
             tempWall = wallList.get(i);
             tempWall.render(g);
