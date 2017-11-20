@@ -38,11 +38,9 @@ public class Game extends Canvas implements Runnable {
 
     private Thread thread;
 
-    private BufferedImage gameBackground, walls, button, spritesheet, playBackground;      // game menu , button
+    private BufferedImage gameBackground, walls, button, spritesheet, playBackground, breakWall, ammo;      // game menu , button
 
     private BufferImageLoader loader;   // loader
-
-    private BufferedImage metalwall;
 
     public BufferedImage bullet;
 
@@ -70,10 +68,11 @@ public class Game extends Canvas implements Runnable {
 
             gameBackground = loader.loadImage("res/menu.png");
             button = loader.loadImage("res/spritesheetbutton.png");
-            metalwall = loader.loadImage("res/wallspritesheet.png");
             spritesheet = loader.loadImage("res/tankspritesheet.png");
             bullet = loader.loadImage("res/bluebullet.png");
             walls = loader.loadImage("res/wall.png");
+            breakWall = loader.loadImage("res/breakablewall.png");
+            ammo = loader.loadImage("res/ammo.png");
             playBackground = loader.loadImage("res/background.png");
         } catch (IOException e) {
             e.printStackTrace();
@@ -507,6 +506,10 @@ public class Game extends Canvas implements Runnable {
     public BufferedImage getWalls() {
         return walls;
     }
+    public BufferedImage getBreakableWalls() {
+        return breakWall;
+    }
+    public BufferedImage getAmmo() { return ammo;}
 
     public void setWalls(BufferedImage walls) {
         this.walls = walls;

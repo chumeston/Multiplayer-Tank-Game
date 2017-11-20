@@ -13,17 +13,20 @@ public class GlobalTexture {
     public BufferedImage[] playerDownLeft = new BufferedImage[1]; //down
     public BufferedImage[] playerDownRight = new BufferedImage[1]; //down
 
-    public BufferedImage playbutton1, playbutton2, brickWall, metalWall;
+    public BufferedImage playbutton1, playbutton2, brickWall, breakWall , ammoCrate;
 
     private SpriteSheetButton button;
     private SpriteSheet spriteSheet1;
     private SpriteSheet wallSpriteSheet;
-
+    private SpriteSheet breakableWall;
+    private SpriteSheet ammoUp;
 
     public GlobalTexture(Game game) {
         button = new SpriteSheetButton(game.getButtons());
         spriteSheet1 = new SpriteSheet(game.getSpriteSheet());
         wallSpriteSheet = new SpriteSheet(game.getWalls());
+        breakableWall = new SpriteSheet(game.getBreakableWalls());
+        ammoUp = new SpriteSheet(game.getAmmo());
         getSprites();
     }
 
@@ -63,5 +66,7 @@ public class GlobalTexture {
 
 
         brickWall = wallSpriteSheet.getSprite(1, 1, 32, 32);  // metal wall
+        breakWall = breakableWall.getSprite(1, 1, 32, 32);  // metal wall
+        ammoCrate = ammoUp.getSprite(1, 1, 32, 32);
     }
 }

@@ -42,12 +42,10 @@ public class Bullet extends TickingObject {
     }
 
 
-    public void render(Graphics g) {
-        g.drawImage(game.bullet, (int) x, (int) y, null);
-    }
+    public void render(Graphics g) { g.drawImage(game.bullet, (int) x, (int) y, null); }
 
     public Rectangle getBounds() {
-        return new Rectangle((int) x, (int) y, 25, 25);
+        return new Rectangle((int) x+8, (int) y+7, 10, 10);
     }
 
 
