@@ -129,15 +129,16 @@ public class Game extends Canvas implements Runnable {
         //play menu
         if (gamestate == 0) {
             menu.createMenu(g, gameBackground, playButton, null, null); // play button
+            g.setColor(Color.white);
+            g.setFont(new Font("Calibri", Font.PLAIN, 13));
+            g.drawString("Use mouse to hit play button" ,25, 25);
         } else if (gamestate == 1) {
 
             g.drawImage(playBackground, 0, 0, null);
 
             p.render(g);
             p2.render(g);
-
             controls.render(g);
-
 
             if (hp1 != 0) {
                 g.setColor(Color.blue);
