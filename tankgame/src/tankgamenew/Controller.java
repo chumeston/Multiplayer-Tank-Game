@@ -10,22 +10,24 @@ public class Controller {
     Game game;
     GlobalTexture tex;
 
-
     private static ArrayList<Bullet> bulletList = new ArrayList<>();
     private static ArrayList<Wall> wallList = new ArrayList<>();
     private static ArrayList<BreakableWall> bwallList = new ArrayList<>();
     private static ArrayList<Ammo> ammoList = new ArrayList<>();
+    private static ArrayList<Explosion> explodeList = new ArrayList<>();
 
 
     Bullet tempBullet;
     Wall tempWall;
     BreakableWall btempWall;
     Ammo ammoCrate;
+    Explosion explodeBullet;
 
 
     public Controller(Game game, GlobalTexture tex) {
         this.game = game;
         this.tex = tex;
+
 
         //drawing walls
         addAmmo(new Ammo(750 , 100, tex));
@@ -138,10 +140,11 @@ public class Controller {
 
     public void render(Graphics g) {
 
+        //animates.drawAnimation(g, 460 , 460, 0);
+
         for (int i = 0; i < bulletList.size(); i++) {   //RENDER BULLET
             tempBullet = bulletList.get(i);
             tempBullet.render(g);
-
 
         }
 
@@ -153,6 +156,12 @@ public class Controller {
         for (int i = 0; i < ammoList.size(); i++) {     //RENDER WALL
             ammoCrate = ammoList.get(i);
             ammoCrate.render(g);
+        }
+
+        for (int i = 0; i < explodeList.size(); i++) {     //RENDER WALL
+            explodeBullet = explodeList.get(i);
+            explodeBullet.render(g);
+
         }
         for (int i = 0; i < bwallList.size(); i++) {     //RENDER BREAK WALL
             btempWall = bwallList.get(i);
@@ -167,6 +176,10 @@ public class Controller {
             while (bulletListIterator.hasNext()) {
                 Rectangle r2 = bulletListIterator.next().getBounds();
                 if (r1.intersects(r2)) {
+
+                    double x = b.getX();
+                    double y = b.getY();
+                    addExplode(new Explosion(x,y,tex));
                     bulletListIterator.remove();
                 }
             }
@@ -179,6 +192,7 @@ public class Controller {
             while (bwallListIterator.hasNext()) {
                 Rectangle r2 = bwallListIterator.next().getBounds();
                 if (r1.intersects(r2)) {
+
                     bwallListIterator.remove();
                 }
             }
@@ -211,10 +225,6 @@ public class Controller {
         return wallList;
     }
 
-    public static ArrayList<Bullet> getBullet() {
-        return bulletList;
-    }
-
     public void addBreakWall(BreakableWall instance) {
         bwallList.add(instance);
     }
@@ -241,5 +251,16 @@ public class Controller {
 
     public static ArrayList<Ammo> getAmmo() {
         return ammoList;
+    }
+
+
+    public void addExplode(Explosion instance) {
+        explodeList.add(instance);
+    }
+
+    public void removeExplode(Explosion instance) { explodeList.remove(instance); }
+
+    public static ArrayList<Explosion> getExplosion() {
+        return explodeList;
     }
 }

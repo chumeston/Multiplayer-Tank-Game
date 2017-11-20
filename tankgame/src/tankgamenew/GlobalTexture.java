@@ -12,14 +12,16 @@ public class GlobalTexture {
     public BufferedImage[] playerUpLeft = new BufferedImage[1]; //down
     public BufferedImage[] playerDownLeft = new BufferedImage[1]; //down
     public BufferedImage[] playerDownRight = new BufferedImage[1]; //down
+    public BufferedImage[] explodedAnimation = new BufferedImage[4];
 
-    public BufferedImage playbutton1, playbutton2, brickWall, breakWall , ammoCrate;
+    public BufferedImage playbutton1, playbutton2, brickWall, breakWall , ammoCrate, exploded;
 
     private SpriteSheetButton button;
     private SpriteSheet spriteSheet1;
     private SpriteSheet wallSpriteSheet;
     private SpriteSheet breakableWall;
     private SpriteSheet ammoUp;
+    private SpriteSheet explosion;
 
     public GlobalTexture(Game game) {
         button = new SpriteSheetButton(game.getButtons());
@@ -27,6 +29,7 @@ public class GlobalTexture {
         wallSpriteSheet = new SpriteSheet(game.getWalls());
         breakableWall = new SpriteSheet(game.getBreakableWalls());
         ammoUp = new SpriteSheet(game.getAmmo());
+        explosion = new SpriteSheet(game.getExplode());
         getSprites();
     }
 
@@ -64,9 +67,16 @@ public class GlobalTexture {
         playerDownRight[0] = spriteSheet1.getSprite(4, 7, 64, 64);
         playerDownLeft[0] = spriteSheet1.getSprite(4, 8, 64, 64);
 
+        explodedAnimation[0] = spriteSheet1.getSprite(1,5,64,64);
+        explodedAnimation[0] = spriteSheet1.getSprite(2,5,64,64);
+        explodedAnimation[0] = spriteSheet1.getSprite(3,5,64,64);
+        explodedAnimation[0] = spriteSheet1.getSprite(3,6,64,64);
 
         brickWall = wallSpriteSheet.getSprite(1, 1, 32, 32);  // metal wall
         breakWall = breakableWall.getSprite(1, 1, 32, 32);  // metal wall
+
         ammoCrate = ammoUp.getSprite(1, 1, 32, 32);
+        exploded = explosion.getSprite(1,1,32,32);
+
     }
 }

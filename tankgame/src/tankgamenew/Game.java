@@ -40,6 +40,8 @@ public class Game extends Canvas implements Runnable {
 
     private BufferedImage gameBackground, walls, button, spritesheet, playBackground, breakWall, ammo;      // game menu , button
 
+    private BufferedImage explosion;
+
     private BufferImageLoader loader;   // loader
 
     public BufferedImage bullet;
@@ -52,6 +54,8 @@ public class Game extends Canvas implements Runnable {
     Player p;
     Player p2;
 
+    public int score = 0;
+    public int score2 = 0;
     public int hp1 = 100;
     public int hp2 = 100;
 
@@ -74,6 +78,8 @@ public class Game extends Canvas implements Runnable {
             breakWall = loader.loadImage("res/breakablewall.png");
             ammo = loader.loadImage("res/ammo.png");
             playBackground = loader.loadImage("res/background.png");
+            explosion = loader.loadImage("res/explosion.png");
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -83,7 +89,7 @@ public class Game extends Canvas implements Runnable {
         menu = new Menu();
         playButton = new Button(300, 350, tex).setTyped(1);
 
-        p = new Player(width / 2 + 100, height / 2 - 300, tex);  // position of player 1
+        p = new Player(width / 2 + 100, height / 2 - 100, tex);  // position of player 1
         p2 = new Player(gameWidth / 2 - 800, gameHeight / 2 - 100, tex);  // position of player 2
     }
 
@@ -110,11 +116,10 @@ public class Game extends Canvas implements Runnable {
 
     }
 
-    public void tick() { // update collision and movement
+    public void tick() { // update collision and movement // keeps ticking
         p.tick();
-        p2.tick();    // player 2 not displayed
+        p2.tick();
         controls.tick();
-
     }
 
     public void render() { // BUFFER STRATEGY , load 2 images at time , load images faster, flickering of image blackwhite // does all graphics
@@ -140,10 +145,18 @@ public class Game extends Canvas implements Runnable {
             p2.render(g);
             controls.render(g);
 
-            if (hp1 != 0) {
+            Font font2 = new Font("Calibri", Font.BOLD, 16);
+            g.setFont(font2);
+            g.setColor(Color.blue);
+            g.drawString("Tank 1", (int)p.getX()+6, (int)p.getY());
+            g.setColor(Color.red);
+            g.drawString("Tank 2", (int)p2.getX()+6, (int)p2.getY());
+
+            if (hp1 > 0) {
                 g.setColor(Color.blue);
                 g.setFont(new Font("Calibri", Font.BOLD, 16));
                 g.drawString("Ammo: " + ammo1, gameWidth / 2 - 820, 50);
+                g.drawString("Score: " + score, gameWidth / 2 - 920, 50);
                 g.setColor(Color.gray);
                 g.fillRect(2, 5, 200, 32);
                 g.setColor(Color.blue);
@@ -155,12 +168,19 @@ public class Game extends Canvas implements Runnable {
                 g.setFont(font);
                 g.setColor(Color.red);
                 g.drawString("TANK RED WINS", 500, 500);
-                p = null;
+                score2++;
+                hp1=100;
+                hp2=100;
+                p = new Player(width / 2 + 100,  height / 2 - 100, tex);
+                p2 = new Player(gameWidth / 2 - 800, gameHeight / 2 - 100, tex);
+                ammo1 = 15;
+                ammo2 = 15;
             }
-            if (hp2 != 0) {
+            if (hp2 > 0) {
                 g.setColor(Color.red);
                 g.setFont(new Font("Calibri", Font.BOLD, 16));
                 g.drawString("Ammo: " + ammo2, gameWidth / 2 - 820, gameHeight / 2 - 430);
+                g.drawString("Score: " + score2, gameWidth / 2 - 920, gameHeight / 2 - 430);
                 g.setColor(Color.gray);
                 g.fillRect(2, 60, 200, 32);
                 g.setColor(Color.red);
@@ -173,7 +193,15 @@ public class Game extends Canvas implements Runnable {
                 g.setFont(font);
                 g.setColor(Color.blue);
                 g.drawString("TANK BLUE WINS", 500, 500);
-                p2 = null;
+                p2 = new Player(gameWidth / 2 - 800, gameHeight / 2 - 100, tex);
+                p = new Player(width / 2 + 100,  height / 2 - 100, tex);
+                score++;
+                hp2=100;
+                hp1=100;
+                ammo1 = 15;
+                ammo2 = 15;
+
+
             }
 
 
@@ -511,6 +539,8 @@ public class Game extends Canvas implements Runnable {
         return breakWall;
     }
     public BufferedImage getAmmo() { return ammo;}
+    public BufferedImage getExplode() { return explosion;}
+
 
     public void setWalls(BufferedImage walls) {
         this.walls = walls;
