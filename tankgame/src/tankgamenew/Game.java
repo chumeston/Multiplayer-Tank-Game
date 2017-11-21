@@ -49,8 +49,8 @@ public class Game extends Canvas implements Runnable {
     Button quitButton;
     GlobalTexture tex;
     Menu menu;
-    Player p;
-    Player p2;
+    public static Player p;
+    public static Player p2;
 
     public int score = 0;
     public int score2 = 0;
