@@ -102,6 +102,36 @@ public class Player extends TickingObject {
             animatesDL.drawAnimation(g, x, y, 0);
         }
 
+        update();
+    }
+
+    public void update() {
+        if (Game.p.getBound().intersects(Game.p2.getBound())) {
+            if (Game.p.getX() > Game.p2.getX())
+                Game.p.setX(Game.p.getX() + 1);
+            else if (Game.p.getX() < Game.p2.getX())
+                Game.p.setX(Game.p.getX() - 1);
+            if (Game.p.getY() > Game.p2.getY())
+                Game.p.setY(Game.p.getY() + 1);
+            else if (Game.p.getY() < Game.p2.getY())
+                Game.p.setY(Game.p.getY() - 1);
+        }
+
+        if (Game.p2.getBound().intersects(Game.p.getBound())) {
+
+            if (Game.p2.getX() > Game.p.getX())
+                Game.p2.setX(Game.p2.getX() + 1);
+
+            else if (Game.p2.getX() < Game.p.getX())
+                Game.p2.setX(Game.p2.getX() - 1);
+
+            if (Game.p2.getY() > Game.p.getY())
+                Game.p2.setY(Game.p2.getY() + 1);
+
+            else if (Game.p2.getY() < Game.p.getY())
+                Game.p2.setY(Game.p2.getY() - 1);
+        }
+
     }
 
     protected void setDirection(Direction direction) {

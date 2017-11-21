@@ -105,26 +105,7 @@ public class Controller extends Component {
             }
 
 
-            if (tempBullet.getY() < 0) {
-                removeBullet(tempBullet);
-            } else if (tempBullet.getY() > game.getGH()) {
-                removeBullet(tempBullet);
-            } else if (tempBullet.getX() > game.getGW()) {
-                removeBullet(tempBullet);
-            } else if (tempBullet.getX() < 0) {
-                removeBullet(tempBullet);
-            }
-
             tempBullet.tick();
-
-        }
-
-
-        if (game.p2.getBound().intersects(game.p.getBound())) {
-            game.p.setVelX(-game.p.getVelX());
-            game.p.setVelY(-game.p.getVelY());
-            game.p2.setVelX(-game.p2.getVelX());
-            game.p2.setVelY(-game.p2.getVelY());
 
         }
 
@@ -179,34 +160,6 @@ public class Controller extends Component {
             btempWall.render(g);
         }
 
-        for (Wall b : wallList) {
-            Rectangle r1 = b.getBounds();
-            ListIterator<Bullet> bulletListIterator = bulletList.listIterator();
-            while (bulletListIterator.hasNext()) {
-                Rectangle r2 = bulletListIterator.next().getBounds();
-                if (r1.intersects(r2)) {
-                    soundHit();
-                    double x = b.getX();
-                    double y = b.getY();
-                    explosions.add(new Explosion(b.x,b.y,2,4+80,Color.white));
-                    bulletListIterator.remove();
-                }
-            }
-        }
-
-        for (Bullet bu : bulletList) {
-            Rectangle r1 = bu.getBounds();
-            ListIterator<BreakableWall> bwallListIterator = bwallList.listIterator();
-            while (bwallListIterator.hasNext()) {
-                Rectangle r2 = bwallListIterator.next().getBounds();
-                if (r1.intersects(r2)) {
-                    soundHit();
-                    bwallListIterator.remove();
-                    explosions.add(new Explosion(bu.x,bu.getY(),4,3+50,Color.white));
-                }
-            }
-        }
-
 
     }
 
@@ -236,6 +189,10 @@ public class Controller extends Component {
 
     public static ArrayList<Wall> getWalls() {
         return wallList;
+    }
+
+    public void addExplosion(Explosion instance) {
+        explosions.add(instance);
     }
 
     public void addBreakWall(BreakableWall instance) {

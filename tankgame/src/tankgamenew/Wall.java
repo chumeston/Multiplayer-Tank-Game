@@ -13,16 +13,38 @@ public class Wall extends GameObject {
     public void render(Graphics g) {
 
         g.drawImage(tex.brickWall, (int) x, (int) y, null);
-
+        update();
     }
 
     public Rectangle getBounds() {
         return new Rectangle((int) x, (int) y, 32, 32);
     }
 
-    public double getX() {
-        return x;
+    public void update() {
+
+        if (Game.p.getBound().intersects(getBounds())) {
+            if (Game.p.getX() > x)
+                Game.p.setX(Game.p.getX() + 1);
+            else if (Game.p.getX() < x)
+                Game.p.setX(Game.p.getX() - 1);
+            if (Game.p.getY() > y)
+                Game.p.setY(Game.p.getY() + 1);
+            else if (Game.p.getY() < y)
+                Game.p.setY(Game.p.getY() - 1);
+        }
+        if (Game.p2.getBound().intersects(getBounds())) {
+            if (Game.p2.getX() > x)
+                Game.p2.setX(Game.p2.getX() + 1);
+            else if (Game.p2.getX() < x)
+                Game.p2.setX(Game.p2.getX() - 1);
+            if (Game.p2.getY() > y)
+                Game.p2.setY(Game.p2.getY() + 1);
+            else if (Game.p2.getY() < y)
+                Game.p2.setY(Game.p2.getY() - 1);
+        }
     }
+
+    public double getX() { return x; }
     public double getY() {
         return y;
     }

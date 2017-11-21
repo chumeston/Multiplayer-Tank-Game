@@ -39,9 +39,33 @@ public class Bullet extends TickingObject {
         }
     }
 
+    public void update() {
 
-    public void render(Graphics g) {
+        for (int i = 0; i < Controller.getWalls().size(); i++) {
+            if (Controller.getWalls().get(i).getBounds().intersects(this.getBounds())) {
+                soundHit();
+                removeOutside();
+            }
+        }
+        for (int i = 0; i < Controller.getBreakWalls().size(); i++) {
+            if (Controller.getBreakWalls().get(i).getBounds().intersects(this.getBounds())) {
+                soundHit();
+                removeOutside();
+            }
+        }
+    }
+
+    private void soundHit() { game.sound.playSound("res/bullet.wav"); }
+
+    public void removeOutside() {
+        x =  10000;
+        y = 10000;
+    }
+
+    public void render(Graphics g)
+    {
         g.drawImage(game.bullet, (int) x, (int) y, null);
+        update();
     }
 
     public Rectangle getBounds() {
