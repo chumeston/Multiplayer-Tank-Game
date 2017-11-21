@@ -2,19 +2,19 @@ package tankgamenew;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.ListIterator;
 
-public class Controller {
+
+public class Controller extends Component {
 
     Game game;
     GlobalTexture tex;
-
 
     private static ArrayList<Bullet> bulletList = new ArrayList<>();
     private static ArrayList<Wall> wallList = new ArrayList<>();
     private static ArrayList<BreakableWall> bwallList = new ArrayList<>();
     private static ArrayList<Ammo> ammoList = new ArrayList<>();
+    private static ArrayList<Explosion> explosions = new ArrayList<>();
 
 
     Bullet tempBullet;
@@ -22,14 +22,13 @@ public class Controller {
     BreakableWall btempWall;
     Ammo ammoCrate;
 
-
     public Controller(Game game, GlobalTexture tex) {
         this.game = game;
         this.tex = tex;
 
         //drawing walls
-        addAmmo(new Ammo(750 , 100, tex));
-        addAmmo(new Ammo(590 , 650, tex));
+        addAmmo(new Ammo(750, 100, tex));
+        addAmmo(new Ammo(590, 650, tex));
 
         for (int i = 0; i < 3; i++) {
             addBreakWall(new BreakableWall(558 + 32 * i, 220, tex));
@@ -72,9 +71,10 @@ public class Controller {
             addWall(new Wall(1312, 30 + 32 * i, tex)); //vertical
             addWall(new Wall(0, 30 + 32 * i, tex));
         }
-
-
     }
+
+
+
 
     public void tick() {
 
@@ -93,10 +93,14 @@ public class Controller {
 
             } else if (game.p.getBound().intersects(bulletList.get(i).getBounds())) {
                 removeBullet(tempBullet);
+                soundHit();
                 game.hp1 -= 20;
+                explosions.add(new Explosion(game.p.getX()+30,game.p.getY()+25,4,4+50,Color.red));
 
             } else if (game.p2.getBound().intersects(bulletList.get(i).getBounds())) {
                 removeBullet(tempBullet);
+                soundHit();
+                explosions.add(new Explosion(game.p2.getX()+30,game.p2.getY()+25,4,4+50,Color.blue));
                 game.hp2 -= 20;
             }
 
@@ -121,44 +125,58 @@ public class Controller {
             game.p.setVelY(-game.p.getVelY());
             game.p2.setVelX(-game.p2.getVelX());
             game.p2.setVelY(-game.p2.getVelY());
+
         }
 
         ListIterator<Ammo> ammoListIterator = ammoList.listIterator();
         while (ammoListIterator.hasNext()) {
             Rectangle r2 = ammoListIterator.next().getBounds();
             if (r2.intersects(game.p.getBound())) {
+                soundAmmo();
                 ammoListIterator.remove();
                 game.ammo1+=10;
+
+            }
+            if (r2.intersects(game.p2.getBound())) {
+                soundAmmo();
+                ammoListIterator.remove();
+                game.ammo2+=10;
             }
         }
 
+        for(int i = 0 ; i < explosions.size();i++) {
+            boolean remove = explosions.get(i).update();
+            if(remove) {
+                explosions.remove(i);
+                i--;
+            }
+        }
     }
-
-    // BULLET -> WALL COLLISION
 
     public void render(Graphics g) {
 
-        for (int i = 0; i < bulletList.size(); i++) {   //RENDER BULLET
-            tempBullet = bulletList.get(i);
-            tempBullet.render(g);
-
-
+        for(int i = 0; i < explosions.size();i++) {
+            explosions.get(i).render(g);
         }
 
-        for (int i = 0; i < wallList.size(); i++) {     //RENDER WALL
+        for (int i = 0; i < bulletList.size(); i++) {
+            tempBullet = bulletList.get(i);
+            tempBullet.render(g);
+        }
+
+        for (int i = 0; i < wallList.size(); i++) {
             tempWall = wallList.get(i);
             tempWall.render(g);
         }
 
-        for (int i = 0; i < ammoList.size(); i++) {     //RENDER WALL
+        for (int i = 0; i < ammoList.size(); i++) {
             ammoCrate = ammoList.get(i);
             ammoCrate.render(g);
         }
-        for (int i = 0; i < bwallList.size(); i++) {     //RENDER BREAK WALL
+
+        for (int i = 0; i < bwallList.size(); i++) {
             btempWall = bwallList.get(i);
             btempWall.render(g);
-
-
         }
 
         for (Wall b : wallList) {
@@ -167,6 +185,10 @@ public class Controller {
             while (bulletListIterator.hasNext()) {
                 Rectangle r2 = bulletListIterator.next().getBounds();
                 if (r1.intersects(r2)) {
+                    soundHit();
+                    double x = b.getX();
+                    double y = b.getY();
+                    explosions.add(new Explosion(b.x,b.y,2,4+80,Color.white));
                     bulletListIterator.remove();
                 }
             }
@@ -174,18 +196,23 @@ public class Controller {
 
         for (Bullet bu : bulletList) {
             Rectangle r1 = bu.getBounds();
-
             ListIterator<BreakableWall> bwallListIterator = bwallList.listIterator();
             while (bwallListIterator.hasNext()) {
                 Rectangle r2 = bwallListIterator.next().getBounds();
                 if (r1.intersects(r2)) {
+                    soundHit();
                     bwallListIterator.remove();
+                    explosions.add(new Explosion(bu.x,bu.getY(),4,3+50,Color.white));
                 }
             }
         }
 
 
     }
+
+    private void soundHit() { game.sound.playSound("res/bullet.wav"); }
+
+    private void soundAmmo() { game.sound.playSound("res/ammoup.wav"); }
 
     public void addBullet(Bullet instance) {
         bulletList.add(instance);
@@ -211,10 +238,6 @@ public class Controller {
         return wallList;
     }
 
-    public static ArrayList<Bullet> getBullet() {
-        return bulletList;
-    }
-
     public void addBreakWall(BreakableWall instance) {
         bwallList.add(instance);
     }
@@ -227,19 +250,14 @@ public class Controller {
         return bwallList;
     }
 
-
-
-
-
     public void addAmmo(Ammo instance) {
         ammoList.add(instance);
     }
 
-    public void removeAmmo(Ammo instance) {
-        ammoList.remove(instance);
-    }
+    public void removeAmmo(Ammo instance) { ammoList.remove(instance); }
 
     public static ArrayList<Ammo> getAmmo() {
         return ammoList;
     }
+
 }

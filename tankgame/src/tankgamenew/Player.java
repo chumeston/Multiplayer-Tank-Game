@@ -11,7 +11,7 @@ public class Player extends TickingObject {
     private boolean canMoveRight, canMoveLeft, canMoveDown, canMoveUp,
             canMoveUpRight, canMoveUpLeft, canMoveDownRight, canMoveDownLeft;
 
-    Animation animates; // up
+    Animation animates;
     Animation animatesR;
     Animation animatesL;
     Animation animatesD;
@@ -25,10 +25,9 @@ public class Player extends TickingObject {
 
     public Player(double x, double y, GlobalTexture tex) {
         super(x, y, tex);
-        //velX = 3;
-        //velY= 2;
-        direction = Direction.RIGHT;  // starting angle position
-        //speed 4 frame
+
+        direction = Direction.RIGHT;
+
         animates = new Animation(2, tex.player[0], tex.player[1], tex.player[2], tex.player[3]);
         animatesR = new Animation(2, tex.playerRight[0], tex.playerRight[1], tex.playerRight[2], tex.playerRight[3]);
         animatesL = new Animation(2, tex.playerLeft[0], tex.playerLeft[1], tex.playerLeft[2], tex.playerLeft[3]);
@@ -45,7 +44,6 @@ public class Player extends TickingObject {
         x += velX;
         y += velY;
 
-        // TANK COLLISION SCREEN DETECTION
         if (x < 0) {
             x = 0;
         }
@@ -84,7 +82,7 @@ public class Player extends TickingObject {
 
         g.setColor(Color.green);
 
-        doCollision(wallArrayList);   // Multiple wall only collides
+        doCollision(wallArrayList);
         doCollisionBreakable(bwallArrayList);
         if (direction == Direction.UP) {
             animates.drawAnimation(g, x, y, 0);
@@ -103,15 +101,6 @@ public class Player extends TickingObject {
         } else if (direction == Direction.DOWN_LEFT) { //down
             animatesDL.drawAnimation(g, x, y, 0);
         }
-
-        //debug rectangle hit box
-        //g.setColor(Color.blue);
-
-        //g.fillRect((int) x+12, (int) y+12, 50, 40);
-        //collision with tank can use right left up down bounds later on
-
-
-        //g.fillRect((int) x+15, (int) y+12, 35, 35);
 
     }
 
@@ -144,7 +133,6 @@ public class Player extends TickingObject {
         return new Rectangle((int) x+12, (int) y+12, 50, 40);
     }
 
-    //COLLISION WALL
     public void doCollision(ArrayList<Wall> walls) {
         for (int i = 0; i < walls.size(); i++) {
             if (getRightBound().intersects(walls.get(i).getBounds()) && direction == Direction.RIGHT) {
@@ -176,7 +164,7 @@ public class Player extends TickingObject {
             } else {
                 canMoveDown = true;
             }
-            // COLLISION DIAGONAL
+
             if (getRightBound().intersects(walls.get(i).getBounds()) && (direction == Direction.UP_RIGHT || direction == Direction.DOWN_RIGHT)) {
                 velX -= velX;
                 canMoveRight = false;
@@ -258,7 +246,7 @@ public class Player extends TickingObject {
             } else {
                 canMoveDown = true;
             }
-            // COLLISION DIAGONAL
+
             if (getRightBound().intersects(bwalls.get(i).getBounds()) && (direction == Direction.UP_RIGHT || direction == Direction.DOWN_RIGHT)) {
                 velX -= velX;
                 canMoveRight = false;
@@ -355,22 +343,5 @@ public class Player extends TickingObject {
     public boolean isCanMoveUp() {
         return canMoveUp;
     }
-
-    public void setCanMoveRight(boolean right) {
-        this.canMoveRight = right;
-    }
-
-    public void setCanMoveLeft(boolean left) {
-        this.canMoveLeft = left;
-    }
-
-    public void setCanMoveUp(boolean up) {
-        this.canMoveUp = up;
-    }
-
-    public void setCanMoveDown(boolean down) {
-        this.canMoveDown = down;
-    }
-
 
 }

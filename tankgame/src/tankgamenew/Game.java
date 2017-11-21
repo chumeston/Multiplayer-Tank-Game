@@ -12,7 +12,6 @@ import javax.swing.JFrame;
 
 public class Game extends Canvas implements Runnable {
 
-    //fullscreen
     static GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
     static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     public static int gameWidth = (int) screenSize.getWidth();
@@ -23,8 +22,8 @@ public class Game extends Canvas implements Runnable {
 
     public static boolean running = false;
 
-    public int ammo1 = 15;
-    public int ammo2 = 15;
+    public int ammo1 = 10;
+    public int ammo2 = 10;
 
     boolean keyW = false;
     boolean keyA = false;
@@ -38,31 +37,36 @@ public class Game extends Canvas implements Runnable {
 
     private Thread thread;
 
-    private BufferedImage gameBackground, walls, button, spritesheet, playBackground, breakWall, ammo;      // game menu , button
+    private BufferedImage gameBackground, walls, button, spritesheet, playBackground, breakWall, ammo;
 
-    private BufferImageLoader loader;   // loader
+    private BufferImageLoader loader;
 
     public BufferedImage bullet;
 
     Controller controls;
 
     Button playButton;
+    Button quitButton;
     GlobalTexture tex;
     Menu menu;
     Player p;
     Player p2;
 
+    public int score = 0;
+    public int score2 = 0;
     public int hp1 = 100;
     public int hp2 = 100;
 
-    //game state
     private int gamestate;
+
+    static Sound sound = new Sound();
 
     private void init() {
 
         addMouseListener(new MouseInput(this));
         addKeyListener(new KeyInput(this));
 
+        sound.playSound("res/menusound.wav");
         loader = new BufferImageLoader();
         try {
 
@@ -74,25 +78,27 @@ public class Game extends Canvas implements Runnable {
             breakWall = loader.loadImage("res/breakablewall.png");
             ammo = loader.loadImage("res/ammo.png");
             playBackground = loader.loadImage("res/background.png");
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         tex = new GlobalTexture(this);
-        controls = new Controller(this, tex); // bullet
+        controls = new Controller(this, tex);
         menu = new Menu();
         playButton = new Button(300, 350, tex).setTyped(1);
+        quitButton = new Button(300, 450, tex).setTyped(3);
 
-        p = new Player(width / 2 + 100, height / 2 - 300, tex);  // position of player 1
+        p = new Player(width / 2 + 100, height / 2 - 100, tex);  // position of player 1
         p2 = new Player(gameWidth / 2 - 800, gameHeight / 2 - 100, tex);  // position of player 2
     }
 
     private synchronized void start() {
         if (running) {
-            return;     //true, get out of method
+            return;
         }
         running = true;
-        thread = new Thread(this);  // creating instance of game "this
+        thread = new Thread(this);
         thread.start();
     }
 
@@ -110,14 +116,13 @@ public class Game extends Canvas implements Runnable {
 
     }
 
-    public void tick() { // update collision and movement
+    public void tick() { // update collision and movement // keeps ticking
         p.tick();
-        p2.tick();    // player 2 not displayed
+        p2.tick();
         controls.tick();
-
     }
 
-    public void render() { // BUFFER STRATEGY , load 2 images at time , load images faster, flickering of image blackwhite // does all graphics
+    public void render() {
         BufferStrategy bs = this.getBufferStrategy();
         if (bs == null) {
             this.createBufferStrategy(4);
@@ -128,10 +133,10 @@ public class Game extends Canvas implements Runnable {
 
         //play menu
         if (gamestate == 0) {
-            menu.createMenu(g, gameBackground, playButton, null, null); // play button
+            menu.createMenu(g, gameBackground, playButton, quitButton, null);
             g.setColor(Color.white);
             g.setFont(new Font("Calibri", Font.PLAIN, 13));
-            g.drawString("Use mouse to hit play button" ,25, 25);
+            g.drawString("Use mouse to hit play button", 25, 25);
         } else if (gamestate == 1) {
 
             g.drawImage(playBackground, 0, 0, null);
@@ -140,10 +145,18 @@ public class Game extends Canvas implements Runnable {
             p2.render(g);
             controls.render(g);
 
-            if (hp1 != 0) {
+            Font font2 = new Font("Calibri", Font.BOLD, 16);
+            g.setFont(font2);
+            g.setColor(Color.blue);
+            g.drawString("Tank 1", (int) p.getX() + 6, (int) p.getY());
+            g.setColor(Color.red);
+            g.drawString("Tank 2", (int) p2.getX() + 6, (int) p2.getY());
+
+            if (hp1 > 0) {
                 g.setColor(Color.blue);
                 g.setFont(new Font("Calibri", Font.BOLD, 16));
                 g.drawString("Ammo: " + ammo1, gameWidth / 2 - 820, 50);
+                g.drawString("Score: " + score, gameWidth / 2 - 920, 50);
                 g.setColor(Color.gray);
                 g.fillRect(2, 5, 200, 32);
                 g.setColor(Color.blue);
@@ -151,16 +164,20 @@ public class Game extends Canvas implements Runnable {
                 g.setColor(Color.black);
                 g.drawRect(2, 5, 200, 32);
             } else {
-                Font font = new Font("Serif", Font.PLAIN, 36);
-                g.setFont(font);
                 g.setColor(Color.red);
-                g.drawString("TANK RED WINS", 500, 500);
-                p = null;
+                score2++;
+                hp1 = 100;
+                hp2 = 100;
+                p = new Player(width / 2 + 100, height / 2 - 100, tex);
+                p2 = new Player(gameWidth / 2 - 800, gameHeight / 2 - 100, tex);
+                ammo1 = 10;
+                ammo2 = 10;
             }
-            if (hp2 != 0) {
+            if (hp2 > 0) {
                 g.setColor(Color.red);
                 g.setFont(new Font("Calibri", Font.BOLD, 16));
                 g.drawString("Ammo: " + ammo2, gameWidth / 2 - 820, gameHeight / 2 - 430);
+                g.drawString("Score: " + score2, gameWidth / 2 - 920, gameHeight / 2 - 430);
                 g.setColor(Color.gray);
                 g.fillRect(2, 60, 200, 32);
                 g.setColor(Color.red);
@@ -169,13 +186,15 @@ public class Game extends Canvas implements Runnable {
                 g.drawRect(2, 60, 200, 32);
 
             } else {
-                Font font = new Font("Serif", Font.PLAIN, 36);
-                g.setFont(font);
                 g.setColor(Color.blue);
-                g.drawString("TANK BLUE WINS", 500, 500);
-                p2 = null;
+                p2 = new Player(gameWidth / 2 - 800, gameHeight / 2 - 100, tex);
+                p = new Player(width / 2 + 100, height / 2 - 100, tex);
+                score++;
+                hp2 = 100;
+                hp1 = 100;
+                ammo1 = 10;
+                ammo2 = 10;
             }
-
 
         } else if (gamestate == 2) {
             g.setColor(Color.BLUE);
@@ -224,7 +243,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     public static void main(String args[]) {
-        JFrame frame = new JFrame("TankGame");
+        JFrame frame = new JFrame("TankGame by Mark and Corey");
         Game game = new Game();
         frame.add(game);
         frame.setFocusable(true);
@@ -376,7 +395,7 @@ public class Game extends Canvas implements Runnable {
             }
         }
 
-        if (key == KeyEvent.VK_ESCAPE) // escape only in play game
+        if (key == KeyEvent.VK_ESCAPE)
         {
             System.exit(1);
         }
@@ -432,7 +451,7 @@ public class Game extends Canvas implements Runnable {
                 } else if (p.getDirection() == Direction.LEFT) {
                     controls.addBullet(new Bullet(p.getX() - 30, p.getY() + 20, tex, this, 3));
                     ammo1--;
-                    //------------------------------------------------- POSITION OF BULLET TO SPAWN NEAR TANK
+
                 } else if (p.getDirection() == Direction.UP_RIGHT) {
                     controls.addBullet(new Bullet(p.getX() + 70, p.getY() - 30, tex, this, 5));
                     ammo1--;
@@ -446,9 +465,7 @@ public class Game extends Canvas implements Runnable {
                     controls.addBullet(new Bullet(p.getX() + 60, p.getY() + 65, tex, this, 7));
                     ammo1--;
                 }
-                //-------------------------------------------------
 
-                //tank 2 shoot && position of bullet when shooting
             }
         }
         if (ammo2 >= 1) {
@@ -466,7 +483,7 @@ public class Game extends Canvas implements Runnable {
                 } else if (p2.getDirection() == Direction.LEFT) {
                     controls.addBullet(new Bullet(p2.getX() - 30, p2.getY() + 20, tex, this, 3));
                     ammo2--;
-                    //------------------------------------------------- POSITION OF BULLET TO SPAWN NEAR TANK
+
                 } else if (p2.getDirection() == Direction.UP_RIGHT) {
                     controls.addBullet(new Bullet(p2.getX() + 70, p2.getY() - 30, tex, this, 5));
                     ammo2--;
@@ -493,13 +510,12 @@ public class Game extends Canvas implements Runnable {
             if (r.intersects(playButton.getButtonBounds())) {
                 playButton.clickButton(this);
             }
+            if (r.intersects(quitButton.getButtonBounds())) {
+                quitButton.clickButton(this);
+            }
         }
     }
-
-    public int getGamestate() {
-        return gamestate;
-    }
-
+    
     public void setGameState(int gamestate) {
         this.gamestate = gamestate;
     }
@@ -507,12 +523,14 @@ public class Game extends Canvas implements Runnable {
     public BufferedImage getWalls() {
         return walls;
     }
+
     public BufferedImage getBreakableWalls() {
         return breakWall;
     }
-    public BufferedImage getAmmo() { return ammo;}
 
-    public void setWalls(BufferedImage walls) {
-        this.walls = walls;
+    public BufferedImage getAmmo() {
+        return ammo;
     }
+
+
 }

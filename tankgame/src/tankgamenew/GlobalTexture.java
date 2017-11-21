@@ -4,16 +4,16 @@ import java.awt.image.BufferedImage;
 
 public class GlobalTexture {
 
-    public BufferedImage[] player = new BufferedImage[4]; //up
-    public BufferedImage[] playerLeft = new BufferedImage[4]; //left
-    public BufferedImage[] playerRight = new BufferedImage[4]; //right
-    public BufferedImage[] playerDown = new BufferedImage[4]; //down
-    public BufferedImage[] playerUpRight = new BufferedImage[1]; //down
-    public BufferedImage[] playerUpLeft = new BufferedImage[1]; //down
-    public BufferedImage[] playerDownLeft = new BufferedImage[1]; //down
-    public BufferedImage[] playerDownRight = new BufferedImage[1]; //down
+    public BufferedImage[] player = new BufferedImage[4];
+    public BufferedImage[] playerLeft = new BufferedImage[4];
+    public BufferedImage[] playerRight = new BufferedImage[4];
+    public BufferedImage[] playerDown = new BufferedImage[4];
+    public BufferedImage[] playerUpRight = new BufferedImage[1];
+    public BufferedImage[] playerUpLeft = new BufferedImage[1];
+    public BufferedImage[] playerDownLeft = new BufferedImage[1];
+    public BufferedImage[] playerDownRight = new BufferedImage[1];
 
-    public BufferedImage playbutton1, playbutton2, brickWall, breakWall , ammoCrate;
+    public BufferedImage playbutton1, playbutton2, quitbutton, brickWall, breakWall , ammoCrate;
 
     private SpriteSheetButton button;
     private SpriteSheet spriteSheet1;
@@ -31,14 +31,11 @@ public class GlobalTexture {
     }
 
     public void getSprites() {
-        playbutton1 = button.getSprite(1, 1, 200, 50); // w and h of image
+
+        playbutton1 = button.getSprite(1, 1, 200, 50);
         playbutton2 = button.getSprite(1, 2, 200, 50);
+        quitbutton = button.getSprite(2, 1, 200, 50);
 
-        //controls
-
-        // exit
-
-        //player  , animation , spritesheet has array form
         player[0] = spriteSheet1.getSprite(1, 1, 64, 64);
         player[1] = spriteSheet1.getSprite(2, 1, 64, 64);
         player[2] = spriteSheet1.getSprite(3, 1, 64, 64);
@@ -64,9 +61,10 @@ public class GlobalTexture {
         playerDownRight[0] = spriteSheet1.getSprite(4, 7, 64, 64);
         playerDownLeft[0] = spriteSheet1.getSprite(4, 8, 64, 64);
 
-
         brickWall = wallSpriteSheet.getSprite(1, 1, 32, 32);  // metal wall
         breakWall = breakableWall.getSprite(1, 1, 32, 32);  // metal wall
+
         ammoCrate = ammoUp.getSprite(1, 1, 32, 32);
+
     }
 }

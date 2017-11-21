@@ -1,9 +1,23 @@
 package tankgamenew;
-import java.applet.Applet;
-import java.applet.AudioClip;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.net.URL;
 
 public class Sound {
+        private URL url;
+        private Clip clip;
+        private AudioInputStream audio;
 
-        public static final AudioClip bullet = Applet.newAudioClip(Sound.class.getResource("bullet.wav"));
-        public static final AudioClip music = Applet.newAudioClip(Sound.class.getResource("menusound.wav"));
+        Sound() {}
+
+        public void playSound(String name) {
+                url = Game.class.getResource(name);
+                try {   audio = AudioSystem.getAudioInputStream(url);
+                        clip = AudioSystem.getClip();
+                        clip.open(audio);
+                        clip.start();
+                } catch (Exception e) { }
+        }
 }

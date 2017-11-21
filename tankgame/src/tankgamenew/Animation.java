@@ -21,7 +21,7 @@ public class Animation {
         this.img1 = img1;
         frames =1;
     }
-    //4 frames
+
     public Animation(int speed, BufferedImage img1, BufferedImage img2, BufferedImage img3, BufferedImage img4) {
         this.speed = speed;
         this.img1 = img1;
@@ -30,7 +30,7 @@ public class Animation {
         this.img4 = img4;
         frames =4;
     }
-    //3 frames
+
     public Animation(int speed, BufferedImage img1, BufferedImage img2, BufferedImage img3) {
         this.speed = speed;
         this.img1 = img1;
@@ -48,7 +48,7 @@ public class Animation {
     }
 
     public void nextFrame() {
-        //case 1 frame
+
         switch(frames) {
             case 1:
                 if(count == 0) {
