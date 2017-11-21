@@ -15,30 +15,28 @@ public class Bullet extends TickingObject {
 
 
     public void tick() {
-        //BULLET DIRECTION
-        if (facing == 1) {  // 1 is up , x & y and speed
+
+        if (facing == 1) {
             y -= 10;
-        } else if (facing == 2) { //2 is right
+        } else if (facing == 2) {
             x += 10;
-        } else if (facing == 3) {  // 3 is left
+        } else if (facing == 3) {
             x -= 10;
-        } else if (facing == 4) {  // 4 is down
+        } else if (facing == 4) {
             y += 10;
-        } else if (facing == 5) { //2 is UP right
+        } else if (facing == 5) {
             x += 10;
             y -= 10;
-        } else if (facing == 6) {  // 3 is  UP left
+        } else if (facing == 6) {
             x -= 10;
             y -= 10;
-        } else if (facing == 7) {  // 4 is down right
+        } else if (facing == 7) {
             x += 10;
             y += 10;
-        } else if (facing == 8) {  // 4 is down left
+        } else if (facing == 8) {
             x -= 10;
             y += 10;
         }
-
-
     }
 
 
@@ -47,7 +45,7 @@ public class Bullet extends TickingObject {
     }
 
     public Rectangle getBounds() {
-        return new Rectangle((int) x+8, (int) y+7, 10, 10);
+        return new Rectangle((int) x + 8, (int) y + 7, 10, 10);
     }
 
 

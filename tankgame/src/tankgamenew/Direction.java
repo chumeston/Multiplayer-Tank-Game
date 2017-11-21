@@ -6,7 +6,7 @@ public enum Direction {
     LEFT,
     UP,
     DOWN,
-    UP_RIGHT, // diagonals movement
+    UP_RIGHT,
     UP_LEFT,
     DOWN_LEFT,
     DOWN_RIGHT

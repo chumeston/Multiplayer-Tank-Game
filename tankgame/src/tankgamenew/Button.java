@@ -13,17 +13,19 @@ public class Button extends GameObject {
     }
 
     public void render(Graphics g) {
-        //animate button clicked
-        if(!clicked) {
+
+        if (!clicked) {
             if (type == 1) {
                 g.drawImage(tex.playbutton1, (int) x, (int) y, null);
             }
-        }
-            else if (clicked) {
-                if (type == 1) {
-                    g.drawImage(tex.playbutton2, (int) x, (int) y, null);
-                }
+        } else if (clicked) {
+            if (type == 1) {
+                g.drawImage(tex.playbutton2, (int) x, (int) y, null);
             }
+        }
+        if (type == 3) {
+            g.drawImage(tex.quitbutton, (int) x, (int) y, null);
+        }
 
     }
 
@@ -35,15 +37,15 @@ public class Button extends GameObject {
 
     public void clickButton(Game game) {
         clicked = true;
-        if(type == 1 ) {
+        if (type == 1) {
             game.setGameState(1);
         }
-        if(type == 2) {
-            game.setGameState(2);
+        if (type == 3) {
+            System.exit(0);
         }
     }
 
-    public Rectangle getButtonBounds(){
-        return new Rectangle((int)x,(int)y,200,50);
+    public Rectangle getButtonBounds() {
+        return new Rectangle((int) x, (int) y, 200, 50);
     }
 }
