@@ -89,8 +89,8 @@ public class Game extends Canvas implements Runnable {
         playButton = new Button(300, 350, tex).setTyped(1);
         quitButton = new Button(300, 450, tex).setTyped(3);
 
-        p = new Player(width / 2 + 100, height / 2 - 100, tex);  // position of player 1
-        p2 = new Player(gameWidth / 2 - 800, gameHeight / 2 - 100, tex);  // position of player 2
+        p = new Player(980, 440, tex);
+        p2 = new Player(250, 440, tex);
     }
 
     private synchronized void start() {
@@ -116,7 +116,7 @@ public class Game extends Canvas implements Runnable {
 
     }
 
-    public void tick() { // update collision and movement // keeps ticking
+    public void tick() {
         p.tick();
         p2.tick();
         controls.tick();
@@ -131,12 +131,13 @@ public class Game extends Canvas implements Runnable {
 
         Graphics g = bs.getDrawGraphics();
 
-        //play menu
         if (gamestate == 0) {
             menu.createMenu(g, gameBackground, playButton, quitButton, null);
             g.setColor(Color.white);
             g.setFont(new Font("Calibri", Font.PLAIN, 13));
             g.drawString("Use mouse to hit play button", 25, 25);
+            g.drawString("Tank 1 Control - W A S D  shoot - Space", 25, 40);
+            g.drawString("Tank 2 COntrol - Arrow Keys  shoot - L ", 25,  55);
         } else if (gamestate == 1) {
 
             g.drawImage(playBackground, 0, 0, null);
@@ -155,8 +156,8 @@ public class Game extends Canvas implements Runnable {
             if (hp1 > 0) {
                 g.setColor(Color.blue);
                 g.setFont(new Font("Calibri", Font.BOLD, 16));
-                g.drawString("Ammo: " + ammo1, gameWidth / 2 - 820, 50);
-                g.drawString("Score: " + score, gameWidth / 2 - 920, 50);
+                g.drawString("Ammo: " + ammo1, 140, 50);
+                g.drawString("Score: " + score, 40, 50);
                 g.setColor(Color.gray);
                 g.fillRect(2, 5, 200, 32);
                 g.setColor(Color.blue);
@@ -168,16 +169,16 @@ public class Game extends Canvas implements Runnable {
                 score2++;
                 hp1 = 100;
                 hp2 = 100;
-                p = new Player(width / 2 + 100, height / 2 - 100, tex);
-                p2 = new Player(gameWidth / 2 - 800, gameHeight / 2 - 100, tex);
+                p = new Player(980, 440, tex);
+                p2 = new Player(250, 440, tex);
                 ammo1 = 10;
                 ammo2 = 10;
             }
             if (hp2 > 0) {
                 g.setColor(Color.red);
                 g.setFont(new Font("Calibri", Font.BOLD, 16));
-                g.drawString("Ammo: " + ammo2, gameWidth / 2 - 820, gameHeight / 2 - 430);
-                g.drawString("Score: " + score2, gameWidth / 2 - 920, gameHeight / 2 - 430);
+                g.drawString("Ammo: " + ammo2, 140, 110);
+                g.drawString("Score: " + score2, 40, 110);
                 g.setColor(Color.gray);
                 g.fillRect(2, 60, 200, 32);
                 g.setColor(Color.red);
@@ -187,18 +188,14 @@ public class Game extends Canvas implements Runnable {
 
             } else {
                 g.setColor(Color.blue);
-                p2 = new Player(gameWidth / 2 - 800, gameHeight / 2 - 100, tex);
-                p = new Player(width / 2 + 100, height / 2 - 100, tex);
+                p = new Player(980, 440, tex);
+                p2 = new Player(250, 440, tex);
                 score++;
                 hp2 = 100;
                 hp1 = 100;
                 ammo1 = 10;
                 ammo2 = 10;
             }
-
-        } else if (gamestate == 2) {
-            g.setColor(Color.BLUE);
-            g.fillRect(0, 0, gameWidth, gameHeight);
         }
 
         g.dispose();
@@ -209,7 +206,7 @@ public class Game extends Canvas implements Runnable {
 
     @Override
     public void run() {
-        // SHOW FPS AND TICKRATE
+
         init();
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
@@ -232,7 +229,6 @@ public class Game extends Canvas implements Runnable {
 
             if (System.currentTimeMillis() - timer > 1000) {
                 timer += 1000;
-                //frames = 0;
                 System.out.println(updates + " tick : fps " + frames);
                 updates = 0;
                 frames = 0;
@@ -283,7 +279,6 @@ public class Game extends Canvas implements Runnable {
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
 
-        //tank 1 movement
         if (key == KeyEvent.VK_W) {
             if (p.isCanMoveUp()) {
                 p.setVelY(-5);
@@ -339,7 +334,6 @@ public class Game extends Canvas implements Runnable {
             }
         }
 
-        // tank 2
         if (key == KeyEvent.VK_UP) {
             if (p2.isCanMoveUp()) {
                 p2.setVelY(-5);
@@ -404,7 +398,7 @@ public class Game extends Canvas implements Runnable {
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
 
-        //tank 1 movement
+
         if (key == KeyEvent.VK_W) {
             p.setVelY(0);
             keyW = false;
@@ -420,7 +414,7 @@ public class Game extends Canvas implements Runnable {
         }
 
 
-        //tank 2 movement
+
         else if (key == KeyEvent.VK_LEFT) {
             p2.setVelX(0);
             keyLeft = false;
@@ -435,7 +429,6 @@ public class Game extends Canvas implements Runnable {
             keyUp = false;
         }
 
-        //tank 1 shoot && position of bullet when shooting
         if (ammo1 >= 1) {
             if (key == KeyEvent.VK_SPACE) {
 

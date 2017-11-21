@@ -51,7 +51,7 @@ public class Player extends TickingObject {
             x = Game.gameWidth - 64;
         }
         if (y > Game.gameHeight - 64) {
-            y = Game.gameHeight - 64; // -64
+            y = Game.gameHeight - 64;
         }
         if (y < 0) {
             y = 0;

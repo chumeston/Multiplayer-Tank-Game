@@ -3,7 +3,7 @@ package tankgamenew;
 public class GameObject {
 
     protected double x,y ;
-    protected GlobalTexture tex; // GlobalTexture
+    protected GlobalTexture tex;
 
     public GameObject(double x, double y, GlobalTexture tex) {
 
