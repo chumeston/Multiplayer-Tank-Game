@@ -89,8 +89,8 @@ public class Game extends Canvas implements Runnable {
         playButton = new Button(300, 350, tex).setTyped(1);
         quitButton = new Button(300, 450, tex).setTyped(3);
 
-        p = new Player(width / 2 + 100, height / 2 - 100, tex);
-        p2 = new Player(gameWidth / 2 - 800, gameHeight / 2 - 100, tex);
+        p = new Player(980, 440, tex);
+        p2 = new Player(250, 440, tex);
     }
 
     private synchronized void start() {
@@ -156,8 +156,8 @@ public class Game extends Canvas implements Runnable {
             if (hp1 > 0) {
                 g.setColor(Color.blue);
                 g.setFont(new Font("Calibri", Font.BOLD, 16));
-                g.drawString("Ammo: " + ammo1, gameWidth / 2 - 820, 50);
-                g.drawString("Score: " + score, gameWidth / 2 - 920, 50);
+                g.drawString("Ammo: " + ammo1, 140, 50);
+                g.drawString("Score: " + score, 40, 50);
                 g.setColor(Color.gray);
                 g.fillRect(2, 5, 200, 32);
                 g.setColor(Color.blue);
@@ -169,16 +169,16 @@ public class Game extends Canvas implements Runnable {
                 score2++;
                 hp1 = 100;
                 hp2 = 100;
-                p = new Player(width / 2 + 100, height / 2 - 100, tex);
-                p2 = new Player(gameWidth / 2 - 800, gameHeight / 2 - 100, tex);
+                p = new Player(980, 440, tex);
+                p2 = new Player(250, 440, tex);
                 ammo1 = 10;
                 ammo2 = 10;
             }
             if (hp2 > 0) {
                 g.setColor(Color.red);
                 g.setFont(new Font("Calibri", Font.BOLD, 16));
-                g.drawString("Ammo: " + ammo2, gameWidth / 2 - 820, gameHeight / 2 - 430);
-                g.drawString("Score: " + score2, gameWidth / 2 - 920, gameHeight / 2 - 430);
+                g.drawString("Ammo: " + ammo2, 140, 110);
+                g.drawString("Score: " + score2, 40, 110);
                 g.setColor(Color.gray);
                 g.fillRect(2, 60, 200, 32);
                 g.setColor(Color.red);
@@ -188,18 +188,14 @@ public class Game extends Canvas implements Runnable {
 
             } else {
                 g.setColor(Color.blue);
-                p2 = new Player(gameWidth / 2 - 800, gameHeight / 2 - 100, tex);
-                p = new Player(width / 2 + 100, height / 2 - 100, tex);
+                p = new Player(980, 440, tex);
+                p2 = new Player(250, 440, tex);
                 score++;
                 hp2 = 100;
                 hp1 = 100;
                 ammo1 = 10;
                 ammo2 = 10;
             }
-
-        } else if (gamestate == 2) {
-            g.setColor(Color.BLUE);
-            g.fillRect(0, 0, gameWidth, gameHeight);
         }
 
         g.dispose();
