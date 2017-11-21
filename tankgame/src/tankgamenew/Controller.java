@@ -26,7 +26,7 @@ public class Controller extends Component {
         this.game = game;
         this.tex = tex;
 
-        //drawing walls
+
         addAmmo(new Ammo(750, 100, tex));
         addAmmo(new Ammo(590, 650, tex));
 
@@ -40,11 +40,11 @@ public class Controller extends Component {
         }
 
         for (int i = 0; i < 7; i++) {
-            addWall(new Wall(565 + 32 * i, 500, tex));  // horizontal
+            addWall(new Wall(565 + 32 * i, 500, tex));
             addWall(new Wall(100 + 32 * i, 500, tex));
             addWall(new Wall(990 + 32 * i, 500, tex));
             addWall(new Wall(532 + 32 * i, 500, tex));
-            addWall(new Wall(660, 30 + 32 * i, tex)); //vertical
+            addWall(new Wall(660, 30 + 32 * i, tex));
             addWall(new Wall(660, 700 + 32 * i, tex));
             addWall(new Wall(390, 405 + 32 * i, tex));
             addWall(new Wall(900, 405 + 32 * i, tex));
@@ -52,7 +52,7 @@ public class Controller extends Component {
         }
 
         for (int i = 0; i < 42; i++) {
-            addWall(new Wall(1 + 32 * i, 1, tex));  // horizontal     1 start point , 50 spacing
+            addWall(new Wall(1 + 32 * i, 1, tex));
             addWall(new Wall(1 + 32 * i, 992, tex));
         }
 
@@ -68,7 +68,7 @@ public class Controller extends Component {
         }
 
         for (int i = 0; i < 30; i++) {
-            addWall(new Wall(1312, 30 + 32 * i, tex)); //vertical
+            addWall(new Wall(1312, 30 + 32 * i, tex));
             addWall(new Wall(0, 30 + 32 * i, tex));
         }
     }
@@ -119,7 +119,7 @@ public class Controller extends Component {
 
         }
 
-        //collision tank
+
         if (game.p2.getBound().intersects(game.p.getBound())) {
             game.p.setVelX(-game.p.getVelX());
             game.p.setVelY(-game.p.getVelY());

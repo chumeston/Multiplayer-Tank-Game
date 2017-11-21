@@ -20,7 +20,7 @@ public class Explosion {
 
     public boolean update() {
         r++;
-        if(r >= maxRadius){       //remove if it reach max radius
+        if(r >= maxRadius){
             return true;
         }
         return false;

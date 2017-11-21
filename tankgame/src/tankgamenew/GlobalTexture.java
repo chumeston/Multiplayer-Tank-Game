@@ -61,8 +61,8 @@ public class GlobalTexture {
         playerDownRight[0] = spriteSheet1.getSprite(4, 7, 64, 64);
         playerDownLeft[0] = spriteSheet1.getSprite(4, 8, 64, 64);
 
-        brickWall = wallSpriteSheet.getSprite(1, 1, 32, 32);  // metal wall
-        breakWall = breakableWall.getSprite(1, 1, 32, 32);  // metal wall
+        brickWall = wallSpriteSheet.getSprite(1, 1, 32, 32);
+        breakWall = breakableWall.getSprite(1, 1, 32, 32);
 
         ammoCrate = ammoUp.getSprite(1, 1, 32, 32);
 
