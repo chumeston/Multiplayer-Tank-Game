@@ -37,9 +37,7 @@ public class Game extends Canvas implements Runnable {
 
     private Thread thread;
 
-    private BufferedImage gameBackground, walls, button, spritesheet, playBackground, breakWall, ammo;      // game menu , button
-
-    private BufferedImage explosion;
+    private BufferedImage gameBackground, walls, button, spritesheet, playBackground, breakWall, ammo;
 
     private BufferImageLoader loader;
 
@@ -59,7 +57,6 @@ public class Game extends Canvas implements Runnable {
     public int hp1 = 100;
     public int hp2 = 100;
 
-    //game state
     private int gamestate;
 
     static Sound sound = new Sound();
@@ -81,7 +78,6 @@ public class Game extends Canvas implements Runnable {
             breakWall = loader.loadImage("res/breakablewall.png");
             ammo = loader.loadImage("res/ammo.png");
             playBackground = loader.loadImage("res/background.png");
-            explosion = loader.loadImage("res/explosion.png");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -536,8 +532,5 @@ public class Game extends Canvas implements Runnable {
         return ammo;
     }
 
-    public BufferedImage getExplode() {
-        return explosion;
-    }
 
 }
