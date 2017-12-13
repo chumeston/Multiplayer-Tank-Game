@@ -3,10 +3,12 @@ package tankgamenew;
 import java.awt.*;
 
 public class Wall extends GameObject {
-    public double x,y;
+
+    public double x, y;
+
     public Wall(double x, double y, GlobalTexture globalTexture) {
         super(x, y, globalTexture);
-        this.x= x ;
+        this.x = x;
         this.y = y;
     }
 
@@ -23,28 +25,35 @@ public class Wall extends GameObject {
     public void update() {
 
         if (Game.p.getBound().intersects(getBounds())) {
-            if (Game.p.getX() > x)
-                Game.p.setX(Game.p.getX() + 1);
-            else if (Game.p.getX() < x)
-                Game.p.setX(Game.p.getX() - 1);
-            if (Game.p.getY() > y)
-                Game.p.setY(Game.p.getY() + 1);
-            else if (Game.p.getY() < y)
-                Game.p.setY(Game.p.getY() - 1);
+            if (Game.p.getX() > x) {
+                Game.p.setX(Game.p.getX() + 7);
+            } else if (Game.p.getX() < x) {
+                Game.p.setX(Game.p.getX() - 7);
+            }
+            if (Game.p.getY() > y) {
+                Game.p.setY(Game.p.getY() + 7);
+            } else if (Game.p.getY() < y) {
+                Game.p.setY(Game.p.getY() - 7);
+            }
         }
         if (Game.p2.getBound().intersects(getBounds())) {
-            if (Game.p2.getX() > x)
-                Game.p2.setX(Game.p2.getX() + 1);
-            else if (Game.p2.getX() < x)
-                Game.p2.setX(Game.p2.getX() - 1);
-            if (Game.p2.getY() > y)
-                Game.p2.setY(Game.p2.getY() + 1);
-            else if (Game.p2.getY() < y)
-                Game.p2.setY(Game.p2.getY() - 1);
+            if (Game.p2.getX() > x) {
+                Game.p2.setX(Game.p2.getX() + 7);
+            } else if (Game.p2.getX() < x) {
+                Game.p2.setX(Game.p2.getX() - 7);
+            }
+            if (Game.p2.getY() > y) {
+                Game.p2.setY(Game.p2.getY() + 7);
+            } else if (Game.p2.getY() < y) {
+                Game.p2.setY(Game.p2.getY() - 7);
+            }
         }
     }
 
-    public double getX() { return x; }
+    public double getX() {
+        return x;
+    }
+
     public double getY() {
         return y;
     }

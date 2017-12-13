@@ -1,9 +1,9 @@
 package tankgamenew;
 
 import java.awt.*;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.ListIterator;
-
 
 public class Controller extends Component {
 
@@ -16,16 +16,22 @@ public class Controller extends Component {
     private static ArrayList<Ammo> ammoList = new ArrayList<>();
     private static ArrayList<Explosion> explosions = new ArrayList<>();
 
-
     Bullet tempBullet;
     Wall tempWall;
     BreakableWall btempWall;
     Ammo ammoCrate;
 
+    private Image image, playBackground;
+    private MediaTracker tracker;
+    private URL url;
+    static Controller controls = new Controller();
+
+    Controller() {
+    }
+
     public Controller(Game game, GlobalTexture tex) {
         this.game = game;
         this.tex = tex;
-
 
         addAmmo(new Ammo(750, 100, tex));
         addAmmo(new Ammo(590, 650, tex));
@@ -57,8 +63,8 @@ public class Controller extends Component {
         }
 
         for (int i = 0; i < 7; i++) {
-            addWall(new Wall(80 + 32 * i, 702, tex));
-            addWall(new Wall(80 + 32 * i, 286, tex));
+            addWall(new Wall(200 + 32 * i, 702, tex));
+            addWall(new Wall(100 + 32 * i, 286, tex));
             addWall(new Wall(1000 + 32 * i, 702, tex));
             addWall(new Wall(1000 + 32 * i, 286, tex));
             addWall(new Wall(520, 100 + 32 * i, tex));
@@ -73,37 +79,23 @@ public class Controller extends Component {
         }
     }
 
-
-
-
     public void tick() {
 
         for (int i = 0; i < bulletList.size(); i++) {
             tempBullet = bulletList.get(i);
 
-            if (tempBullet.getY() < 0) {
-                removeBullet(tempBullet);
-            } else if (tempBullet.getY() > game.getGH()) {
-                removeBullet(tempBullet);
-            } else if (tempBullet.getX() > game.getGW()) {
-                removeBullet(tempBullet);
-            } else if (tempBullet.getX() < 0) {
-                removeBullet(tempBullet);
-
-
-            } else if (game.p.getBound().intersects(bulletList.get(i).getBounds())) {
+            if (game.p.getBound().intersects(bulletList.get(i).getBounds())) {
                 removeBullet(tempBullet);
                 soundHit();
                 game.hp1 -= 20;
-                explosions.add(new Explosion(game.p.getX()+30,game.p.getY()+25,4,4+50,Color.red));
+                explosions.add(new Explosion(game.p.getX() + 30, game.p.getY() + 25, 4, 4 + 50, Color.red));
 
             } else if (game.p2.getBound().intersects(bulletList.get(i).getBounds())) {
                 removeBullet(tempBullet);
                 soundHit();
-                explosions.add(new Explosion(game.p2.getX()+30,game.p2.getY()+25,4,4+50,Color.blue));
+                explosions.add(new Explosion(game.p2.getX() + 30, game.p2.getY() + 25, 4, 4 + 50, Color.blue));
                 game.hp2 -= 20;
             }
-
 
             tempBullet.tick();
 
@@ -115,57 +107,80 @@ public class Controller extends Component {
             if (r2.intersects(game.p.getBound())) {
                 soundAmmo();
                 ammoListIterator.remove();
-                game.ammo1+=10;
+                game.ammo1 += 10;
 
             }
             if (r2.intersects(game.p2.getBound())) {
                 soundAmmo();
                 ammoListIterator.remove();
-                game.ammo2+=10;
+                game.ammo2 += 10;
             }
         }
 
-        for(int i = 0 ; i < explosions.size();i++) {
+        for (int i = 0; i < explosions.size(); i++) {
             boolean remove = explosions.get(i).update();
-            if(remove) {
+            if (remove) {
                 explosions.remove(i);
                 i--;
             }
         }
     }
 
-    public void render(Graphics g) {
+    public void renderMap(int w, int h, Graphics2D g2) {
 
-        for(int i = 0; i < explosions.size();i++) {
-            explosions.get(i).render(g);
+        playBackground = getGameBG("res/background2.png");
+        g2.drawImage(playBackground, 0, 0, 1920, 1000, this);
+
+        for (int i = 0; i < explosions.size(); i++) {
+            explosions.get(i).render(g2);
         }
 
         for (int i = 0; i < bulletList.size(); i++) {
             tempBullet = bulletList.get(i);
-            tempBullet.render(g);
+            tempBullet.render(g2);
         }
 
         for (int i = 0; i < wallList.size(); i++) {
             tempWall = wallList.get(i);
-            tempWall.render(g);
+            tempWall.render(g2);
         }
 
         for (int i = 0; i < ammoList.size(); i++) {
             ammoCrate = ammoList.get(i);
-            ammoCrate.render(g);
+            ammoCrate.render(g2);
+
         }
 
         for (int i = 0; i < bwallList.size(); i++) {
             btempWall = bwallList.get(i);
-            btempWall.render(g);
+            btempWall.render(g2);
         }
+        game.p.render(g2);
+        game.p2.render(g2);
 
-
+        game.p.update();
+        game.p2.update();
     }
 
-    private void soundHit() { game.sound.playSound("res/bullet.wav"); }
+    private void soundHit() {
+        game.sound.playSound("res/bullet.wav");
+    }
 
-    private void soundAmmo() { game.sound.playSound("res/ammoup.wav"); }
+    private void soundAmmo() {
+        game.sound.playSound("res/ammoup.wav");
+    }
+
+    public Image getGameBG(String name) {
+        url = Game.class.getResource(name);
+        image = getToolkit().getImage(url);
+
+        try {
+            tracker = new MediaTracker(this);
+            tracker.addImage(image, 0);
+            tracker.waitForID(0);
+        } catch (InterruptedException e) { }
+        return image;
+    }
 
     public void addBullet(Bullet instance) {
         bulletList.add(instance);
@@ -179,7 +194,7 @@ public class Controller extends Component {
         return bulletList;
     }
 
-    public void addWall(Wall instance) {
+    private void addWall(Wall instance) {
         wallList.add(instance);
     }
 
@@ -195,7 +210,7 @@ public class Controller extends Component {
         explosions.add(instance);
     }
 
-    public void addBreakWall(BreakableWall instance) {
+    private void addBreakWall(BreakableWall instance) {
         bwallList.add(instance);
     }
 
@@ -207,13 +222,11 @@ public class Controller extends Component {
         return bwallList;
     }
 
-    public void addAmmo(Ammo instance) {
+    private void addAmmo(Ammo instance) {
         ammoList.add(instance);
     }
 
-    public void removeAmmo(Ammo instance) { ammoList.remove(instance); }
-
-    public static ArrayList<Ammo> getAmmo() {
+    private static ArrayList<Ammo> getAmmo() {
         return ammoList;
     }
 

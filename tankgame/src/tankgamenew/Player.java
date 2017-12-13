@@ -22,7 +22,6 @@ public class Player extends TickingObject {
 
     private Direction direction;
 
-
     public Player(double x, double y, GlobalTexture tex) {
         super(x, y, tex);
 
@@ -43,20 +42,6 @@ public class Player extends TickingObject {
 
         x += velX;
         y += velY;
-
-        if (x < 0) {
-            x = 0;
-        }
-        if (x > Game.gameWidth - 64) {
-            x = Game.gameWidth - 64;
-        }
-        if (y > Game.gameHeight - 64) {
-            y = Game.gameHeight - 64;
-        }
-        if (y < 0) {
-            y = 0;
-        }
-
 
         if (direction == Direction.UP) {
             animates.animate();
@@ -107,29 +92,30 @@ public class Player extends TickingObject {
 
     public void update() {
         if (Game.p.getBound().intersects(Game.p2.getBound())) {
-            if (Game.p.getX() > Game.p2.getX())
-                Game.p.setX(Game.p.getX() + 1);
-            else if (Game.p.getX() < Game.p2.getX())
-                Game.p.setX(Game.p.getX() - 1);
-            if (Game.p.getY() > Game.p2.getY())
-                Game.p.setY(Game.p.getY() + 1);
-            else if (Game.p.getY() < Game.p2.getY())
-                Game.p.setY(Game.p.getY() - 1);
+            if (Game.p.getX() > Game.p2.getX()) {
+                Game.p.setX(Game.p.getX() + 5);
+            } else if (Game.p.getX() < Game.p2.getX()) {
+                Game.p.setX(Game.p.getX() - 5);
+            }
+            if (Game.p.getY() > Game.p2.getY()) {
+                Game.p.setY(Game.p.getY() + 5);
+            } else if (Game.p.getY() < Game.p2.getY()) {
+                Game.p.setY(Game.p.getY() - 5);
+            }
         }
 
         if (Game.p2.getBound().intersects(Game.p.getBound())) {
 
-            if (Game.p2.getX() > Game.p.getX())
-                Game.p2.setX(Game.p2.getX() + 1);
-
-            else if (Game.p2.getX() < Game.p.getX())
-                Game.p2.setX(Game.p2.getX() - 1);
-
-            if (Game.p2.getY() > Game.p.getY())
-                Game.p2.setY(Game.p2.getY() + 1);
-
-            else if (Game.p2.getY() < Game.p.getY())
-                Game.p2.setY(Game.p2.getY() - 1);
+            if (Game.p2.getX() > Game.p.getX()) {
+                Game.p2.setX(Game.p2.getX() + 5);
+            } else if (Game.p2.getX() < Game.p.getX()) {
+                Game.p2.setX(Game.p2.getX() - 5);
+            }
+            if (Game.p2.getY() > Game.p.getY()) {
+                Game.p2.setY(Game.p2.getY() + 5);
+            } else if (Game.p2.getY() < Game.p.getY()) {
+                Game.p2.setY(Game.p2.getY() - 5);
+            }
         }
 
     }
@@ -158,9 +144,8 @@ public class Player extends TickingObject {
         return new Rectangle((int) x + 16, (int) y + 10, 31, 4);
     }
 
-
     public Rectangle getBound() {
-        return new Rectangle((int) x+12, (int) y+12, 50, 40);
+        return new Rectangle((int) x + 12, (int) y + 12, 50, 40);
     }
 
     public void doCollision(ArrayList<Wall> walls) {
@@ -179,7 +164,7 @@ public class Player extends TickingObject {
                 canMoveLeft = true;
             }
             if (getUpBound().intersects(walls.get(i).getBounds()) && direction == Direction.UP) {
-                velY -=velY;
+                velY -= velY;
                 velY -= velY;
 
                 canMoveUp = false;
@@ -187,7 +172,7 @@ public class Player extends TickingObject {
                 canMoveUp = true;
             }
             if (getDownBound().intersects(walls.get(i).getBounds()) && direction == Direction.DOWN) {
-                velY -=velY;
+                velY -= velY;
                 velY -= velY;
 
                 canMoveDown = false;
@@ -244,7 +229,6 @@ public class Player extends TickingObject {
         }
     }
 
-
     public void doCollisionBreakable(ArrayList<BreakableWall> bwalls) {
         for (int i = 0; i < bwalls.size(); i++) {
             if (getRightBound().intersects(bwalls.get(i).getBounds()) && direction == Direction.RIGHT) {
@@ -261,7 +245,7 @@ public class Player extends TickingObject {
                 canMoveLeft = true;
             }
             if (getUpBound().intersects(bwalls.get(i).getBounds()) && direction == Direction.UP) {
-                velY -=velY;
+                velY -= velY;
                 velY -= velY;
 
                 canMoveUp = false;
@@ -269,7 +253,7 @@ public class Player extends TickingObject {
                 canMoveUp = true;
             }
             if (getDownBound().intersects(bwalls.get(i).getBounds()) && direction == Direction.DOWN) {
-                velY -=velY;
+                velY -= velY;
                 velY -= velY;
 
                 canMoveDown = false;

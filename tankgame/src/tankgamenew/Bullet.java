@@ -14,28 +14,40 @@ public class Bullet extends TickingObject {
     }
 
 
+    @Override
     public void tick() {
 
-        if (facing == 1) {
-            y -= 10;
-        } else if (facing == 2) {
-            x += 10;
-        } else if (facing == 3) {
-            x -= 10;
-        } else if (facing == 4) {
-            y += 10;
-        } else if (facing == 5) {
-            x += 10;
-            y -= 10;
-        } else if (facing == 6) {
-            x -= 10;
-            y -= 10;
-        } else if (facing == 7) {
-            x += 10;
-            y += 10;
-        } else if (facing == 8) {
-            x -= 10;
-            y += 10;
+        switch (facing) {
+            case 1:
+                y -= 10;
+                break;
+            case 2:
+                x += 10;
+                break;
+            case 3:
+                x -= 10;
+                break;
+            case 4:
+                y += 10;
+                break;
+            case 5:
+                x += 10;
+                y -= 10;
+                break;
+            case 6:
+                x -= 10;
+                y -= 10;
+                break;
+            case 7:
+                x += 10;
+                y += 10;
+                break;
+            case 8:
+                x -= 10;
+                y += 10;
+                break;
+            default:
+                break;
         }
     }
 
@@ -55,13 +67,14 @@ public class Bullet extends TickingObject {
         }
     }
 
-    private void soundHit() { game.sound.playSound("res/bullet.wav"); }
+    private void soundHit() { Game.sound.playSound("res/bullet.wav"); }
 
     public void removeOutside() {
         x =  10000;
         y = 10000;
     }
 
+    @Override
     public void render(Graphics g)
     {
         g.drawImage(game.bullet, (int) x, (int) y, null);
