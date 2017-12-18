@@ -17,6 +17,9 @@ public class Sound {
                 try {   audio = AudioSystem.getAudioInputStream(url);
                         clip = AudioSystem.getClip();
                         clip.open(audio);
+                        if (name == "res/menusound.wav") {
+                                clip.loop(Clip.LOOP_CONTINUOUSLY);
+                        }
                         clip.start();
                 } catch (Exception e) { }
         }

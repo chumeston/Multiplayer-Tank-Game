@@ -22,7 +22,6 @@ public class Controller extends Component {
     private Image image, playBackground;
     private MediaTracker tracker;
     private URL url;
-    static Controller controls = new Controller();
 
     Controller() {
     }
@@ -99,7 +98,7 @@ public class Controller extends Component {
             game.hp1 = 0;
             game.hp2 = 0;
         }
-        
+
         ListIterator<Ammo> ammoListIterator = ammoList.listIterator();
         while (ammoListIterator.hasNext()) {
             Rectangle r2 = ammoListIterator.next().getBounds();
@@ -185,32 +184,16 @@ public class Controller extends Component {
         bulletList.remove(instance);
     }
 
-    public static ArrayList<Bullet> getBullets() {
-        return bulletList;
-    }
-
     private void addWall(Wall instance) {
         wallList.add(instance);
-    }
-
-    public void removeWall(Wall instance) {
-        wallList.remove(instance);
     }
 
     public static ArrayList<Wall> getWalls() {
         return wallList;
     }
 
-    public void addExplosion(Explosion instance) {
-        explosions.add(instance);
-    }
-
     private void addAmmo(Ammo instance) {
         ammoList.add(instance);
-    }
-
-    private static ArrayList<Ammo> getAmmo() {
-        return ammoList;
     }
 
 }

@@ -50,11 +50,4 @@ public class Wall extends GameObject {
         }
     }
 
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
 }
