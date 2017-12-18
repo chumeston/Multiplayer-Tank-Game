@@ -9,16 +9,10 @@ import java.io.IOException;
 import java.awt.Graphics;
 import javax.swing.JFrame;
 
-
 public class Game extends Canvas implements Runnable {
 
-    static GraphicsDevice graphicsDevice = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-    static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    public static int gameWidth = (int) screenSize.getWidth();
-    public static int gameHeight = (int) screenSize.getHeight();
-
-    public static final int width = gameWidth;
-    public static final int height = gameHeight;
+    private final int gameWidth = 1280;
+    private final int gameHeight = 720;
 
     public static boolean running = false;
 
@@ -37,7 +31,7 @@ public class Game extends Canvas implements Runnable {
 
     private Thread thread;
 
-    private BufferedImage gameBackground, walls, button, spritesheet, playBackground, breakWall, ammo;
+    private BufferedImage gameBackground, walls, button, spritesheet, breakWall, ammo, background, map;
 
     private BufferImageLoader loader;
 
@@ -60,9 +54,15 @@ public class Game extends Canvas implements Runnable {
     private int gamestate;
 
     static Sound sound = new Sound();
+    static Controller display = new Controller();
+
+    private Graphics2D graphic;
+
+    private BufferedImage playerCameraL = new BufferedImage(WIDTH, HEIGHT, 2);
+    private BufferedImage playerCameraR = new BufferedImage(WIDTH, HEIGHT, 2);
 
     private void init() {
-
+        setBackground(Color.black);
         addMouseListener(new MouseInput(this));
         addKeyListener(new KeyInput(this));
 
@@ -77,7 +77,6 @@ public class Game extends Canvas implements Runnable {
             walls = loader.loadImage("res/wall.png");
             breakWall = loader.loadImage("res/breakablewall.png");
             ammo = loader.loadImage("res/ammo.png");
-            playBackground = loader.loadImage("res/background.png");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -137,30 +136,36 @@ public class Game extends Canvas implements Runnable {
             g.setFont(new Font("Calibri", Font.PLAIN, 13));
             g.drawString("Use mouse to hit play button", 25, 25);
             g.drawString("Tank 1 Control - W A S D  shoot - Space", 25, 40);
-            g.drawString("Tank 2 COntrol - Arrow Keys  shoot - L ", 25,  55);
+            g.drawString("Tank 2 COntrol - Arrow Keys  shoot - L ", 25, 55);
         } else if (gamestate == 1) {
 
-            g.drawImage(playBackground, 0, 0, null);
+            map = (BufferedImage) createImage(1280, 1280);
+            graphic = map.createGraphics();
 
-            p.render(g);
-            p2.render(g);
-            controls.render(g);
+            display.renderMap(1280, 720, graphic);
+            background = (BufferedImage) createImage(1280, 720);
+            graphic = background.createGraphics();
 
-            Font font2 = new Font("Calibri", Font.BOLD, 16);
-            g.setFont(font2);
-            g.setColor(Color.blue);
-            g.drawString("Tank 1", (int) p.getX() + 6, (int) p.getY());
-            g.setColor(Color.red);
-            g.drawString("Tank 2", (int) p2.getX() + 6, (int) p2.getY());
+            playerCameraL = map.getSubimage(cameraX(p), cameraY(p), getWidth() / 2, getHeight());
+            playerCameraR = map.getSubimage(cameraX(p2), cameraY(p2), getWidth() / 2, getHeight());
+
+            graphic.drawImage(playerCameraL, 0, 0, getWidth() / 2, getHeight(), this);
+            graphic.drawImage(playerCameraR, getWidth() / 2, 0, getWidth() / 2, getHeight(), this);
+
+            graphic.drawImage(map, 550, 530, 200, 200, this);
+
+            graphic.dispose();
+
+            g.drawImage(background, 0, 0, this);
 
             if (hp1 > 0) {
-                g.setColor(Color.blue);
+                g.setColor(Color.red);
                 g.setFont(new Font("Calibri", Font.BOLD, 16));
-                g.drawString("Ammo: " + ammo1, 140, 50);
-                g.drawString("Score: " + score, 40, 50);
+                g.drawString("Ammo: " + ammo1, 10, 50);
+                g.drawString("Score: " + score, 120, 50);
                 g.setColor(Color.gray);
                 g.fillRect(2, 5, 200, 32);
-                g.setColor(Color.blue);
+                g.setColor(Color.red);
                 g.fillRect(2, 5, hp1 * 2, 32);
                 g.setColor(Color.black);
                 g.drawRect(2, 5, 200, 32);
@@ -175,16 +180,16 @@ public class Game extends Canvas implements Runnable {
                 ammo2 = 10;
             }
             if (hp2 > 0) {
-                g.setColor(Color.red);
+                g.setColor(Color.blue);
                 g.setFont(new Font("Calibri", Font.BOLD, 16));
-                g.drawString("Ammo: " + ammo2, 140, 110);
-                g.drawString("Score: " + score2, 40, 110);
+                g.drawString("Ammo: " + ammo2, 660, 50);
+                g.drawString("Score: " + score2, 780, 50);
                 g.setColor(Color.gray);
-                g.fillRect(2, 60, 200, 32);
-                g.setColor(Color.red);
-                g.fillRect(2, 60, hp2 * 2, 32);
+                g.fillRect(650, 5, 200, 32);
+                g.setColor(Color.blue);
+                g.fillRect(650, 5, hp2 * 2, 32);
                 g.setColor(Color.black);
-                g.drawRect(2, 60, 200, 32);
+                g.drawRect(650, 5, 200, 32);
 
             } else {
                 g.setColor(Color.blue);
@@ -203,13 +208,12 @@ public class Game extends Canvas implements Runnable {
 
     }
 
-
     @Override
     public void run() {
 
         init();
         long lastTime = System.nanoTime();
-        double amountOfTicks = 60.0;
+        double amountOfTicks = 40.0;
         double ns = 1000000000 / amountOfTicks;
         double delta = 0;
         int updates = 0;
@@ -243,38 +247,14 @@ public class Game extends Canvas implements Runnable {
         Game game = new Game();
         frame.add(game);
         frame.setFocusable(true);
-        frame.setUndecorated(true);
-
-        try {
-            graphicsDevice.setFullScreenWindow(frame);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        frame.setSize(1280, 720);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        frame.setLocationRelativeTo(null);
+
         frame.setResizable(false);
         frame.pack();
         game.start();
     }
-
-    public BufferedImage getButtons() {
-        return button;
-    }
-
-    public BufferedImage getSpriteSheet() {
-        return spritesheet;
-    }
-
-    public int getGW() {
-        return gameWidth;
-    }
-
-    public int getGH() {
-        return gameHeight;
-    }
-
 
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
@@ -389,8 +369,7 @@ public class Game extends Canvas implements Runnable {
             }
         }
 
-        if (key == KeyEvent.VK_ESCAPE)
-        {
+        if (key == KeyEvent.VK_ESCAPE) {
             System.exit(1);
         }
     }
@@ -398,65 +377,83 @@ public class Game extends Canvas implements Runnable {
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
 
-
-        if (key == KeyEvent.VK_W) {
-            p.setVelY(0);
-            keyW = false;
-        } else if (key == KeyEvent.VK_A) {
-            p.setVelX(0);
-            keyA = false;
-        } else if (key == KeyEvent.VK_S) {
-            p.setVelY(0);
-            keyS = false;
-        } else if (key == KeyEvent.VK_D) {
-            p.setVelX(0);
-            keyD = false;
-        }
-
-
-
-        else if (key == KeyEvent.VK_LEFT) {
-            p2.setVelX(0);
-            keyLeft = false;
-        } else if (key == KeyEvent.VK_DOWN) {
-            p2.setVelY(0);
-            keyDown = false;
-        } else if (key == KeyEvent.VK_RIGHT) {
-            p2.setVelX(0);
-            keyRight = false;
-        } else if (key == KeyEvent.VK_UP) {
-            p2.setVelY(0);
-            keyUp = false;
+        switch (key) {
+            case KeyEvent.VK_W:
+                p.setVelY(0);
+                keyW = false;
+                break;
+            case KeyEvent.VK_A:
+                p.setVelX(0);
+                keyA = false;
+                break;
+            case KeyEvent.VK_S:
+                p.setVelY(0);
+                keyS = false;
+                break;
+            case KeyEvent.VK_D:
+                p.setVelX(0);
+                keyD = false;
+                break;
+            case KeyEvent.VK_LEFT:
+                p2.setVelX(0);
+                keyLeft = false;
+                break;
+            case KeyEvent.VK_DOWN:
+                p2.setVelY(0);
+                keyDown = false;
+                break;
+            case KeyEvent.VK_RIGHT:
+                p2.setVelX(0);
+                keyRight = false;
+                break;
+            case KeyEvent.VK_UP:
+                p2.setVelY(0);
+                keyUp = false;
+                break;
+            default:
+                break;
         }
 
         if (ammo1 >= 1) {
             if (key == KeyEvent.VK_SPACE) {
 
-                if (p.getDirection() == Direction.DOWN) {
-                    controls.addBullet(new Bullet(p.getX() + 20, p.getY() + 70, tex, this, 4));
-                    ammo1--;
-                } else if (p.getDirection() == Direction.UP) {
-                    controls.addBullet(new Bullet(p.getX() + 20, p.getY() - 30, tex, this, 1));
-                    ammo1--;
-                } else if (p.getDirection() == Direction.RIGHT) {
-                    controls.addBullet(new Bullet(p.getX() + 70, p.getY() + 20, tex, this, 2));
-                    ammo1--;
-                } else if (p.getDirection() == Direction.LEFT) {
-                    controls.addBullet(new Bullet(p.getX() - 30, p.getY() + 20, tex, this, 3));
-                    ammo1--;
-
-                } else if (p.getDirection() == Direction.UP_RIGHT) {
-                    controls.addBullet(new Bullet(p.getX() + 70, p.getY() - 30, tex, this, 5));
-                    ammo1--;
-                } else if (p.getDirection() == Direction.UP_LEFT) {
-                    controls.addBullet(new Bullet(p.getX() - 25, p.getY() - 25, tex, this, 6));
-                    ammo1--;
-                } else if (p.getDirection() == Direction.DOWN_LEFT) {
-                    controls.addBullet(new Bullet(p.getX() - 10, p.getY() + 65, tex, this, 8));
-                    ammo1--;
-                } else if (p.getDirection() == Direction.DOWN_RIGHT) {
-                    controls.addBullet(new Bullet(p.getX() + 60, p.getY() + 65, tex, this, 7));
-                    ammo1--;
+                if (null != p.getDirection()) {
+                    switch (p.getDirection()) {
+                        case DOWN:
+                            controls.addBullet(new Bullet(p.getX() + 20, p.getY() + 70, tex, this, 4));
+                            ammo1--;
+                            break;
+                        case UP:
+                            controls.addBullet(new Bullet(p.getX() + 20, p.getY() - 30, tex, this, 1));
+                            ammo1--;
+                            break;
+                        case RIGHT:
+                            controls.addBullet(new Bullet(p.getX() + 70, p.getY() + 20, tex, this, 2));
+                            ammo1--;
+                            break;
+                        case LEFT:
+                            controls.addBullet(new Bullet(p.getX() - 30, p.getY() + 20, tex, this, 3));
+                            ammo1--;
+                            break;
+                        case UP_RIGHT:
+                            controls.addBullet(new Bullet(p.getX() + 70, p.getY() - 30, tex, this, 5));
+                            ammo1--;
+                            break;
+                        case UP_LEFT:
+                            controls.addBullet(new Bullet(p.getX() - 25, p.getY() - 25, tex, this, 6));
+                            ammo1--;
+                            break;
+                        case DOWN_LEFT:
+                            controls.addBullet(new Bullet(p.getX() - 10, p.getY() + 65, tex, this, 8));
+                            ammo1--;
+                            break;
+                        case DOWN_RIGHT:
+                            controls.addBullet(new Bullet(p.getX() + 60, p.getY() + 65, tex, this, 7));
+                            ammo1--;
+                            break;
+                        default:
+                            break;
+                    }
                 }
 
             }
@@ -464,36 +461,65 @@ public class Game extends Canvas implements Runnable {
         if (ammo2 >= 1) {
             if (key == KeyEvent.VK_L) {
 
-                if (p2.getDirection() == Direction.DOWN) {
-                    controls.addBullet(new Bullet(p2.getX() + 20, p2.getY() + 60, tex, this, 4));
-                    ammo2--;
-                } else if (p2.getDirection() == Direction.UP) {
-                    controls.addBullet(new Bullet(p2.getX() + 20, p2.getY() - 30, tex, this, 1));
-                    ammo2--;
-                } else if (p2.getDirection() == Direction.RIGHT) {
-                    controls.addBullet(new Bullet(p2.getX() + 70, p2.getY() + 20, tex, this, 2));
-                    ammo2--;
-                } else if (p2.getDirection() == Direction.LEFT) {
-                    controls.addBullet(new Bullet(p2.getX() - 30, p2.getY() + 20, tex, this, 3));
-                    ammo2--;
-
-                } else if (p2.getDirection() == Direction.UP_RIGHT) {
-                    controls.addBullet(new Bullet(p2.getX() + 70, p2.getY() - 30, tex, this, 5));
-                    ammo2--;
-                } else if (p2.getDirection() == Direction.UP_LEFT) {
-                    controls.addBullet(new Bullet(p2.getX() - 20, p2.getY() - 20, tex, this, 6));
-                    ammo2--;
-                } else if (p2.getDirection() == Direction.DOWN_LEFT) {
-                    controls.addBullet(new Bullet(p2.getX() - 10, p2.getY() + 55, tex, this, 8));
-                    ammo2--;
-                } else if (p2.getDirection() == Direction.DOWN_RIGHT) {
-                    controls.addBullet(new Bullet(p2.getX() + 60, p2.getY() + 65, tex, this, 7));
-                    ammo2--;
+                if (null != p2.getDirection()) {
+                    switch (p2.getDirection()) {
+                        case DOWN:
+                            controls.addBullet(new Bullet(p2.getX() + 20, p2.getY() + 60, tex, this, 4));
+                            ammo2--;
+                            break;
+                        case UP:
+                            controls.addBullet(new Bullet(p2.getX() + 20, p2.getY() - 30, tex, this, 1));
+                            ammo2--;
+                            break;
+                        case RIGHT:
+                            controls.addBullet(new Bullet(p2.getX() + 70, p2.getY() + 20, tex, this, 2));
+                            ammo2--;
+                            break;
+                        case LEFT:
+                            controls.addBullet(new Bullet(p2.getX() - 30, p2.getY() + 20, tex, this, 3));
+                            ammo2--;
+                            break;
+                        case UP_RIGHT:
+                            controls.addBullet(new Bullet(p2.getX() + 70, p2.getY() - 30, tex, this, 5));
+                            ammo2--;
+                            break;
+                        case UP_LEFT:
+                            controls.addBullet(new Bullet(p2.getX() - 20, p2.getY() - 20, tex, this, 6));
+                            ammo2--;
+                            break;
+                        case DOWN_LEFT:
+                            controls.addBullet(new Bullet(p2.getX() - 10, p2.getY() + 55, tex, this, 8));
+                            ammo2--;
+                            break;
+                        case DOWN_RIGHT:
+                            controls.addBullet(new Bullet(p2.getX() + 60, p2.getY() + 65, tex, this, 7));
+                            ammo2--;
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }
     }
 
+    public BufferedImage getButtons() {
+        return button;
+    }
+
+    public BufferedImage getSpriteSheet() {
+        return spritesheet;
+    }
+
+    @Override
+    public int getWidth() {
+        return gameWidth;
+    }
+
+    @Override
+    public int getHeight() {
+        return gameHeight;
+    }
 
     public void mouseClicked(MouseEvent e) {
         int mouse = e.getButton();
@@ -508,7 +534,29 @@ public class Game extends Canvas implements Runnable {
             }
         }
     }
-    
+
+    public int cameraX(Player player) {
+        double cameraX = player.getX() - getWidth() / 4;
+
+        if (cameraX < 0) {
+            cameraX = 0;
+        } else if (cameraX > (getWidth() / 2)) {
+            cameraX = (getWidth() / 2);
+        }
+        return (int) cameraX;
+    }
+
+    public int cameraY(Player player) {
+        double cameraY = player.getY() - getHeight() / 2;
+
+        if (cameraY < 0) {
+            cameraY = 0;
+        } else if (cameraY > (getWidth() - getHeight())) {
+            cameraY = (getWidth() - getHeight());
+        }
+        return (int) cameraY;
+    }
+
     public void setGameState(int gamestate) {
         this.gamestate = gamestate;
     }
