@@ -12,13 +12,11 @@ public class Controller extends Component {
 
     private static ArrayList<Bullet> bulletList = new ArrayList<>();
     private static ArrayList<Wall> wallList = new ArrayList<>();
-    private static ArrayList<BreakableWall> bwallList = new ArrayList<>();
     private static ArrayList<Ammo> ammoList = new ArrayList<>();
     private static ArrayList<Explosion> explosions = new ArrayList<>();
 
     Bullet tempBullet;
     Wall tempWall;
-    BreakableWall btempWall;
     Ammo ammoCrate;
 
     private Image image, playBackground;
@@ -35,15 +33,6 @@ public class Controller extends Component {
 
         addAmmo(new Ammo(750, 100, tex));
         addAmmo(new Ammo(590, 650, tex));
-
-        for (int i = 0; i < 3; i++) {
-            addBreakWall(new BreakableWall(558 + 32 * i, 220, tex));
-            addBreakWall(new BreakableWall(558 + 32 * i, 695, tex));
-            addBreakWall(new BreakableWall(698 + 32 * i, 220, tex));
-            addBreakWall(new BreakableWall(698 + 32 * i, 695, tex));
-            addBreakWall(new BreakableWall(795 + 32 * i, 500, tex));
-            addBreakWall(new BreakableWall(432 + 32 * i, 500, tex));
-        }
 
         for (int i = 0; i < 7; i++) {
             addWall(new Wall(565 + 32 * i, 500, tex));
@@ -101,6 +90,16 @@ public class Controller extends Component {
 
         }
 
+        if (game.hp1 == 0 || game.hp2 == 0 ) {
+            ammoList.clear();
+            addAmmo(new Ammo(750, 100, tex));
+            addAmmo(new Ammo(590, 650, tex));
+        }
+        if (game.ammo1 == 0 && game.ammo2 == 0) {
+            game.hp1 = 0;
+            game.hp2 = 0;
+        }
+        
         ListIterator<Ammo> ammoListIterator = ammoList.listIterator();
         while (ammoListIterator.hasNext()) {
             Rectangle r2 = ammoListIterator.next().getBounds();
@@ -151,10 +150,6 @@ public class Controller extends Component {
 
         }
 
-        for (int i = 0; i < bwallList.size(); i++) {
-            btempWall = bwallList.get(i);
-            btempWall.render(g2);
-        }
         game.p.render(g2);
         game.p2.render(g2);
 
@@ -208,18 +203,6 @@ public class Controller extends Component {
 
     public void addExplosion(Explosion instance) {
         explosions.add(instance);
-    }
-
-    private void addBreakWall(BreakableWall instance) {
-        bwallList.add(instance);
-    }
-
-    public void removeBreakWall(BreakableWall instance) {
-        bwallList.remove(instance);
-    }
-
-    public static ArrayList<BreakableWall> getBreakWalls() {
-        return bwallList;
     }
 
     private void addAmmo(Ammo instance) {

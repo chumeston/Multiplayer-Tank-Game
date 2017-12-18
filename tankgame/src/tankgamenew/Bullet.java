@@ -59,12 +59,7 @@ public class Bullet extends TickingObject {
                 removeOutside();
             }
         }
-        for (int i = 0; i < Controller.getBreakWalls().size(); i++) {
-            if (Controller.getBreakWalls().get(i).getBounds().intersects(this.getBounds())) {
-                soundHit();
-                removeOutside();
-            }
-        }
+
     }
 
     private void soundHit() { Game.sound.playSound("res/bullet.wav"); }

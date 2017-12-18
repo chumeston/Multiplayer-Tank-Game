@@ -7,7 +7,6 @@ public class Player extends TickingObject {
 
     private double velX, velY = 0;
     private ArrayList<Wall> wallArrayList = Controller.getWalls();
-    private ArrayList<BreakableWall> bwallArrayList = Controller.getBreakWalls();
     private boolean canMoveRight, canMoveLeft, canMoveDown, canMoveUp,
             canMoveUpRight, canMoveUpLeft, canMoveDownRight, canMoveDownLeft;
 
@@ -66,9 +65,8 @@ public class Player extends TickingObject {
     public void render(Graphics g) {
 
         g.setColor(Color.green);
-
         doCollision(wallArrayList);
-        doCollisionBreakable(bwallArrayList);
+
         if (direction == Direction.UP) {
             animates.drawAnimation(g, x, y, 0);
         } else if (direction == Direction.RIGHT) { //right
@@ -216,87 +214,6 @@ public class Player extends TickingObject {
                 canMoveUpLeft = true;
             }
             if (getDownBound().intersects(walls.get(i).getBounds()) && (direction == Direction.DOWN_LEFT || direction == Direction.DOWN_RIGHT)) {
-                velY -= velY;
-
-                canMoveDown = false;
-                canMoveDownLeft = false;
-                canMoveDownRight = false;
-                canMoveUpRight = false;
-                canMoveUpLeft = false;
-            } else {
-                canMoveDown = true;
-            }
-        }
-    }
-
-    public void doCollisionBreakable(ArrayList<BreakableWall> bwalls) {
-        for (int i = 0; i < bwalls.size(); i++) {
-            if (getRightBound().intersects(bwalls.get(i).getBounds()) && direction == Direction.RIGHT) {
-                velX -= velX;
-                canMoveRight = false;
-            } else {
-                canMoveRight = true;
-            }
-            if (getLeftBound().intersects(bwalls.get(i).getBounds()) && direction == Direction.LEFT) {
-                velX -= velX;
-
-                canMoveLeft = false;
-            } else {
-                canMoveLeft = true;
-            }
-            if (getUpBound().intersects(bwalls.get(i).getBounds()) && direction == Direction.UP) {
-                velY -= velY;
-                velY -= velY;
-
-                canMoveUp = false;
-            } else {
-                canMoveUp = true;
-            }
-            if (getDownBound().intersects(bwalls.get(i).getBounds()) && direction == Direction.DOWN) {
-                velY -= velY;
-                velY -= velY;
-
-                canMoveDown = false;
-            } else {
-                canMoveDown = true;
-            }
-
-            if (getRightBound().intersects(bwalls.get(i).getBounds()) && (direction == Direction.UP_RIGHT || direction == Direction.DOWN_RIGHT)) {
-                velX -= velX;
-                canMoveRight = false;
-                canMoveUpRight = false;
-                canMoveDownRight = false;
-                canMoveDownLeft = false;
-            } else {
-                canMoveRight = true;
-                canMoveUpRight = true;
-            }
-            if (getLeftBound().intersects(bwalls.get(i).getBounds()) && (direction == Direction.UP_LEFT || direction == Direction.DOWN_LEFT)) {
-                velX -= velX;
-
-                canMoveLeft = false;
-                canMoveUpLeft = false;
-                canMoveDownRight = false;
-                canMoveDownLeft = false;
-            } else {
-                canMoveLeft = true;
-                canMoveUpLeft = true;
-                canMoveLeft = true;
-            }
-            if (getUpBound().intersects(bwalls.get(i).getBounds()) && (direction == Direction.UP_LEFT || direction == Direction.UP_RIGHT)) {
-                velY -= velY;
-
-                canMoveUp = false;
-                canMoveUpRight = false;
-                canMoveUpLeft = false;
-                canMoveDownRight = false;
-                canMoveDownLeft = false;
-            } else {
-                canMoveUp = true;
-                canMoveUpRight = true;
-                canMoveUpLeft = true;
-            }
-            if (getDownBound().intersects(bwalls.get(i).getBounds()) && (direction == Direction.DOWN_LEFT || direction == Direction.DOWN_RIGHT)) {
                 velY -= velY;
 
                 canMoveDown = false;
