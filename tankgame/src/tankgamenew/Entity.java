@@ -3,15 +3,15 @@ package tankgamenew;
 import java.awt.Graphics;
 
 public interface Entity {
-    public void tick();
-    public void render(Graphics g);
-    public double getX();
-    public double getY();
-    public void setX(double x);
-    public void setY(double y);
+    void tick();
+    void render(Graphics g);
+    double getX();
+    double getY();
+    void setX(double x);
+    void setY(double y);
 
-    public double getVelX();
-    public double getVelY();
-    public void setVelX(double x);
-    public void setVelY(double y);
+    double getVelX();
+    double getVelY();
+    void setVelX(double x);
+    void setVelY(double y);
 }

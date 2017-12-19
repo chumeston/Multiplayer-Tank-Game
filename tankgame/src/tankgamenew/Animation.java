@@ -31,14 +31,6 @@ public class Animation {
         frames =4;
     }
 
-    public Animation(int speed, BufferedImage img1, BufferedImage img2, BufferedImage img3) {
-        this.speed = speed;
-        this.img1 = img1;
-        this.img2 = img2;
-        this.img3 = img3;
-        frames =3;
-    }
-
     public void animate() {
         index++;
         if(index>speed) {

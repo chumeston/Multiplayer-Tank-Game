@@ -15,10 +15,7 @@ public abstract class TickingObject implements Entity {
         this.tex = tex;
     }
 
-    public double getX(){
-        return x;
-
-    }
+    public double getX(){ return x; }
 
 
     public double getY() {
