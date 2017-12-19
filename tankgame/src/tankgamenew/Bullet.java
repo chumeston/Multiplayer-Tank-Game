@@ -64,9 +64,17 @@ public class Bullet extends TickingObject {
 
     public void render(Graphics g)
     {
-        g.drawImage(game.bullet, (int) x, (int) y, null);
+        g.drawImage(game.bulletTank1, (int) x, (int) y, null);
         update();
     }
+
+    public void renderTankTwo(Graphics g) {
+        g.drawImage(game.bulletTank2, (int) x, (int) y, null);
+        update();
+    }
+
+
+
 
     public Rectangle getBounds() {
         return new Rectangle((int) x + 8, (int) y + 7, 10, 10);

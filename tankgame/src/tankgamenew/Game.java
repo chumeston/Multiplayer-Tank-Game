@@ -41,7 +41,9 @@ public class Game extends Canvas implements Runnable {
 
     private BufferImageLoader loader;
 
-    public BufferedImage bullet;
+    public BufferedImage bulletTank1;
+
+    public BufferedImage bulletTank2;
 
     Controller controls;
 
@@ -73,7 +75,8 @@ public class Game extends Canvas implements Runnable {
             gameBackground = loader.loadImage("res/menu.png");
             button = loader.loadImage("res/spritesheetbutton.png");
             spritesheet = loader.loadImage("res/tankspritesheet.png");
-            bullet = loader.loadImage("res/bluebullet.png");
+            bulletTank1 = loader.loadImage("res/bluebullet.png");
+            bulletTank2 = loader.loadImage("res/redbullet.png");
             walls = loader.loadImage("res/wall.png");
             breakWall = loader.loadImage("res/breakablewall.png");
             ammo = loader.loadImage("res/ammo.png");
