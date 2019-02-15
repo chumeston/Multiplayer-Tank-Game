@@ -1,4 +1,4 @@
-# csc413-tankgame
+# Tank Game
 
 #### Corey Humeston, humeston@mail.sfsu.edu
 
